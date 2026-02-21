@@ -86,7 +86,7 @@
               </div>
             </div>
 
-            <a class="pq-button pq-button-flat" href="#">
+            <a class="pq-button pq-button-flat" href="{{ route('manufacturing') }}">
               <div class="pq-button-block">
                 <span class="pq-button-text">Read more</span>
                 <svg
@@ -136,7 +136,7 @@
               </p>
             </div>
 
-            <a class="pq-button pq-button-flat" href="#">
+            <a class="pq-button pq-button-flat" href="{{ route('manufacturing') }}">
               <div class="pq-button-block">
                 <span class="pq-button-text">Read more</span>
                 <svg
@@ -190,7 +190,7 @@
                                 meeting international quality and compliance standards.
                               </p>
                               <div class="pq-btn-container">
-                                <a class="pq-button pq-button-link" href="#">
+                                <a class="pq-button pq-button-link" href="{{ route('manufacturing') }}">
                                   <div class="pq-button-block">
                                     <span class="pq-button-text">read more</span>
                                   </div>
@@ -223,7 +223,7 @@
                                 designs, vibrant colors, and rapid production.
                               </p>
                               <div class="pq-btn-container">
-                                <a class="pq-button pq-button-link" href="#">
+                                <a class="pq-button pq-button-link" href="{{ route('manufacturing') }}">
                                   <div class="pq-button-block">
                                     <span class="pq-button-text">read more</span>
                                   </div>
@@ -256,7 +256,7 @@
                                 excellence, durability, and refined quality.
                               </p>
                               <div class="pq-btn-container">
-                                <a class="pq-button pq-button-link" href="#">
+                                <a class="pq-button pq-button-link" href="{{ route('manufacturing') }}">
                                   <div class="pq-button-block">
                                     <span class="pq-button-text">read more</span>
                                   </div>
@@ -289,7 +289,7 @@
                                 environmental and social responsibility.
                               </p>
                               <div class="pq-btn-container">
-                                <a class="pq-button pq-button-link" href="#">
+                                <a class="pq-button pq-button-link" href="{{ route('manufacturing') }}">
                                   <div class="pq-button-block">
                                     <span class="pq-button-text">read more</span>
                                   </div>
@@ -495,7 +495,7 @@
       <!-- CTA BOX -->
       <div class="col-xl-4 p-0">
         <div class="pq-link-box">
-          <a class="pq-button pq-button-link" href="#">
+          <a class="pq-button pq-button-link" href="{{ route('contact') }}">
             <div class="pq-button-block">
               <span class="pq-button-text">start manufacturing with us</span>
             </div>

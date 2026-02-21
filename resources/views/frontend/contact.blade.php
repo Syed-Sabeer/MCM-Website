@@ -49,7 +49,7 @@
                 </div>
               </div>
               <p class="pq-contact-box-description">
-                nfo@metrocotton.com
+                 <a href="mailto:info@metrocotton.com">info@metrocottonmill.com</a>
               </p>
             </div>
           </div>
@@ -65,8 +65,13 @@
                 </div>
               </div>
               <p class="pq-contact-box-description">
-                Phone No : +92 123 456 789
+                Phone No : <a href="tel:+924235270219">+92 423 5270219</a>
               </p>
+               <p class="pq-contact-box-description">
+                Phone No : <a href="tel:+923008250219">+92 300 8250219</a>
+              </p>
+
+
             </div>
           </div>
           <div class="col-xl-4 mt-4 mt-xl-0">
@@ -81,8 +86,9 @@
                 </div>
               </div>
               <p class="pq-contact-box-description">
-                1km Rohi Nala Road, Road Opposite GM Cable, Lahore, 54000 Pakistan
+              Pars Ram 34Km Main Ferozpur Road, Opposite Unique College Lahore, 54000, Pakistan
               </p>
+
             </div>
           </div>
         </div>

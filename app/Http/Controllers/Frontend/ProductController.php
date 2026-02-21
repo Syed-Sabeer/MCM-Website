@@ -12,8 +12,8 @@ class ProductController extends Controller
         return view('frontend.products');
     }
 
-    public function show($slug)
+    public function show()
     {
-        return view('frontend.product-detail', compact('slug'));
+        return view('frontend.product-detail');
     }
 }

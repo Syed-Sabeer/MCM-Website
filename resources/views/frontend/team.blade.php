@@ -52,14 +52,14 @@
               <div class="pq-team-img">
                 <img
                   decoding="async"
-                  src="{{ asset('FrontendAssets/images/team/slider/4.jpg') }}"
+               src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
                   alt="team-image"
                 />
                 <div class="pq-team-info">
                   <h5 class="pq-member-name">
-                    <a href="#">David K. Morris</a>
+                    <a href="#">Samia Sarfaraz</a>
                   </h5>
-                  <span class="pq-team-designation">Taylor</span>
+                  <span class="pq-team-designation">PRESIDENT / CFO</span>
                 </div>
                 <div class="pq-team-share-icon">
                   <div class="pq-team-social">
@@ -92,14 +92,14 @@
               <div class="pq-team-img">
                 <img
                   decoding="async"
-                  src="{{ asset('FrontendAssets/images/team/slider/3.jpg') }}"
+                 src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
                   alt="team-image"
                 />
                 <div class="pq-team-info">
                   <h5 class="pq-member-name">
-                    <a href="#">Leia Organa</a>
+                    <a href="#">Zubair Maya</a>
                   </h5>
-                  <span class="pq-team-designation">Fashion Designer</span>
+                  <span class="pq-team-designation">CEO</span>
                 </div>
                 <div class="pq-team-share-icon">
                   <div class="pq-team-social">
@@ -132,14 +132,14 @@
               <div class="pq-team-img">
                 <img
                   decoding="async"
-                  src="images/team/slider/2.jpg"
+                  src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
                   alt="team-image"
                 />
                 <div class="pq-team-info">
                   <h5 class="pq-member-name">
-                    <a href="#">alex john martin</a>
+                    <a href="#">Tariq</a>
                   </h5>
-                  <span class="pq-team-designation">Taylor</span>
+                  <span class="pq-team-designation">IT TEAM</span>
                 </div>
                 <div class="pq-team-share-icon">
                   <div class="pq-team-social">
@@ -172,14 +172,14 @@
               <div class="pq-team-img">
                 <img
                   decoding="async"
-                  src="{{ asset('FrontendAssets/images/team/slider/4.jpg') }}"
+                  src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
                   alt="team-image"
                 />
                 <div class="pq-team-info">
                   <h5 class="pq-member-name">
-                    <a href="#">David K. Morris</a>
+                    <a href="#">Tanveer</a>
                   </h5>
-                  <span class="pq-team-designation">Taylor</span>
+                  <span class="pq-team-designation">acounts team</span>
                 </div>
                 <div class="pq-team-share-icon">
                   <div class="pq-team-social">
@@ -212,14 +212,14 @@
               <div class="pq-team-img">
                 <img
                   decoding="async"
-                  src="images/team/slider/2.jpg"
+                  src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
                   alt="team-image"
                 />
                 <div class="pq-team-info">
                   <h5 class="pq-member-name">
-                    <a href="#">alex john martin</a>
+                    <a href="#">Javed</a>
                   </h5>
-                  <span class="pq-team-designation">Taylor</span>
+                  <span class="pq-team-designation">acounts team</span>
                 </div>
                 <div class="pq-team-share-icon">
                   <div class="pq-team-social">
@@ -245,21 +245,326 @@
               </div>
             </div>
           </div>
-          <div
-            class="col-xl-4 col-lg-6 col-md-6 mt-4 mt-xl-0 wow animated fadeInUp"
-          >
+
+            <div class="col-xl-4 col-lg-6 col-md-6 mt-4 mt-xl-0 wow animated fadeInUp">
             <div class="pq-team pq-style-1">
               <div class="pq-team-img">
                 <img
                   decoding="async"
-                  src="{{ asset('FrontendAssets/images/team/slider/3.jpg') }}"
+               src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
                   alt="team-image"
                 />
                 <div class="pq-team-info">
                   <h5 class="pq-member-name">
-                    <a href="#">Leia Organa</a>
+                    <a href="#">Kamran</a>
                   </h5>
-                  <span class="pq-team-designation">Fashion Designer</span>
+                  <span class="pq-team-designation">marketing team</span>
+                </div>
+                <div class="pq-team-share-icon">
+                  <div class="pq-team-social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-linkedin"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 mt-4 mt-xl-0 wow animated fadeInUp">
+            <div class="pq-team pq-style-1">
+              <div class="pq-team-img">
+                <img
+                  decoding="async"
+src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
+                  alt="team-image"
+                />
+                <div class="pq-team-info">
+                  <h5 class="pq-member-name">
+                    <a href="#">Asad</a>
+                  </h5>
+                  <span class="pq-team-designation">marketing team</span>
+                </div>
+                <div class="pq-team-share-icon">
+                  <div class="pq-team-social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-linkedin"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 mt-4 mt-xl-0 wow animated fadeInUp">
+            <div class="pq-team pq-style-1">
+              <div class="pq-team-img">
+                <img
+                  decoding="async"
+                src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
+                  alt="team-image"
+                />
+                <div class="pq-team-info">
+                  <h5 class="pq-member-name">
+                    <a href="#">Zeeshan</a>
+                  </h5>
+                  <span class="pq-team-designation">merchandising team</span>
+                </div>
+                <div class="pq-team-share-icon">
+                  <div class="pq-team-social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-linkedin"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 mt-4 mt-xl-0 wow animated fadeInUp">
+            <div class="pq-team pq-style-1">
+              <div class="pq-team-img">
+                <img
+                  decoding="async"
+                  src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
+                  alt="team-image"
+                />
+                <div class="pq-team-info">
+                  <h5 class="pq-member-name">
+                    <a href="#">Nasir</a>
+                  </h5>
+                  <span class="pq-team-designation">merchandising team
+
+</span>
+                </div>
+                <div class="pq-team-share-icon">
+                  <div class="pq-team-social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-linkedin"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 mt-4 mt-xl-0 wow animated fadeInUp">
+            <div class="pq-team pq-style-1">
+              <div class="pq-team-img">
+                <img
+                  decoding="async"
+                  src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
+                  alt="team-image"
+                />
+                <div class="pq-team-info">
+                  <h5 class="pq-member-name">
+                    <a href="#">Khalid</a>
+                  </h5>
+                  <span class="pq-team-designation">Art / Design Team</span>
+                </div>
+                <div class="pq-team-share-icon">
+                  <div class="pq-team-social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-linkedin"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 mt-4 mt-xl-0 wow animated fadeInUp">
+            <div class="pq-team pq-style-1">
+              <div class="pq-team-img">
+                <img
+                  decoding="async"
+                  src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
+                  alt="team-image"
+                />
+                <div class="pq-team-info">
+                  <h5 class="pq-member-name">
+                    <a href="#">Bilawal</a>
+                  </h5>
+                  <span class="pq-team-designation">ppc team</span>
+                </div>
+                <div class="pq-team-share-icon">
+                  <div class="pq-team-social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-linkedin"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 mt-4 mt-xl-0 wow animated fadeInUp">
+            <div class="pq-team pq-style-1">
+              <div class="pq-team-img">
+                <img
+                  decoding="async"
+                  src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
+                  alt="team-image"
+                />
+                <div class="pq-team-info">
+                  <h5 class="pq-member-name">
+                    <a href="#">Nauman</a>
+                  </h5>
+                  <span class="pq-team-designation">ppc team</span>
+                </div>
+                <div class="pq-team-share-icon">
+                  <div class="pq-team-social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-linkedin"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 mt-4 mt-xl-0 wow animated fadeInUp">
+            <div class="pq-team pq-style-1">
+              <div class="pq-team-img">
+                <img
+                  decoding="async"
+                  src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
+                  alt="team-image"
+                />
+                <div class="pq-team-info">
+                  <h5 class="pq-member-name">
+                    <a href="#">Mehboob</a>
+                  </h5>
+                  <span class="pq-team-designation">Production</span>
+                </div>
+                <div class="pq-team-share-icon">
+                  <div class="pq-team-social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fab fa-linkedin"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+           <div class="col-xl-4 col-lg-6 col-md-6 mt-4 mt-xl-0 wow animated fadeInUp">
+            <div class="pq-team pq-style-1">
+              <div class="pq-team-img">
+                <img
+                  decoding="async"
+                  src="{{ asset('FrontendAssets/images/team/slider/guest.png') }}"
+                  alt="team-image"
+                />
+                <div class="pq-team-info">
+                  <h5 class="pq-member-name">
+                    <a href="#">Hamza</a>
+                  </h5>
+                  <span class="pq-team-designation">Production</span>
                 </div>
                 <div class="pq-team-share-icon">
                   <div class="pq-team-social">
@@ -449,7 +754,7 @@ a
       <!-- CTA BOX -->
       <div class="col-xl-4 p-0">
         <div class="pq-link-box">
-          <a class="pq-button pq-button-link" href="#">
+          <a class="pq-button pq-button-link" href="{{ route('contact') }}">
             <div class="pq-button-block">
               <span class="pq-button-text">start manufacturing with us</span>
             </div>

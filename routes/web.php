@@ -23,7 +23,7 @@ Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::get('manufacturing', [ManufactureController::class, 'index'])->name('manufacturing');
 Route::get('products', [ProductController::class, 'index'])->name('products');
-Route::get('product/{slug}', [ProductController::class, 'show'])->name('product.detail');
+Route::get('product', [ProductController::class, 'show'])->name('product.detail');
 Route::get('careers', [CareerController::class, 'index'])->name('careers');
 Route::get('hub', [HubController::class, 'index'])->name('hub');
 Route::get('team', [TeamController::class, 'index'])->name('team');

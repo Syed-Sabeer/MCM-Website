@@ -149,7 +149,7 @@
                   <span class="po-price-current">$1.75</span>
                   <span class="po-price-original">$2.55</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -195,7 +195,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -243,7 +243,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -289,7 +289,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -337,7 +337,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -383,7 +383,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -431,7 +431,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -477,7 +477,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -525,7 +525,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -571,7 +571,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-               <a href="./productdetail.html">
+               <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -619,7 +619,7 @@
                <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -665,7 +665,7 @@
                <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -712,7 +712,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -759,7 +759,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -805,7 +805,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -852,7 +852,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -898,7 +898,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>
@@ -945,7 +945,7 @@
                 <!-- <div class="po-product-price">
                   <span class="po-price-current">$34.99</span>
                 </div> -->
-                <a href="./productdetail.html">
+                <a href="{{ route('product.detail') }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>

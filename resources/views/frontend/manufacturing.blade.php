@@ -148,7 +148,7 @@
                         <div class="timeline-image pq-ps-90">
                           <img
                             decoding="async"
-                            src="images/timeline/2.jpg"
+                            src="{{ asset('FrontendAssets/images/timeline/2.jpg') }}"
                             class="wow animated fadeInRight"
                             alt="images"
                           />
@@ -163,7 +163,7 @@
                         <div class="timeline-image pq-pe-90">
                           <img
                             decoding="async"
-                            src="images/timeline/3.jpg"
+                            src="{{ asset('FrontendAssets/images/timeline/3.jpg') }}"
                             class="wow animated fadeInLeft"
                             alt="images"
                           />
@@ -246,7 +246,7 @@
                         <div class="timeline-image pq-ps-90">
                           <img
                             decoding="async"
-                            src="images/timeline/2.jpg"
+                            src="{{ asset('FrontendAssets/images/timeline/2.jpg') }}"
                             class="wow animated fadeInRight"
                             alt="images"
                           />
@@ -261,7 +261,7 @@
                         <div class="timeline-image pq-pe-90">
                           <img
                             decoding="async"
-                            src="images/timeline/3.jpg"
+                            src="{{ asset('FrontendAssets/images/timeline/3.jpg') }}"
                             class="wow animated fadeInLeft"
                             alt="images"
                           />
@@ -344,7 +344,7 @@
                         <div class="timeline-image pq-ps-90">
                           <img
                             decoding="async"
-                            src="images/timeline/2.jpg"
+                            src="{{ asset('FrontendAssets/images/timeline/2.jpg') }}"
                             class="wow animated fadeInRight"
                             alt="images"
                           />
@@ -359,7 +359,7 @@
                         <div class="timeline-image pq-pe-90">
                           <img
                             decoding="async"
-                            src="images/timeline/3.jpg"
+                            src="{{ asset('FrontendAssets/images/timeline/3.jpg') }}"
                             class="wow animated fadeInLeft"
                             alt="images"
                           />
@@ -442,7 +442,7 @@
                         <div class="timeline-image pq-ps-90">
                           <img
                             decoding="async"
-                            src="images/timeline/2.jpg"
+                            src="{{ asset('FrontendAssets/images/timeline/2.jpg') }}"
                             class="wow animated fadeInRight"
                             alt="images"
                           />
