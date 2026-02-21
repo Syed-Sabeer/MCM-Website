@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #aa1e25;
+        --dark-color: #272b36;
+        --secondary-color: #666666;
+        --grey-color: #f5f5f5;
+        --white-color: #ffffff;
+        --title-fonts: 'Red Hat Display', sans-serif;
+        --body-fonts: 'Open Sans', sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--body-fonts);
+        background: var(--grey-color);
+        color: var(--dark-color);
+        overflow-x: hidden;
+      }
+
+      .pd-product-section {
+        padding: 80px 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .pd-section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .pd-section-subtitle {
+        font-family: var(--body-fonts);
+        font-size: 14px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .pd-section-title {
+        font-family: var(--title-fonts);
+        font-size: 48px;
+        font-weight: 700;
+        color: var(--dark-color);
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .pd-section-description {
+        font-size: 16px;
+        color: var(--secondary-color);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+
+      .pd-gallery-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 36px;
+      }
+
+      .pd-main-image-wrapper {
+        position: relative;
+        background: var(--white-color);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        aspect-ratio: 1;
+      }
+
+      .pd-main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .pd-main-image-wrapper:hover .pd-main-image {
+        transform: scale(1.05);
+      }
+
+      .pd-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: var(--primary-color);
+        color: var(--white-color);
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        z-index: 2;
+      }
+
+      .pd-zoom-icon {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: var(--white-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .pd-zoom-icon:hover {
+        background: var(--primary-color);
+        color: var(--white-color);
+        transform: scale(1.1);
+      }
+
+      .pd-product-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--white-color);
+        border-radius: 20px;
+        padding: 34px;
+        /* margin-bottom: 60px; */
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      }
+
+      .pd-category-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--grey-color);
+        color: var(--primary-color);
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        width: fit-content;
+      }
+
+      .pd-product-title {
+        font-family: var(--title-fonts);
+        font-size: 42px;
+        font-weight: 700;
+        color: var(--dark-color);
+        margin-bottom: 4px;
+        line-height: 1.2;
+      }
+
+      .pd-rating-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 12px;
+      }
+
+      .pd-stars {
+        display: flex;
+        gap: 5px;
+        color: #ffa500;
+        font-size: 18px;
+      }
+
+      .pd-review-count {
+        color: var(--secondary-color);
+        font-size: 14px;
+      }
+
+      .pd-price-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 12px;
+      }
+
+      .pd-current-price {
+        font-family: var(--title-fonts);
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .pd-original-price {
+        font-size: 24px;
+        color: var(--secondary-color);
+        text-decoration: line-through;
+      }
+
+      .pd-discount-badge {
+        background: #4caf50;
+        color: var(--white-color);
+        padding: 5px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .pd-product-description {
+        font-size: 16px;
+        line-height: 1.8;
+        color: var(--secondary-color);
+        margin-bottom: 16px;
+      }
+
+      .pd-features-list {
+        list-style: none;
+        margin-bottom: 16px;
+      }
+
+      .pd-feature-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 12px 0;
+        border-bottom: 1px solid #e0e0e0;
+        font-size: 15px;
+        color: var(--dark-color);
+      }
+
+      .pd-feature-item:last-child {
+        border-bottom: none;
+      }
+
+      .pd-feature-icon {
+        color: var(--primary-color);
+        font-size: 18px;
+        width: 24px;
+      }
+
+      .pd-options-section {
+        margin-bottom: 12px;
+      }
+
+      .pd-option-label {
+        font-family: var(--title-fonts);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--dark-color);
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .pd-size-options {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .pd-size-option {
+        min-width: 50px;
+        padding: 10px 20px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        background: var(--white-color);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .pd-size-option:hover,
+      .pd-size-option.pd-active {
+        border-color: var(--primary-color);
+        background: var(--primary-color);
+        color: var(--white-color);
+      }
+
+      .pd-quantity-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 16px;
+      }
+
+      .pd-quantity-label {
+        font-family: var(--title-fonts);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--dark-color);
+      }
+
+      .pd-quantity-control {
+        display: flex;
+        align-items: center;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .pd-qty-btn {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: var(--grey-color);
+        cursor: pointer;
+        font-size: 18px;
+        color: var(--dark-color);
+        transition: all 0.3s ease;
+      }
+
+      .pd-qty-btn:hover {
+        background: var(--primary-color);
+        color: var(--white-color);
+      }
+
+      .pd-qty-input {
+        width: 60px;
+        height: 40px;
+        border: none;
+        text-align: center;
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .pd-action-buttons {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      .pd-btn {
+        flex: 1;
+        padding: 16px 30px;
+        border: none;
+        border-radius: 10px;
+        font-family: var(--title-fonts);
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .pd-btn-primary {
+        background: var(--primary-color);
+        color: var(--white-color);
+        box-shadow: 0 5px 20px rgba(170, 30, 37, 0.3);
+      }
+
+      .pd-btn-primary:hover {
+        background: #8a1820;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(170, 30, 37, 0.4);
+      }
+
+      .pd-btn-secondary {
+        background: var(--white-color);
+        color: var(--dark-color);
+        border: 2px solid #e0e0e0;
+      }
+
+      .pd-btn-secondary:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+        transform: translateY(-2px);
+      }
+
+      .pd-meta-info {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding-top: 25px;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .pd-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: var(--secondary-color);
+      }
+
+      .pd-meta-label {
+        font-weight: 600;
+        color: var(--dark-color);
+        min-width: 80px;
+      }
+
+      .pd-specifications {
+        background: var(--white-color);
+        border-radius: 20px;
+        padding: 50px;
+        margin-bottom: 60px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      }
+
+      .pd-specs-header {
+        font-family: var(--title-fonts);
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--dark-color);
+        margin-bottom: 35px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .pd-specs-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+      }
+
+      .pd-spec-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 18px;
+        background: var(--grey-color);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .pd-spec-item:hover {
+        background: var(--white-color);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .pd-spec-label {
+        font-weight: 600;
+        color: var(--dark-color);
+      }
+
+      .pd-spec-value {
+        color: var(--secondary-color);
+      }
+
+      .pd-categories-section {
+        margin-top: 60px;
+      }
+
+      .pd-categories-title {
+        font-family: var(--title-fonts);
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--dark-color);
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .pd-categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+      }
+
+      .pd-category-card {
+        background: var(--white-color);
+        border-radius: 15px;
+        padding: 30px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pd-category-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(170, 30, 37, 0.1),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .pd-category-card:hover::before {
+        left: 100%;
+      }
+
+      .pd-category-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(170, 30, 37, 0.2);
+      }
+
+      .pd-category-icon {
+        font-size: 48px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .pd-category-card:hover .pd-category-icon {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .pd-category-name {
+        font-family: var(--title-fonts);
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--dark-color);
+        margin-bottom: 10px;
+      }
+
+      .pd-category-count {
+        font-size: 14px;
+        color: var(--secondary-color);
+      }
+
+      @media (max-width: 992px) {
+        .pd-gallery-container {
+          grid-template-columns: 1fr;
+        }
+
+        .pd-section-title {
+          font-size: 36px;
+        }
+
+        .pd-product-title {
+          font-size: 32px;
+        }
+
+        .pd-specs-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .pd-product-section {
+          padding: 40px 15px;
+        }
+
+        .pd-action-buttons {
+          flex-direction: column;
+        }
+
+        .pd-specifications {
+          padding: 30px 20px;
+        }
+
+        .pd-categories-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="pd-product-section">
+      <!-- Section Header -->
+
+      <!-- Product Gallery & Info -->
+      <div class="pd-gallery-container">
+        <!-- Main Product Image -->
+        <div
+          class="pd-main-image-wrapper animate__animated animate__fadeInLeft"
+        >
+          <div class="pd-badge">New Arrival</div>
+          <img
+            src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=800&fit=crop"
+            alt="Premium Apron"
+            class="pd-main-image"
+          />
+          <div class="pd-zoom-icon">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Product Information -->
+        <div class="pd-product-info animate__animated animate__fadeInRight">
+          <div class="pd-category-badge">
+            <i class="fas fa-tag"></i>
+            <span>Aprons</span>
+          </div>
+
+          <h1 class="pd-product-title">Professional Chef Apron</h1>
+
+          <div class="pd-rating-wrapper">
+            <div class="pd-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <span class="pd-review-count">(248 Reviews)</span>
+          </div>
+
+          <div class="pd-price-wrapper">
+            <span class="pd-current-price">$49.99</span>
+            <span class="pd-original-price">$79.99</span>
+            <span class="pd-discount-badge">38% OFF</span>
+          </div>
+
+          <p class="pd-product-description">
+            Experience superior craftsmanship with our premium professional
+            apron. Made from high-quality, durable materials designed to
+            withstand daily use while maintaining its elegant appearance.
+            Perfect for chefs, baristas, and hospitality professionals.
+          </p>
+
+          <ul class="pd-features-list">
+            <li class="pd-feature-item">
+              <i class="fas fa-check-circle pd-feature-icon"></i>
+              <span>100% Premium Cotton Blend Material</span>
+            </li>
+            <li class="pd-feature-item">
+              <i class="fas fa-check-circle pd-feature-icon"></i>
+              <span>Adjustable Neck & Waist Straps</span>
+            </li>
+            <li class="pd-feature-item">
+              <i class="fas fa-check-circle pd-feature-icon"></i>
+              <span>Multiple Pockets for Convenience</span>
+            </li>
+            <li class="pd-feature-item">
+              <i class="fas fa-check-circle pd-feature-icon"></i>
+              <span>Machine Washable & Easy Care</span>
+            </li>
+          </ul>
+
+          <div class="pd-options-section">
+            <label class="pd-option-label">Select Size:</label>
+            <div class="pd-size-options">
+              <div class="pd-size-option">S</div>
+              <div class="pd-size-option pd-active">M</div>
+              <div class="pd-size-option">L</div>
+              <div class="pd-size-option">XL</div>
+              <div class="pd-size-option">XXL</div>
+            </div>
+          </div>
+
+          <div class="pd-quantity-wrapper">
+            <span class="pd-quantity-label">Quantity:</span>
+            <div class="pd-quantity-control">
+              <button class="pd-qty-btn"><i class="fas fa-minus"></i></button>
+              <input type="number" value="1" min="1" class="pd-qty-input" />
+              <button class="pd-qty-btn"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+
+          <div class="pd-action-buttons">
+            <button class="pd-btn pd-btn-primary">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Add to Cart</span>
+            </button>
+            <button class="pd-btn pd-btn-secondary">
+              <i class="fas fa-heart"></i>
+              <span>Wishlist</span>
+            </button>
+          </div>
+
+          <div class="pd-meta-info">
+            <div class="pd-meta-item">
+              <span class="pd-meta-label">SKU:</span>
+              <span>APR-2024-001</span>
+            </div>
+            <div class="pd-meta-item">
+              <span class="pd-meta-label">Category:</span>
+              <span>Aprons</span>
+            </div>
+            <div class="pd-meta-item">
+              <span class="pd-meta-label">Tags:</span>
+              <span>Professional, Chef, Kitchen, Hospitality</span>
+            </div>
+            <div class="pd-meta-item">
+              <span class="pd-meta-label">Availability:</span>
+              <span style="color: #4caf50; font-weight: 600">
+                <i class="fas fa-check-circle"></i> In Stock
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specifications Section -->
+      <div class="pd-specifications animate__animated animate__fadeInUp">
+        <h3 class="pd-specs-header">
+          <i class="fas fa-clipboard-list"></i>
+          Detailed Specifications
+        </h3>
+        <div class="pd-specs-grid">
+          <div class="pd-spec-item">
+            <span class="pd-spec-label">Material</span>
+            <span class="pd-spec-value">Premium Cotton Blend</span>
+          </div>
+          <div class="pd-spec-item">
+            <span class="pd-spec-label">Weight</span>
+            <span class="pd-spec-value">280 GSM</span>
+          </div>
+          <div class="pd-spec-item">
+            <span class="pd-spec-label">Dimensions</span>
+            <span class="pd-spec-value">32" x 28" (L x W)</span>
+          </div>
+          <div class="pd-spec-item">
+            <span class="pd-spec-label">Care Instructions</span>
+            <span class="pd-spec-value">Machine Wash Cold</span>
+          </div>
+          <div class="pd-spec-item">
+            <span class="pd-spec-label">Color Options</span>
+            <span class="pd-spec-value">5 Colors Available</span>
+          </div>
+          <div class="pd-spec-item">
+            <span class="pd-spec-label">Warranty</span>
+            <span class="pd-spec-value">12 Months</span>
+          </div>
+          <div class="pd-spec-item">
+            <span class="pd-spec-label">Country of Origin</span>
+            <span class="pd-spec-value">Made in USA</span>
+          </div>
+          <div class="pd-spec-item">
+            <span class="pd-spec-label">Certification</span>
+            <span class="pd-spec-value">ISO 9001 Certified</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Categories Section -->
+      <div class="pd-categories-section">
+        <h3 class="pd-categories-title animate__animated animate__fadeInUp">
+          Explore Our Product Categories
+        </h3>
+        <div class="pd-categories-grid">
+          <div
+            class="pd-category-card animate__animated animate__fadeInUp"
+            style="animation-delay: 0.1s"
+          >
+            <i class="fas fa-shopping-bag pd-category-icon"></i>
+            <h4 class="pd-category-name">Bags</h4>
+            <p class="pd-category-count">52 Products</p>
+          </div>
+          <div
+            class="pd-category-card animate__animated animate__fadeInUp"
+            style="animation-delay: 0.2s"
+          >
+            <i class="fas fa-utensils pd-category-icon"></i>
+            <h4 class="pd-category-name">Aprons</h4>
+            <p class="pd-category-count">38 Products</p>
+          </div>
+          <div
+            class="pd-category-card animate__animated animate__fadeInUp"
+            style="animation-delay: 0.3s"
+          >
+            <i class="fas fa-user-md pd-category-icon"></i>
+            <h4 class="pd-category-name">Scrubs</h4>
+            <p class="pd-category-count">64 Products</p>
+          </div>
+          <div
+            class="pd-category-card animate__animated animate__fadeInUp"
+            style="animation-delay: 0.4s"
+          >
+            <i class="fas fa-home pd-category-icon"></i>
+            <h4 class="pd-category-name">Home Textile</h4>
+            <p class="pd-category-count">89 Products</p>
+          </div>
+          <div
+            class="pd-category-card animate__animated animate__fadeInUp"
+            style="animation-delay: 0.5s"
+          >
+            <i class="fas fa-hard-hat pd-category-icon"></i>
+            <h4 class="pd-category-name">Uniform & Workwear</h4>
+            <p class="pd-category-count">76 Products</p>
+          </div>
+          <div
+            class="pd-category-card animate__animated animate__fadeInUp"
+            style="animation-delay: 0.6s"
+          >
+            <i class="fas fa-bandage pd-category-icon"></i>
+            <h4 class="pd-category-name">Bandanas</h4>
+            <p class="pd-category-count">31 Products</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Size selection
+      document.querySelectorAll('.pd-size-option').forEach((option) => {
+        option.addEventListener('click', function () {
+          document
+            .querySelectorAll('.pd-size-option')
+            .forEach((opt) => opt.classList.remove('pd-active'));
+          this.classList.add('pd-active');
+        });
+      });
+
+      // Quantity controls
+      const qtyInput = document.querySelector('.pd-qty-input');
+      const qtyBtns = document.querySelectorAll('.pd-qty-btn');
+
+      qtyBtns[0].addEventListener('click', () => {
+        if (qtyInput.value > 1) {
+          qtyInput.value = parseInt(qtyInput.value) - 1;
+        }
+      });
+
+      qtyBtns[1].addEventListener('click', () => {
+        qtyInput.value = parseInt(qtyInput.value) + 1;
+      });
+
+      // Add animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate__animated');
+          }
+        });
+      }, observerOptions);
+
+      document
+        .querySelectorAll(
+          '.pd-category-card, .pd-specifications, .pd-spec-item'
+        )
+        .forEach((el) => {
+          observer.observe(el);
+        });
+    </script>
+  </body>
+</html>

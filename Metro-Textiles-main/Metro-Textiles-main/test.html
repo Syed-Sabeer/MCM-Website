@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Quote</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #aa1e25;
+            --dark-color: #272b36;
+            --secondary-color: #666666;
+            --grey-color: #f5f5f5;
+            --white-color: #ffffff;
+            --title-fonts: 'Red Hat Display', sans-serif;
+            --body-fonts: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--body-fonts);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+
+        /* Modal Overlay */
+        .rq-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            animation: rq-fadeIn 0.3s ease;
+        }
+
+        .rq-modal-overlay.rq-active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Modal Container */
+        .rq-modal-container {
+            background: var(--white-color);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 700px;
+            /* max-height: 90vh;
+            overflow-y: auto; */
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: rq-slideUp 0.4s ease;
+            position: relative;
+        }
+
+        @keyframes rq-fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes rq-slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Modal Header */
+        .rq-modal-header {
+            background: linear-gradient(135deg, var(--primary-color), #8a1820);
+            color: var(--white-color);
+            padding: 24px 26px;
+            border-radius: 7px 7px 0 0;
+            position: relative;
+        }
+
+        .rq-modal-title {
+            font-family: var(--title-fonts);
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rq-modal-subtitle {
+            font-family: var(--body-fonts);
+            font-size: 14px;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .rq-close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--white-color);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rq-close-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        /* Modal Body */
+        .rq-modal-body {
+            padding: 32px 29px;
+            max-height: 580px;
+            overflow-y: scroll;
+        }
+
+        .rq-form-group {
+            margin-bottom: 25px;
+        }
+
+        .rq-form-label {
+            display: block;
+            font-family: var(--title-fonts);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 8px;
+        }
+
+        .rq-form-label i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .rq-required {
+            color: var(--primary-color);
+            margin-left: 3px;
+        }
+
+        .rq-form-input,
+        .rq-form-select,
+        .rq-form-textarea {
+            width: 100%;
+            padding: 14px 18px;
+            font-family: var(--body-fonts);
+            font-size: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            background: var(--white-color);
+        }
+
+        .rq-form-input:focus,
+        .rq-form-select:focus,
+        .rq-form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(170, 30, 37, 0.1);
+        }
+
+        .rq-form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .rq-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Quantity Controls */
+        .rq-quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rq-quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            background: var(--white-color);
+            color: var(--primary-color);
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rq-quantity-btn:hover {
+            background: var(--primary-color);
+            color: var(--white-color);
+            transform: scale(1.1);
+        }
+
+        .rq-quantity-display {
+            font-family: var(--title-fonts);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark-color);
+            min-width: 50px;
+            text-align: center;
+        }
+
+        /* Submit Button */
+        .rq-submit-button {
+            width: 100%;
+            padding: 18px;
+            font-family: var(--title-fonts);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white-color);
+            background: linear-gradient(135deg, var(--primary-color), #8a1820);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rq-submit-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .rq-submit-button:hover:before {
+            left: 100%;
+        }
+
+        .rq-submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(170, 30, 37, 0.4);
+        }
+
+        .rq-submit-button:active {
+            transform: translateY(0);
+        }
+
+        /* Success Message */
+        .rq-success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .rq-success-message.rq-active {
+            display: block;
+        }
+
+        .rq-success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--white-color);
+            font-size: 40px;
+            animation: rq-scaleIn 0.5s ease;
+        }
+
+        @keyframes rq-scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .rq-success-title {
+            font-family: var(--title-fonts);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .rq-success-text {
+            font-family: var(--body-fonts);
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .rq-form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .rq-modal-body {
+                padding: 30px 20px;
+            }
+
+        }
+
+        /* Custom Scrollbar */
+        .rq-modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .rq-modal-body::-webkit-scrollbar-track {
+            background: var(--grey-color);
+        }
+
+        .rq-modal-body::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Animated Button -->
+    <div class="rq-button-container">
+        <button class="rq-quote-button" id="rqOpenModal">
+            <i class="fas fa-file-invoice-dollar rq-button-icon"></i>
+            Request a Quote
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="rq-modal-overlay" id="rqModalOverlay">
+        <div class="rq-modal-container">
+            <!-- Modal Header -->
+            <div class="rq-modal-header">
+                <h2 class="rq-modal-title">
+                    <i class="fas fa-clipboard-list"></i>
+                    Request a Quote
+                </h2>
+                <p class="rq-modal-subtitle">Fill in the details below and we'll get back to you shortly</p>
+                <button class="rq-close-button" id="rqCloseModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="rq-modal-body" id="rqFormContainer">
+                <form id="rqQuoteForm">
+                    <div class="rq-form-row">
+                        <div class="rq-form-group">
+                            <label class="rq-form-label">
+                                <i class="fas fa-user"></i>
+                                Full Name<span class="rq-required">*</span>
+                            </label>
+                            <input type="text" class="rq-form-input" name="fullName" placeholder="John Doe" required>
+                        </div>
+
+                        <div class="rq-form-group">
+                            <label class="rq-form-label">
+                                <i class="fas fa-envelope"></i>
+                                Email Address<span class="rq-required">*</span>
+                            </label>
+                            <input type="email" class="rq-form-input" name="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="rq-form-row">
+                        <div class="rq-form-group">
+                            <label class="rq-form-label">
+                                <i class="fas fa-phone"></i>
+                                Phone Number<span class="rq-required">*</span>
+                            </label>
+                            <input type="tel" class="rq-form-input" name="phone" placeholder="+1 (555) 123-4567" required>
+                        </div>
+
+                        <div class="rq-form-group">
+                            <label class="rq-form-label">
+                                <i class="fas fa-building"></i>
+                                Company Name
+                            </label>
+                            <input type="text" class="rq-form-input" name="company" placeholder="Your Company">
+                        </div>
+                    </div>
+
+                    <div class="rq-form-group">
+                        <label class="rq-form-label">
+                            <i class="fas fa-box"></i>
+                            Product/Service<span class="rq-required">*</span>
+                        </label>
+                        <select class="rq-form-select" name="product" required>
+                            <option value="">Select a product or service</option>
+                            <option value="custom-software">Custom Software Development</option>
+                            <option value="web-design">Web Design & Development</option>
+                            <option value="mobile-app">Mobile App Development</option>
+                            <option value="ecommerce">E-commerce Solutions</option>
+                            <option value="branding">Branding & Identity</option>
+                            <option value="digital-marketing">Digital Marketing</option>
+                            <option value="consulting">IT Consulting</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="rq-form-row">
+                        <div class="rq-form-group">
+                            <label class="rq-form-label">
+                                <i class="fas fa-ruler-combined"></i>
+                                Project Size
+                            </label>
+                            <select class="rq-form-select" name="projectSize">
+                                <option value="">Select project size</option>
+                                <option value="small">Small (1-3 months)</option>
+                                <option value="medium">Medium (3-6 months)</option>
+                                <option value="large">Large (6+ months)</option>
+                                <option value="ongoing">Ongoing Support</option>
+                            </select>
+                        </div>
+
+                        <div class="rq-form-group">
+                            <label class="rq-form-label">
+                                <i class="fas fa-dollar-sign"></i>
+                                Budget Range
+                            </label>
+                            <select class="rq-form-select" name="budget">
+                                <option value="">Select your budget</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="10k-25k">$10,000 - $25,000</option>
+                                <option value="25k-50k">$25,000 - $50,000</option>
+                                <option value="50k+">$50,000+</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="rq-form-group">
+                        <label class="rq-form-label">
+                            <i class="fas fa-sort-numeric-up"></i>
+                            Quantity
+                        </label>
+                        <div class="rq-quantity-control">
+                            <button type="button" class="rq-quantity-btn" id="rqDecreaseBtn">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="rq-quantity-display" id="rqQuantityDisplay">1</span>
+                            <button type="button" class="rq-quantity-btn" id="rqIncreaseBtn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" name="quantity" id="rqQuantityInput" value="1">
+                    </div>
+
+                    <div class="rq-form-group">
+                        <label class="rq-form-label">
+                            <i class="fas fa-calendar-alt"></i>
+                            Preferred Start Date
+                        </label>
+                        <input type="date" class="rq-form-input" name="startDate">
+                    </div>
+
+                    <div class="rq-form-group">
+                        <label class="rq-form-label">
+                            <i class="fas fa-comment-dots"></i>
+                            Project Details<span class="rq-required">*</span>
+                        </label>
+                        <textarea class="rq-form-textarea" name="details" placeholder="Please provide detailed information about your requirements, goals, and any specific features you need..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="rq-submit-button">
+                        <i class="fas fa-paper-plane"></i> Submit Quote Request
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success Message -->
+            <div class="rq-success-message" id="rqSuccessMessage">
+                <div class="rq-success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h3 class="rq-success-title">Quote Request Submitted!</h3>
+                <p class="rq-success-text">Thank you for your request. Our team will review your requirements and get back to you within 24 hours.</p>
+                <button class="rq-submit-button" id="rqNewQuoteBtn">
+                    <i class="fas fa-plus"></i> Request Another Quote
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const openBtn = document.getElementById('rqOpenModal');
+        const closeBtn = document.getElementById('rqCloseModal');
+        const overlay = document.getElementById('rqModalOverlay');
+        const form = document.getElementById('rqQuoteForm');
+        const formContainer = document.getElementById('rqFormContainer');
+        const successMessage = document.getElementById('rqSuccessMessage');
+        const newQuoteBtn = document.getElementById('rqNewQuoteBtn');
+        const decreaseBtn = document.getElementById('rqDecreaseBtn');
+        const increaseBtn = document.getElementById('rqIncreaseBtn');
+        const quantityDisplay = document.getElementById('rqQuantityDisplay');
+        const quantityInput = document.getElementById('rqQuantityInput');
+
+        let quantity = 1;
+
+        // Open Modal
+        openBtn.addEventListener('click', () => {
+            overlay.classList.add('rq-active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close Modal
+        function closeModal() {
+            overlay.classList.remove('rq-active');
+            document.body.style.overflow = '';
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeModal();
+            }
+        });
+
+        // Quantity Controls
+        decreaseBtn.addEventListener('click', () => {
+            if (quantity > 1) {
+                quantity--;
+                updateQuantity();
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            quantity++;
+            updateQuantity();
+        });
+
+        function updateQuantity() {
+            quantityDisplay.textContent = quantity;
+            quantityInput.value = quantity;
+        }
+
+        // Form Submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            console.log('Quote Request Data:', data);
+            
+            // Show success message
+            formContainer.style.display = 'none';
+            successMessage.classList.add('rq-active');
+            
+            // Reset form
+            form.reset();
+            quantity = 1;
+            updateQuantity();
+        });
+
+        // New Quote Button
+        newQuoteBtn.addEventListener('click', () => {
+            successMessage.classList.remove('rq-active');
+            formContainer.style.display = 'block';
+        });
+
+        // Set minimum date to today
+        const dateInput = document.querySelector('input[type="date"]');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - Cotton Tote Bag</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #aa1e25;
+            --dark-color: #272b36;
+            --secondary-color: #666666;
+            --grey-color: #f5f5f5;
+            --white-color: #ffffff;
+            --title-fonts: 'Red Hat Display', sans-serif;
+            --body-fonts: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--body-fonts);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background-attachment: fixed;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.05) 2px, rgba(255,255,255,.05) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,.05) 2px, rgba(255,255,255,.05) 4px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .pf-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pf-header {
+            background: var(--white-color);
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .pf-header h1 {
+            font-family: var(--title-fonts);
+            color: var(--dark-color);
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pf-header h1 i {
+            color: var(--primary-color);
+        }
+
+        .pf-main-card {
+            background: var(--white-color);
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .pf-product-title {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #1a1d26 100%);
+            color: var(--white-color);
+            padding: 25px 40px;
+            text-align: center;
+            font-family: var(--title-fonts);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .pf-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .pf-image-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .pf-main-image-container {
+            background: var(--grey-color);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            min-height: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        .pf-main-image-container:hover {
+            transform: scale(1.02);
+        }
+
+        .pf-main-image-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .pf-action-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .pf-btn {
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--title-fonts);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .pf-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .pf-btn-primary {
+            background: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .pf-btn-primary:hover {
+            background: #8a1820;
+        }
+
+        .pf-thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background: var(--grey-color);
+            border-radius: 8px;
+        }
+
+        .pf-thumbnail {
+            background: var(--white-color);
+            border-radius: 6px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+
+        .pf-thumbnail:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .pf-thumbnail img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .pf-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .pf-style-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .pf-info-box {
+            background: var(--grey-color);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            font-family: var(--title-fonts);
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .pf-printing-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .pf-tab-btn {
+            padding: 12px 20px;
+            background: var(--white-color);
+            border: 2px solid var(--dark-color);
+            color: var(--dark-color);
+            border-radius: 6px;
+            font-family: var(--title-fonts);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        .pf-tab-btn:hover, .pf-tab-btn.pf-active {
+            background: var(--dark-color);
+            color: var(--white-color);
+        }
+
+        .pf-overseas-btn {
+            background: var(--primary-color);
+            color: var(--white-color);
+            border-color: var(--primary-color);
+        }
+
+        .pf-overseas-btn:hover, .pf-overseas-btn.pf-active {
+            background: #8a1820;
+            border-color: #8a1820;
+        }
+
+        .pf-pricing-table {
+            background: var(--grey-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .pf-pricing-header {
+            background: var(--dark-color);
+            color: var(--white-color);
+            padding: 18px 20px;
+            font-family: var(--title-fonts);
+            font-weight: 700;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .pf-pricing-content {
+            padding: 20px;
+        }
+
+        .pf-pricing-row {
+            display: grid;
+            grid-template-columns: 2fr repeat(6, 1fr) 0.5fr;
+            gap: 10px;
+            padding: 12px 15px;
+            background: var(--white-color);
+            margin-bottom: 8px;
+            border-radius: 6px;
+            align-items: center;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .pf-pricing-row:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .pf-pricing-row:first-child {
+            background: var(--primary-color);
+            color: var(--white-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .pf-pricing-label {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .pf-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            background: var(--grey-color);
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .pf-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background: var(--white-color);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .pf-detail-label {
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 13px;
+        }
+
+        .pf-detail-value {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .pf-color-palette {
+            background: var(--grey-color);
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .pf-color-title {
+            font-family: var(--title-fonts);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pf-color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+        }
+
+        .pf-color-swatch {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: flex-end;
+            padding: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--white-color);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .pf-color-swatch:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .pf-info-tabs {
+            margin-top: 30px;
+        }
+
+        .pf-tab-buttons {
+            display: flex;
+            gap: 5px;
+            border-bottom: 3px solid var(--grey-color);
+        }
+
+        .pf-tab-button {
+            padding: 15px 30px;
+            background: var(--grey-color);
+            border: none;
+            font-family: var(--title-fonts);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px 8px 0 0;
+            color: var(--secondary-color);
+        }
+
+        .pf-tab-button.pf-active {
+            background: var(--dark-color);
+            color: var(--white-color);
+        }
+
+        .pf-tab-content {
+            display: none;
+            padding: 30px;
+            background: var(--white-color);
+            border-radius: 0 10px 10px 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .pf-tab-content.pf-active {
+            display: block;
+        }
+
+        .pf-spec-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .pf-spec-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            padding: 15px;
+            background: var(--grey-color);
+            border-radius: 6px;
+        }
+
+        .pf-spec-label {
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .pf-spec-value {
+            color: var(--secondary-color);
+        }
+
+        /* Modal Styles */
+        .pf-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            animation: pf-fadeIn 0.3s ease;
+        }
+
+        @keyframes pf-fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .pf-modal-content {
+            background: var(--white-color);
+            margin: 50px auto;
+            padding: 0;
+            border-radius: 15px;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            animation: pf-slideDown 0.3s ease;
+        }
+
+        @keyframes pf-slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .pf-modal-header {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #1a1d26 100%);
+            color: var(--white-color);
+            padding: 25px 30px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pf-modal-header h2 {
+            font-family: var(--title-fonts);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .pf-close {
+            color: var(--white-color);
+            font-size: 32px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .pf-close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg);
+        }
+
+        .pf-modal-body {
+            padding: 30px;
+        }
+
+        .pf-form-group {
+            margin-bottom: 20px;
+        }
+
+        .pf-form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 14px;
+        }
+
+        .pf-form-input,
+        .pf-form-select,
+        .pf-form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: var(--body-fonts);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .pf-form-input:focus,
+        .pf-form-select:focus,
+        .pf-form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(170, 30, 37, 0.1);
+        }
+
+        .pf-form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .pf-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .pf-radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .pf-radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .pf-color-select {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .pf-color-option {
+            padding: 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .pf-color-option:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .pf-submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: 8px;
+            font-family: var(--title-fonts);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .pf-submit-btn:hover {
+            background: #8a1820;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(170, 30, 37, 0.3);
+        }
+
+        .pf-image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .pf-image-item {
+            background: var(--grey-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .pf-image-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .pf-download-btn {
+            padding: 8px 15px;
+            background: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pf-download-btn:hover {
+            background: #8a1820;
+        }
+
+        .pf-template-options {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .pf-template-btn {
+            padding: 15px 30px;
+            border: 2px solid var(--dark-color);
+            background: var(--white-color);
+            color: var(--dark-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pf-template-btn:hover {
+            background: var(--dark-color);
+            color: var(--white-color);
+        }
+
+        .pf-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .pf-content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .pf-form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .pf-spec-table {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pf-container">
+        <div class="pf-header">
+            <h1><i class="fas fa-shopping-bag"></i> Product Detail</h1>
+        </div>
+
+        <div class="pf-main-card">
+            <div class="pf-product-title">Cotton Tote Bag</div>
+
+            <div class="pf-content-wrapper">
+                <!-- Left Section: Images -->
+                <div class="pf-image-section">
+                    <div class="pf-main-image-container">
+                        <img id="pf-mainImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='350' viewBox='0 0 300 350'%3E%3Crect fill='%23723d46' width='300' height='350' rx='10'/%3E%3Cpath d='M75 50 L75 100 C75 90 90 80 100 80 L200 80 C210 80 225 90 225 100 L225 50' fill='none' stroke='%23522d36' stroke-width='4'/%3E%3C/svg%3E" alt="Cotton Tote Bag">
+                    </div>
+
+                    <div class="pf-action-buttons">
+                        <button class="pf-btn pf-btn-primary" onclick="openModal('freightModal')"><i class="fas fa-truck"></i> Freight Quote</button>
+                        <button class="pf-btn pf-btn-primary" onclick="openModal('quoteModal')"><i class="fas fa-file-invoice-dollar"></i> Quote</button>
+                        <button class="pf-btn pf-btn-primary" onclick="openModal('sampleModal')"><i class="fas fa-box-open"></i> Sample</button>
+                        <button class="pf-btn pf-btn-primary" onclick="openModal('imagesModal')"><i class="fas fa-images"></i> Images</button>
+                        <button class="pf-btn pf-btn-primary" onclick="openModal('templateModal')"><i class="fas fa-file-download"></i> Template</button>
+                    </div>
+
+                    <div class="pf-thumbnail-grid" id="pf-thumbnailGrid">
+                        <!-- Thumbnails will be generated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Right Section: Product Info -->
+                <div class="pf-info-section">
+                    <div class="pf-style-info">
+                        <div class="pf-info-box">
+                            <i class="fas fa-tag"></i> Style: MQTB
+                        </div>
+                        <div class="pf-info-box">
+                            <i class="fas fa-ruler-combined"></i> Size: 15"W x 16"H
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="pf-printing-tabs">
+                            <button class="pf-tab-btn pf-active" onclick="switchPrintingTab('spot')">Spot Printing</button>
+                            <button class="pf-tab-btn" onclick="switchPrintingTab('heat')">Heat Transfer</button>
+                            <button class="pf-tab-btn" onclick="switchPrintingTab('blank')">Blank</button>
+                        </div>
+                        <button class="pf-tab-btn pf-overseas-btn" style="width: 100%;" onclick="switchPrintingTab('overseas')">Overseas</button>
+                    </div>
+
+                    <div class="pf-pricing-table">
+                        <div class="pf-pricing-header" id="pf-pricingTitle">SPOT PRINTING</div>
+                        <div class="pf-pricing-content" id="pf-pricingContent">
+                            <!-- Pricing rows will be inserted by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="pf-details-grid">
+                        <div class="pf-detail-item">
+                            <span class="pf-detail-label">Price includes</span>
+                            <span class="pf-detail-value">1 Color, 1 Location</span>
+                        </div>
+                        <div class="pf-detail-item">
+                            <span class="pf-detail-label">Lead Time</span>
+                            <span class="pf-detail-value">5-7 Business Days</span>
+                        </div>
+                        <div class="pf-detail-item">
+                            <span class="pf-detail-label">Rush Available</span>
+                            <span class="pf-detail-value">Yes, Pls contact</span>
+                        </div>
+                        <div class="pf-detail-item">
+                            <span class="pf-detail-label">Imprint Area</span>
+                            <span class="pf-detail-value">10"W x 12"H</span>
+                        </div>
+                        <div class="pf-detail-item">
+                            <span class="pf-detail-label">Setup Charge</span>
+                            <span class="pf-detail-value">$ 56.25 (V)</span>
+                        </div>
+                        <div class="pf-detail-item">
+                            <span class="pf-detail-label">Repeat Setup</span>
+                            <span class="pf-detail-value">$ 25.00 (V)</span>
+                        </div>
+                        <div class="pf-detail-item">
+                            <span class="pf-detail-label">Flash Charge</span>
+                            <span class="pf-detail-value">$ 0.31 (V)</span>
+                        </div>
+                        <div class="pf-detail-item">
+                            <span class="pf-detail-label">PMS Match</span>
+                            <span class="pf-detail-value">$ 25.00 (V)</span>
+                        </div>
+                    </div>
+
+                    <div class="pf-color-palette">
+                        <div class="pf-color-title">
+                            <i class="fas fa-palette"></i> Available Colors:
+                        </div>
+                        <div class="pf-color-grid" id="pf-colorGrid">
+                            <!-- Color swatches will be generated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information Tabs -->
+            <div class="pf-info-tabs">
+                <div class="pf-tab-buttons">
+                    <button class="pf-tab-button pf-active" onclick="switchInfoTab('additional')">Additional Information</button>
+                    <button class="pf-tab-button" onclick="switchInfoTab('charges')">Additional Charges</button>
+                    <button class="pf-tab-button" onclick="switchInfoTab('shipping')">Shipping Info</button>
+                </div>
+
+                <div id="pf-additionalInfo" class="pf-tab-content pf-active">
+                    <div class="pf-spec-table">
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Description</span>
+                            <span class="pf-spec-value">6oz Cotton Bag, 100% Cotton Canvas Tote self-fabric handles. Range of colors Reinforced at stress points</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Handle Length</span>
+                            <span class="pf-spec-value">22"</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Available Colors</span>
+                            <span class="pf-spec-value">Army, Azalea, Black, Carolina Blue, Dark Grey, Forest Green, Gold, Light Grey, Hot Pink, Kelly Green, Lavender, Light Pink, Lime, Maroon, Natural, Navy, Orange, Purple, Red, Royal, Sapphire, Texas Orange, Turquoise, White, Yellow, Chocolate</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Side Gussets</span>
+                            <span class="pf-spec-value">No</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Product Size</span>
+                            <span class="pf-spec-value">15"W x 16"H</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Bottom Gussets</span>
+                            <span class="pf-spec-value">No</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Imprint Area</span>
+                            <span class="pf-spec-value">10"W x 12"H</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Rush Available</span>
+                            <span class="pf-spec-value">Yes, Pls contact customer service</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Available Decoration</span>
+                            <span class="pf-spec-value">Spot Colors, 4 Color Process, Heat Transfers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pf-chargesInfo" class="pf-tab-content">
+                    <div class="pf-spec-table">
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Setup Charge</span>
+                            <span class="pf-spec-value">$ 56.25 (V) - One-time screen setup fee</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Repeat Setup</span>
+                            <span class="pf-spec-value">$ 25.00 (V) - For reorders using existing screens</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Flash Charge (White)</span>
+                            <span class="pf-spec-value">$ 0.31 (V) - Required when printing on Natural color</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">PMS Match</span>
+                            <span class="pf-spec-value">$ 25.00 (V) - Exact Pantone color matching</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Less Than Minimum</span>
+                            <span class="pf-spec-value">$ 50.00 (V) - Orders below 72 pieces</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Add Location</span>
+                            <span class="pf-spec-value">Starting at $1.81 per piece</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Add Color</span>
+                            <span class="pf-spec-value">Starting at $0.50 per piece</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Color Change Fee</span>
+                            <span class="pf-spec-value">$ 18.75 (V) - Per color change during production</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Spec Sample / Pre Pro</span>
+                            <span class="pf-spec-value">Contact for pricing - Pre-production samples</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pf-shippingInfo" class="pf-tab-content">
+                    <div class="pf-spec-table">
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Standard Lead Time</span>
+                            <span class="pf-spec-value">5-7 Business Days after artwork approval</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Rush Service</span>
+                            <span class="pf-spec-value">Available - Contact customer service for rush options</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Shipping Methods</span>
+                            <span class="pf-spec-value">UPS, FedEx, DHL, US Mail available</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Freight Options</span>
+                            <span class="pf-spec-value">LTL Freight available for large orders</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">International Shipping</span>
+                            <span class="pf-spec-value">Available to most countries - Contact for quote</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Packaging</span>
+                            <span class="pf-spec-value">Standard carton packaging - Custom packaging available</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Blind Shipment</span>
+                            <span class="pf-spec-value">Available upon request</span>
+                        </div>
+                        <div class="pf-spec-row">
+                            <span class="pf-spec-label">Drop Shipping</span>
+                            <span class="pf-spec-value">Available - Additional fees may apply</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote Modal -->
+    <div id="quoteModal" class="pf-modal">
+        <div class="pf-modal-content">
+            <div class="pf-modal-header">
+                <h2><i class="fas fa-file-invoice-dollar"></i> Request a Quote</h2>
+                <span class="pf-close" onclick="closeModal('quoteModal')">&times;</span>
+            </div>
+            <div class="pf-modal-body">
+                <h3 style="margin-bottom: 20px; color: var(--dark-color);">Cotton Tote Bag - 15"W x 16"H - MQTB</h3>
+                
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Select Color:</label>
+                    <select class="pf-form-select">
+                        <option>Select a color</option>
+                        <option>Army</option>
+                        <option>Azalea</option>
+                        <option>Black</option>
+                        <option>Carolina Blue</option>
+                        <option>Chocolate</option>
+                        <option>Dark Grey</option>
+                        <option>Forest Green</option>
+                        <option>Gold</option>
+                        <option>Hot Pink</option>
+                        <option>Kelly</option>
+                        <option>Lavender</option>
+                        <option>Light Grey</option>
+                        <option>Light Pink</option>
+                        <option>Lime</option>
+                        <option>Maroon</option>
+                        <option>Natural</option>
+                        <option>Navy</option>
+                        <option>Orange</option>
+                        <option>Purple</option>
+                        <option>Red</option>
+                        <option>Royal</option>
+                        <option>Sapphire</option>
+                        <option>Texas Orange</option>
+                        <option>Turquoise</option>
+                        <option>White</option>
+                        <option>Yellow</option>
+                    </select>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Product Type:</label>
+                    <div class="pf-radio-group">
+                        <label class="pf-radio-label">
+                            <input type="radio" name="productType" value="blank" checked> Blank
+                        </label>
+                        <label class="pf-radio-label">
+                            <input type="radio" name="productType" value="decorated"> Decorated/Embellished
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Quantity:</label>
+                        <input type="number" class="pf-form-input" placeholder="Enter quantity" value="100">
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Ship To Zip Code:</label>
+                        <input type="text" class="pf-form-input" placeholder="Enter zip code">
+                    </div>
+                </div>
+
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Company Name:</label>
+                        <input type="text" class="pf-form-input" placeholder="Enter company name">
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Email:</label>
+                        <input type="email" class="pf-form-input" placeholder="Enter email address">
+                    </div>
+                </div>
+
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Phone:</label>
+                        <input type="tel" class="pf-form-input" placeholder="Enter phone number">
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">ASI / PPAI / SAGE #:</label>
+                        <input type="text" class="pf-form-input" placeholder="Enter ID number">
+                    </div>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">In Hand Date:</label>
+                    <input type="date" class="pf-form-input">
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Need Freight Estimate?</label>
+                    <div class="pf-radio-group">
+                        <label class="pf-radio-label">
+                            <input type="radio" name="freight" value="yes"> Yes
+                        </label>
+                        <label class="pf-radio-label">
+                            <input type="radio" name="freight" value="no" checked> No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Loading Dock at receiving End?</label>
+                    <div class="pf-radio-group">
+                        <label class="pf-radio-label">
+                            <input type="radio" name="dock" value="yes"> Yes
+                        </label>
+                        <label class="pf-radio-label">
+                            <input type="radio" name="dock" value="no" checked> No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Please provide details about this project:</label>
+                    <textarea class="pf-form-textarea" placeholder="Enter project details, decoration requirements, special instructions, etc."></textarea>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Attach pictures or artwork (if available):</label>
+                    <input type="file" class="pf-form-input" multiple accept="image/*,.pdf">
+                </div>
+
+                <button class="pf-submit-btn" onclick="submitForm('quote')">
+                    <i class="fas fa-paper-plane"></i> Submit Quote Request
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Freight Quote Modal -->
+    <div id="freightModal" class="pf-modal">
+        <div class="pf-modal-content" style="max-width: 500px;">
+            <div class="pf-modal-header">
+                <h2><i class="fas fa-truck"></i> Freight Quote</h2>
+                <span class="pf-close" onclick="closeModal('freightModal')">&times;</span>
+            </div>
+            <div class="pf-modal-body">
+                <h3 style="margin-bottom: 20px; color: var(--dark-color);">Cotton Tote Bag - MQTB</h3>
+                <p style="color: var(--primary-color); font-weight: 600; margin-bottom: 20px;">
+                    <i class="fas fa-exclamation-circle"></i> Please verify quote before placing order.
+                </p>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Quantity:</label>
+                    <input type="number" class="pf-form-input" placeholder="Enter quantity" value="500">
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Zip Code:</label>
+                    <input type="text" class="pf-form-input" placeholder="Enter destination zip code">
+                </div>
+
+                <button class="pf-submit-btn" onclick="submitForm('freight')">
+                    <i class="fas fa-calculator"></i> Calculate Freight Cost
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sample Modal -->
+    <div id="sampleModal" class="pf-modal">
+        <div class="pf-modal-content">
+            <div class="pf-modal-header">
+                <h2><i class="fas fa-box-open"></i> Request Sample</h2>
+                <span class="pf-close" onclick="closeModal('sampleModal')">&times;</span>
+            </div>
+            <div class="pf-modal-body">
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Item No:</label>
+                        <input type="text" class="pf-form-input" value="MQTB" readonly>
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Item Size:</label>
+                        <input type="text" class="pf-form-input" value='15"W x 16"H' readonly>
+                    </div>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Select Color:</label>
+                    <select class="pf-form-select">
+                        <option>Select a color</option>
+                        <option>Army</option>
+                        <option>Azalea</option>
+                        <option>Black</option>
+                        <option>Carolina Blue</option>
+                        <option>Chocolate</option>
+                        <option>Dark Grey</option>
+                        <option>Forest Green</option>
+                        <option>Gold</option>
+                        <option>Hot Pink</option>
+                        <option>Kelly</option>
+                        <option>Lavender</option>
+                        <option>Light Grey</option>
+                        <option>Light Pink</option>
+                        <option>Lime</option>
+                        <option>Maroon</option>
+                        <option>Natural</option>
+                        <option>Navy</option>
+                        <option>Orange</option>
+                        <option>Purple</option>
+                        <option>Red</option>
+                        <option>Royal</option>
+                        <option>Sapphire</option>
+                        <option>Texas Orange</option>
+                        <option>Turquoise</option>
+                        <option>White</option>
+                        <option>Yellow</option>
+                    </select>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Preference:</label>
+                    <select class="pf-form-select">
+                        <option>Blank – Preferred</option>
+                        <option>Blank Only</option>
+                        <option>Printed – Preferred</option>
+                        <option>Printed – Only</option>
+                    </select>
+                </div>
+
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">QTY:</label>
+                        <input type="number" class="pf-form-input" value="1" min="1">
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Do you want Catalog?</label>
+                        <div class="pf-radio-group">
+                            <label class="pf-radio-label">
+                                <input type="radio" name="catalog" value="yes"> Yes
+                            </label>
+                            <label class="pf-radio-label">
+                                <input type="radio" name="catalog" value="no" checked> No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">How many catalogs?</label>
+                    <input type="number" class="pf-form-input" value="0" min="0">
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Email:</label>
+                    <input type="email" class="pf-form-input" placeholder="Enter email address">
+                </div>
+
+                <h4 style="margin: 30px 0 15px; color: var(--dark-color); font-family: var(--title-fonts);">
+                    <i class="fas fa-file-invoice"></i> Billing Address
+                </h4>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Company Name:</label>
+                    <input type="text" class="pf-form-input" placeholder="Enter company name">
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Address:</label>
+                    <input type="text" class="pf-form-input" placeholder="Street address">
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Address 2:</label>
+                    <input type="text" class="pf-form-input" placeholder="Apartment, suite, etc. (optional)">
+                </div>
+
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Country:</label>
+                        <select class="pf-form-select">
+                            <option>--Please Select--</option>
+                            <option>USA</option>
+                            <option>Canada</option>
+                        </select>
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">State:</label>
+                        <select class="pf-form-select">
+                            <option>--Please Select--</option>
+                            <option>Alabama (AL)</option>
+                            <option>Alaska (AK)</option>
+                            <option>Arizona (AZ)</option>
+                            <option>Arkansas (AR)</option>
+                            <option>California (CA)</option>
+                            <option>Colorado (CO)</option>
+                            <option>Connecticut (CT)</option>
+                            <option>Delaware (DE)</option>
+                            <option>Florida (FL)</option>
+                            <option>Georgia (GA)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">City:</label>
+                        <input type="text" class="pf-form-input" placeholder="Enter city">
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Zip:</label>
+                        <input type="text" class="pf-form-input" placeholder="Enter zip code">
+                    </div>
+                </div>
+
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Phone:</label>
+                        <input type="tel" class="pf-form-input" placeholder="Enter phone number">
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Fax:</label>
+                        <input type="tel" class="pf-form-input" placeholder="Enter fax number">
+                    </div>
+                </div>
+
+                <h4 style="margin: 30px 0 15px; color: var(--dark-color); font-family: var(--title-fonts);">
+                    <i class="fas fa-shipping-fast"></i> Shipping Address
+                </h4>
+
+                <div class="pf-form-group">
+                    <label class="pf-checkbox-label">
+                        <input type="checkbox" onchange="copybillingAddress(this)">
+                        Same as Billing Address
+                    </label>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Company Name:</label>
+                    <input type="text" class="pf-form-input" placeholder="Enter company name">
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Address:</label>
+                    <input type="text" class="pf-form-input" placeholder="Street address">
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Address 2:</label>
+                    <input type="text" class="pf-form-input" placeholder="Apartment, suite, etc. (optional)">
+                </div>
+
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Country:</label>
+                        <select class="pf-form-select">
+                            <option>--Please Select--</option>
+                            <option>USA</option>
+                            <option>Canada</option>
+                        </select>
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">State:</label>
+                        <select class="pf-form-select">
+                            <option>--Please Select--</option>
+                            <option>Alabama (AL)</option>
+                            <option>Alaska (AK)</option>
+                            <option>Arizona (AZ)</option>
+                            <option>Arkansas (AR)</option>
+                            <option>California (CA)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">City:</label>
+                        <input type="text" class="pf-form-input" placeholder="Enter city">
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Zip:</label>
+                        <input type="text" class="pf-form-input" placeholder="Enter zip code">
+                    </div>
+                </div>
+
+                <div class="pf-form-row">
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Phone:</label>
+                        <input type="tel" class="pf-form-input" placeholder="Enter phone number">
+                    </div>
+                    <div class="pf-form-group">
+                        <label class="pf-form-label">Fax:</label>
+                        <input type="tel" class="pf-form-input" placeholder="Enter fax number">
+                    </div>
+                </div>
+
+                <h4 style="margin: 30px 0 15px; color: var(--dark-color); font-family: var(--title-fonts);">
+                    <i class="fas fa-truck-loading"></i> Shipping Details
+                </h4>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Shipping Carrier:</label>
+                    <select class="pf-form-select">
+                        <option>UPS</option>
+                        <option>FedEx</option>
+                        <option>DHL</option>
+                        <option>US Mail</option>
+                    </select>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Shipping Method:</label>
+                    <select class="pf-form-select">
+                        <option>Ground</option>
+                        <option>2nd Day Air</option>
+                        <option>2nd Day Air (AM)</option>
+                        <option>3rd Day</option>
+                        <option>Next Day Saver</option>
+                        <option>Next Day Air</option>
+                        <option>Next Day (AM)</option>
+                    </select>
+                </div>
+
+                <div class="pf-form-group">
+                    <label class="pf-form-label">Carrier A/c No:</label>
+                    <input type="text" class="pf-form-input" placeholder="Enter carrier account number (optional)">
+                </div>
+
+                <button class="pf-submit-btn" onclick="submitForm('sample')">
+                    <i class="fas fa-check-circle"></i> Request Sample
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Images Modal -->
+    <div id="imagesModal" class="pf-modal">
+        <div class="pf-modal-content">
+            <div class="pf-modal-header">
+                <h2><i class="fas fa-images"></i> Product Images</h2>
+                <span class="pf-close" onclick="closeModal('imagesModal')">&times;</span>
+            </div>
+            <div class="pf-modal-body">
+                <div class="pf-image-grid">
+                    <div class="pf-image-item">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect fill='%23723d46' width='150' height='150'/%3E%3C/svg%3E" alt="Image 1">
+                        <button class="pf-download-btn" onclick="downloadImage('image1')">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                    <div class="pf-image-item">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect fill='%23f9a825' width='150' height='150'/%3E%3C/svg%3E" alt="Image 6">
+                        <button class="pf-download-btn" onclick="downloadImage('image6')">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template Modal -->
+    <div id="templateModal" class="pf-modal">
+        <div class="pf-modal-content" style="max-width: 600px;">
+            <div class="pf-modal-header">
+                <h2><i class="fas fa-file-download"></i> Download Templates</h2>
+                <span class="pf-close" onclick="closeModal('templateModal')">&times;</span>
+            </div>
+            <div class="pf-modal-body">
+                <div class="pf-template-options">
+                    <button class="pf-template-btn" onclick="downloadTemplate('color')">
+                        <i class="fas fa-palette"></i> Color Swatch
+                    </button>
+                    <button class="pf-template-btn" onclick="downloadTemplate('bw')">
+                        <i class="fas fa-adjust"></i> Black & White
+                    </button>
+                </div>
+
+                <p style="text-align: center; margin: 30px 0; color: var(--secondary-color); font-style: italic;">
+                    Click on a swatch above to download a single template
+                </p>
+
+                <button class="pf-submit-btn" onclick="downloadTemplate('all')">
+                    <i class="fas fa-download"></i> Click here to download all at once
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Color data
+        const colors = [
+            { name: 'Army', color: '#4b5320' },
+            { name: 'Azalea', color: '#e75480' },
+            { name: 'Black', color: '#000000' },
+            { name: 'Carolina Blue', color: '#56a0d3' },
+            { name: 'Chocolate', color: '#3d2817' },
+            { name: 'Dark Grey', color: '#555555' },
+            { name: 'Forest Green', color: '#228b22' },
+            { name: 'Gold', color: '#ffd700' },
+            { name: 'Hot Pink', color: '#ff69b4' },
+            { name: 'Kelly', color: '#4cbb17' },
+            { name: 'Lavender', color: '#b57edc' },
+            { name: 'Light Grey', color: '#d3d3d3' },
+            { name: 'Light Pink', color: '#ffb6c1' },
+            { name: 'Lime', color: '#bfff00' },
+            { name: 'Maroon', color: '#800000' },
+            { name: 'Natural', color: '#f5deb3' },
+            { name: 'Navy', color: '#000080' },
+            { name: 'Orange', color: '#ff8c00' },
+            { name: 'Purple', color: '#800080' },
+            { name: 'Red', color: '#ff0000' },
+            { name: 'Royal', color: '#4169e1' },
+            { name: 'Sapphire', color: '#0f52ba' },
+            { name: 'Texas Orange', color: '#bf5700' },
+            { name: 'Turquoise', color: '#40e0d0' },
+            { name: 'White', color: '#ffffff' },
+            { name: 'Yellow', color: '#ffff00' }
+        ];
+
+        // Pricing data for different tabs
+        const pricingData = {
+            spot: {
+                title: 'SPOT PRINTING',
+                rows: [
+                    { label: 'Natural', prices: ['$4.02', '$3.27', '$2.94', '$2.77', '$2.58', '$2.48', 'R'] },
+                    { label: 'Colors', prices: ['$5.00', '$4.23', '$3.90', '$3.73', '$3.54', '$3.44', 'R'] },
+                    { label: 'Add Location', prices: ['$1.81', '$1.31', '$1.06', '$0.94', '$0.81', '$0.71', 'V'] },
+                    { label: 'Add Color', prices: ['$0.50', '$0.38', '$0.35', '$0.30', '$0.25', '$0.20', 'V'] }
+                ]
+            },
+            heat: {
+                title: 'HEAT TRANSFER',
+                rows: [
+                    { label: 'Natural', prices: ['$4.50', '$3.75', '$3.42', '$3.25', '$3.06', '$2.96', 'R'] },
+                    { label: 'Colors', prices: ['$5.48', '$4.71', '$4.38', '$4.21', '$4.02', '$3.92', 'R'] },
+                    { label: 'Add Location', prices: ['$2.00', '$1.50', '$1.25', '$1.13', '$1.00', '$0.90', 'V'] },
+                    { label: 'Full Color', prices: ['$1.00', '$0.88', '$0.75', '$0.60', '$0.50', '$0.40', 'V'] }
+                ]
+            },
+            blank: {
+                title: 'BLANK',
+                rows: [
+                    { label: 'Natural', prices: ['$3.50', '$2.75', '$2.42', '$2.25', '$2.06', '$1.96', 'R'] },
+                    { label: 'Colors', prices: ['$4.48', '$3.71', '$3.38', '$3.21', '$3.02', '$2.92', 'R'] }
+                ]
+            },
+            overseas: {
+                title: 'OVERSEAS',
+                rows: [
+                    { label: 'Natural', prices: ['$2.80', '$2.20', '$1.95', '$1.80', '$1.65', '$1.55', 'R'] },
+                    { label: 'Colors', prices: ['$3.50', '$2.90', '$2.65', '$2.50', '$2.35', '$2.25', 'R'] },
+                    { label: 'Add Location', prices: ['$1.20', '$0.90', '$0.75', '$0.65', '$0.55', '$0.45', 'V'] },
+                    { label: 'Add Color', prices: ['$0.35', '$0.25', '$0.20', '$0.18', '$0.15', '$0.12', 'V'] }
+                ]
+            }
+        };
+
+        let currentPrintingTab = 'spot';
+
+        // Generate color swatches
+        function generateColorSwatches() {
+            const colorGrid = document.getElementById('pf-colorGrid');
+            colors.forEach(color => {
+                const swatch = document.createElement('div');
+                swatch.className = 'pf-color-swatch';
+                swatch.style.background = color.color;
+                swatch.textContent = color.name;
+                
+                // Adjust text color for light backgrounds
+                if (color.name === 'White' || color.name === 'Natural' || color.name === 'Light Grey' || color.name === 'Light Pink' || color.name === 'Lime' || color.name === 'Yellow') {
+                    swatch.style.color = '#333';
+                    swatch.style.textShadow = 'none';
+                }
+                
+                if (color.name === 'White' || color.name === 'Natural' || color.name === 'Light Grey') {
+                    swatch.style.border = '2px solid #ddd';
+                }
+                
+                colorGrid.appendChild(swatch);
+            });
+        }
+
+        // Generate thumbnails
+        function generateThumbnails() {
+            const thumbnailGrid = document.getElementById('pf-thumbnailGrid');
+            colors.slice(0, 24).forEach((color, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'pf-thumbnail';
+                thumb.innerHTML = `<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70'%3E%3Crect fill='${encodeURIComponent(color.color)}' width='70' height='70' rx='3'/%3E%3C/svg%3E" alt="${color.name}">`;
+                thumb.onclick = () => changeMainImage(color.color);
+                thumbnailGrid.appendChild(thumb);
+            });
+        }
+
+        // Change main image
+        function changeMainImage(color) {
+            const mainImage = document.getElementById('pf-mainImage');
+            mainImage.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='350' viewBox='0 0 300 350'%3E%3Crect fill='${encodeURIComponent(color)}' width='300' height='350' rx='10'/%3E%3Cpath d='M75 50 L75 100 C75 90 90 80 100 80 L200 80 C210 80 225 90 225 100 L225 50' fill='none' stroke='%23000' stroke-width='4' opacity='0.3'/%3E%3C/svg%3E`;
+        }
+
+        // Update pricing table
+        function updatePricingTable(tab) {
+            const data = pricingData[tab];
+            const pricingTitle = document.getElementById('pf-pricingTitle');
+            const pricingContent = document.getElementById('pf-pricingContent');
+            
+            pricingTitle.textContent = data.title;
+            
+            let html = `
+                <div class="pf-pricing-row">
+                    <div>Quantity</div>
+                    <div>72</div>
+                    <div>288</div>
+                    <div>500</div>
+                    <div>1000</div>
+                    <div>2000</div>
+                    <div>3000</div>
+                    <div></div>
+                </div>
+            `;
+            
+            data.rows.forEach(row => {
+                html += `
+                    <div class="pf-pricing-row">
+                        <div class="pf-pricing-label">${row.label}</div>
+                        ${row.prices.map(price => `<div>${price}</div>`).join('')}
+                    </div>
+                `;
+            });
+            
+            pricingContent.innerHTML = html;
+        }
+
+        // Switch printing tab
+        function switchPrintingTab(tab) {
+            currentPrintingTab = tab;
+            
+            // Update button states
+            const buttons = document.querySelectorAll('.pf-printing-tabs .pf-tab-btn, .pf-overseas-btn');
+            buttons.forEach(btn => btn.classList.remove('pf-active'));
+            event.target.classList.add('pf-active');
+            
+            // Update pricing table
+            updatePricingTable(tab);
+        }
+
+        // Switch info tab
+        function switchInfoTab(tab) {
+            // Hide all tab contents
+            document.querySelectorAll('.pf-tab-content').forEach(content => {
+                content.classList.remove('pf-active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.pf-tab-button').forEach(btn => {
+                btn.classList.remove('pf-active');
+            });
+            
+            // Show selected tab and mark button as active
+            if (tab === 'additional') {
+                document.getElementById('pf-additionalInfo').classList.add('pf-active');
+            } else if (tab === 'charges') {
+                document.getElementById('pf-chargesInfo').classList.add('pf-active');
+            } else if (tab === 'shipping') {
+                document.getElementById('pf-shippingInfo').classList.add('pf-active');
+            }
+            
+            event.target.classList.add('pf-active');
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('pf-modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Copy billing address to shipping
+        function copybillingAddress(checkbox) {
+            // This would copy the billing address fields to shipping address fields
+            if (checkbox.checked) {
+                alert('Billing address will be copied to shipping address');
+            }
+        }
+
+        // Submit form
+        function submitForm(type) {
+            alert(`${type.charAt(0).toUpperCase() + type.slice(1)} request submitted successfully!`);
+            closeModal(type + 'Modal');
+        }
+
+        // Download functions
+        function downloadImage(imageName) {
+            alert(`Downloading ${imageName}...`);
+        }
+
+        function downloadTemplate(type) {
+            if (type === 'all') {
+                alert('Downloading all templates...');
+            } else {
+                alert(`Downloading ${type} template...`);
+            }
+        }
+
+        // Initialize
+        window.onload = function() {
+            generateColorSwatches();
+            generateThumbnails();
+            updatePricingTable('spot');
+        };
+    </script>
+</body>
+</html>
+                        

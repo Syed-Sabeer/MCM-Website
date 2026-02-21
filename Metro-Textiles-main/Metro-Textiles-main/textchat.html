@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Chat Assistant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #aa1e25;
+      --dark-color: #272b36;
+      --secondary-color: #666666;
+      --grey-color: #f5f5f5;
+      --white-color: #ffffff;
+      --title-fonts: 'Red Hat Display', sans-serif;
+      --body-fonts: 'Open Sans', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--body-fonts);
+      margin: 0;
+      padding: 0;
+    }
+
+    .ChContainer {
+      position: fixed;
+      bottom: 110px;
+      right: 30px;
+      width: 420px;
+      z-index: 9999;
+    }
+
+    .ChChatTrigger {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 75px;
+      height: 75px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, #941a21 100%);
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(170, 30, 37, 0.45), 0 0 0 0 rgba(170, 30, 37, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 10000;
+      animation: ChPulseRing 2s infinite;
+    }
+
+    @keyframes ChPulseRing {
+      0% {
+        box-shadow: 0 10px 30px rgba(170, 30, 37, 0.45), 0 0 0 0 rgba(170, 30, 37, 0.4);
+      }
+      50% {
+        box-shadow: 0 10px 30px rgba(170, 30, 37, 0.45), 0 0 0 15px rgba(170, 30, 37, 0);
+      }
+      100% {
+        box-shadow: 0 10px 30px rgba(170, 30, 37, 0.45), 0 0 0 0 rgba(170, 30, 37, 0);
+      }
+    }
+
+    .ChChatTrigger::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .ChChatTrigger:hover::before {
+      opacity: 1;
+    }
+
+    .ChChatTrigger:hover {
+      transform: scale(1.15) rotate(10deg);
+      box-shadow: 0 15px 40px rgba(170, 30, 37, 0.6);
+      animation: none;
+    }
+
+    .ChChatTrigger i {
+      color: var(--white-color);
+      font-size: 30px;
+      transition: all 0.4s ease;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .ChChatTrigger.ChActive i.fa-comment-dots {
+      opacity: 0;
+      transform: rotate(180deg) scale(0);
+    }
+
+    .ChChatTrigger.ChActive i.fa-times {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+
+    .ChChatTrigger i.fa-times {
+      position: absolute;
+      opacity: 0;
+      transform: rotate(-180deg) scale(0);
+    }
+
+    .ChChatWindow {
+      background: var(--white-color);
+      border-radius: 24px;
+      box-shadow: 0 25px 70px rgba(39, 43, 54, 0.2), 0 10px 30px rgba(170, 30, 37, 0.1);
+      overflow: hidden;
+      transform: scale(0.8) translateY(50px);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      pointer-events: none;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .ChChatWindow.ChOpen {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .ChHeader {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #8a1820 100%);
+      padding: 22px 22px;
+      color: var(--white-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ChHeader::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: ChFloatAnimation 6s ease-in-out infinite;
+    }
+
+    .ChHeader::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -5%;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: ChFloatAnimation 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes ChFloatAnimation {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(20px, 20px) scale(1.1); }
+    }
+
+    .ChHeaderContent {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ChAvatar {
+      width: 55px;
+      height: 55px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid rgba(255,255,255,0.4);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      position: relative;
+    }
+
+    .ChAvatar::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(45deg, rgba(255,255,255,0.5), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    .ChAvatar i {
+      font-size: 26px;
+      color: var(--white-color);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .ChHeaderText h3 {
+      font-family: var(--title-fonts);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+
+    .ChHeaderText p {
+      font-size: 14px;
+      opacity: 0.95;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+      gap: 8px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .ChOnlineIndicator {
+      width: 9px;
+      height: 9px;
+      background: #4ade80;
+      border-radius: 50%;
+      display: inline-block;
+      animation: ChPulse 2s infinite;
+      box-shadow: 0 0 8px rgba(74, 222, 128, 0.8), 0 0 15px rgba(74, 222, 128, 0.4);
+    }
+
+    @keyframes ChPulse {
+      0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% { 
+        opacity: 0.6;
+        transform: scale(1.2);
+      }
+    }
+
+    .ChMessagesArea {
+      height: 242px;
+      overflow-y: auto;
+      padding: 30px 25px;
+      background: 
+        linear-gradient(to bottom, rgba(245, 245, 245, 0.5) 0%, rgba(255, 255, 255, 0.8) 100%),
+        repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(170, 30, 37, 0.02) 35px, rgba(170, 30, 37, 0.02) 70px);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .ChMessagesArea::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .ChMessagesArea::-webkit-scrollbar-track {
+      background: rgba(170, 30, 37, 0.05);
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+
+    .ChMessagesArea::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--primary-color) 0%, #8a1820 100%);
+      border-radius: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .ChMessagesArea::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #8a1820 0%, var(--primary-color) 100%);
+      box-shadow: 0 0 6px rgba(170, 30, 37, 0.5);
+    }
+
+    .ChMessage {
+      display: flex;
+      gap: 12px;
+      animation: ChSlideIn 0.3s ease;
+    }
+
+    @keyframes ChSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .ChMessageBot {
+      align-self: flex-start;
+    }
+
+    .ChMessageUser {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    .ChMessageAvatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-color) 0%, #8a1820 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 6px 16px rgba(170, 30, 37, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      position: relative;
+    }
+
+    .ChMessageAvatar::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, rgba(170, 30, 37, 0.3), transparent);
+      z-index: -1;
+      filter: blur(4px);
+    }
+
+    .ChMessageUser .ChMessageAvatar {
+      background: linear-gradient(135deg, #1f2937 0%, var(--dark-color) 100%);
+      box-shadow: 0 6px 16px rgba(39, 43, 54, 0.25);
+    }
+
+    .ChMessageUser .ChMessageAvatar::before {
+      background: linear-gradient(45deg, rgba(39, 43, 54, 0.3), transparent);
+    }
+
+    .ChMessageAvatar i {
+      color: var(--white-color);
+      font-size: 16px;
+    }
+
+    .ChMessageContent {
+      max-width: 75%;
+    }
+
+    .ChMessageBubble {
+      padding: 15px 20px;
+      border-radius: 20px;
+      font-size: 14.5px;
+      line-height: 1.65;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      position: relative;
+    }
+
+    .ChMessageBot .ChMessageBubble {
+      background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+      border-bottom-left-radius: 6px;
+      border: 1.5px solid rgba(170, 30, 37, 0.12);
+    }
+
+    .ChMessageBot .ChMessageBubble::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(170, 30, 37, 0.1), transparent);
+    }
+
+    .ChMessageUser .ChMessageBubble {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #941a21 100%);
+      color: var(--white-color);
+      border-bottom-right-radius: 6px;
+      box-shadow: 0 4px 16px rgba(170, 30, 37, 0.3);
+    }
+
+    .ChMessageUser .ChMessageBubble::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .ChMessageTime {
+      font-size: 11px;
+      color: var(--secondary-color);
+      margin-top: 6px;
+      padding: 0 4px;
+    }
+
+    .ChMessageUser .ChMessageTime {
+      color: rgba(255,255,255,0.7);
+      text-align: right;
+    }
+
+    .ChTypingIndicator {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+    }
+
+    .ChTypingIndicator.ChActive {
+      display: flex;
+    }
+
+    .ChTypingDots {
+      background: var(--white-color);
+      padding: 14px 18px;
+      border-radius: 18px;
+      border-bottom-left-radius: 4px;
+      display: flex;
+      gap: 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid rgba(170, 30, 37, 0.1);
+    }
+
+    .ChTypingDot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      animation: ChTypingAnimation 1.4s infinite;
+    }
+
+    .ChTypingDot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .ChTypingDot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes ChTypingAnimation {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.7; }
+      30% { transform: translateY(-10px); opacity: 1; }
+    }
+
+    .ChInputArea {
+      padding: 20px;
+      background: var(--white-color);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .ChInputWrapper {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: var(--grey-color);
+      border-radius: 25px;
+      padding: 8px 8px 8px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .ChInputWrapper:focus-within {
+      background: var(--white-color);
+      box-shadow: 0 0 0 2px rgba(170, 30, 37, 0.15);
+    }
+
+    .ChInput {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 8px 0;
+      font-family: var(--body-fonts);
+      font-size: 14px;
+      color: var(--dark-color);
+      outline: none;
+    }
+
+    .ChInput::placeholder {
+      color: var(--secondary-color);
+    }
+
+    .ChSendButton {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, var(--primary-color) 0%, #8a1820 100%);
+      color: var(--white-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .ChSendButton:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(170, 30, 37, 0.4);
+    }
+
+    .ChSendButton:active {
+      transform: scale(0.95);
+    }
+
+    .ChSendButton i {
+      font-size: 16px;
+    }
+
+    .ChQuickReplies {
+      display: flex;
+      gap: 8px;
+      padding: 0 25px 0px;
+      flex-wrap: wrap;
+    }
+
+    .ChQuickReply {
+      padding: 10px 18px;
+      background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+      border: 2px solid rgba(170, 30, 37, 0.25);
+      border-radius: 22px;
+      font-size: 13px;
+      color: var(--primary-color);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      font-family: var(--body-fonts);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ChQuickReply::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: var(--primary-color);
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+      z-index: 0;
+    }
+
+    .ChQuickReply:hover::before {
+      width: 200%;
+      height: 200%;
+    }
+
+    .ChQuickReply:hover {
+      color: var(--white-color);
+      border-color: var(--primary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(170, 30, 37, 0.35);
+    }
+
+    .ChQuickReply i,
+    .ChQuickReply span {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .ChChatTrigger {
+        bottom: 20px;
+        right: 20px;
+        width: 65px;
+        height: 65px;
+      }
+
+      .ChChatTrigger i {
+        font-size: 26px;
+      }
+
+      .ChContainer {
+        bottom: 100px;
+        right: 20px;
+        left: 20px;
+        width: auto;
+      }
+
+      .ChMessagesArea {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ChContainer">
+    <div class="ChChatWindow" id="ChChatWindow">
+      <div class="ChHeader">
+        <div class="ChHeaderContent">
+          <div class="ChAvatar">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="ChHeaderText">
+            <h3>AI Assistant</h3>
+            <p><span class="ChOnlineIndicator"></span> Always here to help</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ChMessagesArea" id="ChMessagesArea">
+        <div class="ChMessage ChMessageBot">
+          <div class="ChMessageAvatar">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="ChMessageContent">
+            <div class="ChMessageBubble">
+              Hello! 👋 I'm your AI assistant. How can I help you today?
+            </div>
+            <div class="ChMessageTime">Just now</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ChQuickReplies">
+        <button class="ChQuickReply" onclick="ChSendQuickReply('Get Started')">
+          <i class="fas fa-rocket"></i>
+          <span>Get Started</span>
+        </button>
+        <button class="ChQuickReply" onclick="ChSendQuickReply('Learn More')">
+          <i class="fas fa-lightbulb"></i>
+          <span>Learn More</span>
+        </button>
+        <button class="ChQuickReply" onclick="ChSendQuickReply('Contact Support')">
+          <i class="fas fa-headset"></i>
+          <span>Support</span>
+        </button>
+      </div>
+
+      <div class="ChInputArea">
+        <div class="ChInputWrapper">
+          <input type="text" class="ChInput" id="ChInput" placeholder="Type your message...">
+          <button class="ChSendButton" id="ChSendButton" onclick="ChSendMessage()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="ChChatTrigger" id="ChChatTrigger" onclick="ChToggleChat()">
+    <i class="fas fa-comment-dots"></i>
+    <i class="fas fa-times"></i>
+  </button>
+
+  <script>
+    const ChChatWindow = document.getElementById('ChChatWindow');
+    const ChChatTrigger = document.getElementById('ChChatTrigger');
+    const ChMessagesArea = document.getElementById('ChMessagesArea');
+    const ChInput = document.getElementById('ChInput');
+
+    function ChToggleChat() {
+      ChChatWindow.classList.toggle('ChOpen');
+      ChChatTrigger.classList.toggle('ChActive');
+      
+      if (ChChatWindow.classList.contains('ChOpen')) {
+        ChInput.focus();
+      }
+    }
+
+    function ChAddMessage(message, isUser = false) {
+      const time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `ChMessage ${isUser ? 'ChMessageUser' : 'ChMessageBot'}`;
+      
+      messageDiv.innerHTML = `
+        <div class="ChMessageAvatar">
+          <i class="fas ${isUser ? 'fa-user' : 'fa-robot'}"></i>
+        </div>
+        <div class="ChMessageContent">
+          <div class="ChMessageBubble">${message}</div>
+          <div class="ChMessageTime">${time}</div>
+        </div>
+      `;
+      
+      ChMessagesArea.appendChild(messageDiv);
+      ChMessagesArea.scrollTop = ChMessagesArea.scrollHeight;
+    }
+
+    function ChShowTyping() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'ChTypingIndicator ChActive';
+      typingDiv.id = 'ChTyping';
+      typingDiv.innerHTML = `
+        <div class="ChMessageAvatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="ChTypingDots">
+          <div class="ChTypingDot"></div>
+          <div class="ChTypingDot"></div>
+          <div class="ChTypingDot"></div>
+        </div>
+      `;
+      ChMessagesArea.appendChild(typingDiv);
+      ChMessagesArea.scrollTop = ChMessagesArea.scrollHeight;
+    }
+
+    function ChHideTyping() {
+      const typing = document.getElementById('ChTyping');
+      if (typing) typing.remove();
+    }
+
+    function ChSendMessage() {
+      const message = ChInput.value.trim();
+      if (!message) return;
+      
+      ChAddMessage(message, true);
+      ChInput.value = '';
+      
+      ChShowTyping();
+      
+      setTimeout(() => {
+        ChHideTyping();
+        const responses = [
+          "That's a great question! Let me help you with that. 🎯",
+          "I understand! Here's what I can suggest... 💡",
+          "Thanks for reaching out! I'm here to assist. 🌟",
+          "Absolutely! I'd be happy to help with that. ✨"
+        ];
+        const response = responses[Math.floor(Math.random() * responses.length)];
+        ChAddMessage(response);
+      }, 1500);
+    }
+
+    function ChSendQuickReply(text) {
+      ChAddMessage(text, true);
+      ChShowTyping();
+      
+      setTimeout(() => {
+        ChHideTyping();
+        let response = '';
+        if (text === 'Get Started') {
+          response = "Great! Let's get you started. What would you like to know first? 🚀";
+        } else if (text === 'Learn More') {
+          response = "I'd love to tell you more! What specific area interests you? 📚";
+        } else {
+          response = "Our support team is ready to assist you 24/7! How can we help? 🎧";
+        }
+        ChAddMessage(response);
+      }, 1500);
+    }
+
+    ChInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        ChSendMessage();
+      }
+    });
+  </script>
+</body>
+</html>

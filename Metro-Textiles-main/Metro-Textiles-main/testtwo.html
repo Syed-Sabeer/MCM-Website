@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Quote - Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #aa1e25;
+            --dark-color: #272b36;
+            --secondary-color: #666666;
+            --grey-color: #f5f5f5;
+            --white-color: #ffffff;
+            --title-fonts: 'Red Hat Display', sans-serif;
+            --body-fonts: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--body-fonts);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(170, 30, 37, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -250px;
+            right: -250px;
+            animation: rq-pulse 4s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -200px;
+            animation: rq-pulse 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes rq-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+
+        /* 3D Animated Button */
+        .rq-button-container {
+            perspective: 1500px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .rq-quote-button {
+            position: relative;
+            padding: 22px 55px;
+            font-size: 19px;
+            font-family: var(--title-fonts);
+            font-weight: 700;
+            color: var(--white-color);
+            background: linear-gradient(145deg, var(--primary-color), #8a1820);
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 15px 35px rgba(170, 30, 37, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.2),
+                inset 0 5px 15px rgba(255, 255, 255, 0.1);
+            animation: rq-float 3s ease-in-out infinite;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .rq-quote-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .rq-quote-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .rq-quote-button:hover::before {
+            left: 100%;
+        }
+
+        .rq-quote-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .rq-quote-button:hover {
+            transform: translateY(-8px) rotateX(15deg) scale(1.05);
+            box-shadow: 
+                0 25px 50px rgba(170, 30, 37, 0.6),
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.2),
+                inset 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .rq-quote-button:active {
+            transform: translateY(-3px) scale(0.98);
+        }
+
+        .rq-button-icon {
+            margin-right: 12px;
+            transition: transform 0.5s ease;
+            display: inline-block;
+        }
+
+        .rq-quote-button:hover .rq-button-icon {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        @keyframes rq-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Modal Overlay */
+        .rq-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 999;
+            animation: rq-fadeIn 0.4s ease;
+        }
+
+        .rq-modal-overlay.rq-active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Modal Container */
+        .rq-modal-container {
+            background: var(--white-color);
+            border-radius: 30px;
+            width: 95%;
+            max-width: 850px;
+            max-height: 92vh;
+            overflow: hidden;
+            box-shadow: 
+                0 30px 90px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(170, 30, 37, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            animation: rq-modalAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes rq-fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes rq-modalAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.7) translateY(100px) rotateX(30deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0) rotateX(0);
+            }
+        }
+
+        /* Modal Scrollable Content */
+        .rq-modal-scroll {
+            max-height: 92vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* Modal Header */
+        .rq-modal-header {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #1a1d26 50%, var(--dark-color) 100%);
+            color: var(--white-color);
+            padding: 45px 45px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rq-modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent,
+                var(--primary-color),
+                #ff6b6b,
+                var(--primary-color),
+                transparent
+            );
+            animation: rq-shimmer 3s linear infinite;
+        }
+
+        @keyframes rq-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .rq-modal-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(170, 30, 37, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(30%, -60%);
+        }
+
+        .rq-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .rq-modal-title {
+            font-family: var(--title-fonts);
+            font-size: 36px;
+            font-weight: 800;
+            margin: 0 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            letter-spacing: -0.5px;
+        }
+
+        .rq-title-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), #ff4757);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 8px 25px rgba(170, 30, 37, 0.4);
+            animation: rq-iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes rq-iconFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        .rq-modal-subtitle {
+            font-family: var(--body-fonts);
+            font-size: 15px;
+            margin: 0;
+            opacity: 0.85;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .rq-close-button {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: var(--white-color);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .rq-close-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Modal Body */
+        .rq-modal-body {
+            padding: 50px 45px 45px;
+            background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+        }
+
+        .rq-form-group {
+            margin-bottom: 28px;
+            animation: rq-slideIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .rq-form-group:nth-child(1) { animation-delay: 0.1s; }
+        .rq-form-group:nth-child(2) { animation-delay: 0.15s; }
+        .rq-form-group:nth-child(3) { animation-delay: 0.2s; }
+        .rq-form-group:nth-child(4) { animation-delay: 0.25s; }
+        .rq-form-group:nth-child(5) { animation-delay: 0.3s; }
+        .rq-form-group:nth-child(6) { animation-delay: 0.35s; }
+        .rq-form-group:nth-child(7) { animation-delay: 0.4s; }
+
+        @keyframes rq-slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .rq-form-label {
+            display: flex;
+            align-items: center;
+            font-family: var(--title-fonts);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .rq-label-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--grey-color), #e8e8e8);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--primary-color);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .rq-form-group:focus-within .rq-label-icon {
+            background: linear-gradient(135deg, var(--primary-color), #8a1820);
+            color: var(--white-color);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .rq-required {
+            color: var(--primary-color);
+            margin-left: 4px;
+            font-size: 16px;
+        }
+
+        .rq-form-input,
+        .rq-form-select,
+        .rq-form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            font-family: var(--body-fonts);
+            font-size: 15px;
+            border: 2px solid #e5e5e5;
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--white-color);
+            color: var(--dark-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .rq-form-input:hover,
+        .rq-form-select:hover,
+        .rq-form-textarea:hover {
+            border-color: #d0d0d0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .rq-form-input:focus,
+        .rq-form-select:focus,
+        .rq-form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 
+                0 6px 20px rgba(170, 30, 37, 0.15),
+                0 0 0 4px rgba(170, 30, 37, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .rq-form-textarea {
+            resize: vertical;
+            min-height: 140px;
+            line-height: 1.7;
+        }
+
+        .rq-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        /* Quantity Controls */
+        .rq-quantity-wrapper {
+            background: linear-gradient(135deg, var(--grey-color), #fafafa);
+            border-radius: 16px;
+            padding: 20px;
+            border: 2px solid #e8e8e8;
+            transition: all 0.3s ease;
+        }
+
+        .rq-quantity-wrapper:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 6px 20px rgba(170, 30, 37, 0.1);
+        }
+
+        .rq-quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .rq-quantity-btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary-color), #8a1820);
+            color: var(--white-color);
+            border-radius: 14px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(170, 30, 37, 0.3);
+        }
+
+        .rq-quantity-btn:hover {
+            transform: scale(1.15) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(170, 30, 37, 0.4);
+        }
+
+        .rq-quantity-btn:active {
+            transform: scale(1.05) translateY(-1px);
+        }
+
+        .rq-quantity-display {
+            font-family: var(--title-fonts);
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--dark-color);
+            min-width: 80px;
+            text-align: center;
+            background: var(--white-color);
+            padding: 10px 20px;
+            border-radius: 12px;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Submit Button */
+        .rq-submit-container {
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .rq-submit-button {
+            width: 100%;
+            padding: 20px;
+            font-family: var(--title-fonts);
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--white-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #8a1820 50%, var(--primary-color) 100%);
+            background-size: 200% auto;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 
+                0 8px 25px rgba(170, 30, 37, 0.4),
+                inset 0 -3px 10px rgba(0, 0, 0, 0.2),
+                inset 0 3px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .rq-submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .rq-submit-button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4), transparent, rgba(255,255,255,0.4));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .rq-submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 35px rgba(170, 30, 37, 0.5),
+                inset 0 -3px 10px rgba(0, 0, 0, 0.2),
+                inset 0 3px 10px rgba(255, 255, 255, 0.2);
+            background-position: right center;
+        }
+
+        .rq-submit-button:hover::before {
+            left: 100%;
+        }
+
+        .rq-submit-button:hover::after {
+            opacity: 1;
+        }
+
+        .rq-submit-button:active {
+            transform: translateY(0);
+        }
+
+        /* Success Message */
+        .rq-success-message {
+            display: none;
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+        }
+
+        .rq-success-message.rq-active {
+            display: block;
+        }
+
+        .rq-success-icon-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .rq-success-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            font-size: 55px;
+            animation: rq-successPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 15px 40px rgba(16, 185, 129, 0.4),
+                inset 0 -8px 20px rgba(0, 0, 0, 0.2),
+                inset 0 8px 20px rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .rq-success-icon::before {
+            content: '';
+            position: absolute;
+            inset: -15px;
+            border-radius: 50%;
+            border: 3px solid rgba(16, 185, 129, 0.3);
+            animation: rq-ripple 2s ease-out infinite;
+        }
+
+        .rq-success-icon::after {
+            content: '';
+            position: absolute;
+            inset: -30px;
+            border-radius: 50%;
+            border: 3px solid rgba(16, 185, 129, 0.2);
+            animation: rq-ripple 2s ease-out 0.5s infinite;
+        }
+
+        @keyframes rq-successPop {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rq-ripple {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .rq-success-title {
+            font-family: var(--title-fonts);
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .rq-success-text {
+            font-family: var(--body-fonts);
+            font-size: 16px;
+            color: var(--secondary-color);
+            line-height: 1.8;
+            margin-bottom: 35px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .rq-form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .rq-modal-header {
+                padding: 35px 25px 30px;
+            }
+
+            .rq-modal-body {
+                padding: 35px 25px 30px;
+            }
+
+            .rq-modal-title {
+                font-size: 28px;
+            }
+
+            .rq-title-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+
+            .rq-quote-button {
+                padding: 18px 45px;
+                font-size: 17px;
+            }
+
+            .rq-close-button {
+                width: 42px;
+                height: 42px;
+                top: 20px;
+                right: 20px;
+            }
+
+            .rq-success-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 45px;
+            }
+
+            .rq-success-title {
+                font-size: 26px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        .rq-modal-scroll::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .rq-modal-scroll::-webkit-scrollbar-track {
+            background: var(--grey-color);
+        }
+
+        .rq-modal-scroll::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-color), #8a1820);
+            border-radius: 5px;
+        }
+
+        .rq-modal-scroll::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #8a1820, var(--primary-color));
+        }
+
+        /* Loading Animation */
+        @keyframes rq-spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .rq-loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--white-color);
+            border-radius: 50%;
+            animation: rq-spin 0.8s linear infinite;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Animated Button -->
+    <div class="rq-button-container">
+        <button class="rq-quote-button" id="rqOpenModal">
+            <i class="fas fa-paper-plane rq-button-icon"></i>
+            Request a Quote
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="rq-modal-overlay" id="rqModalOverlay">
+        <div class="rq-modal-container">
+            <div class="rq-modal-scroll">
+                <!-- Modal Header -->
+                <div class="rq-modal-header">
+                    <div class="rq-header-content">
+                        <h2 class="rq-modal-title">
+                            <div class="rq-title-icon">
+                                <i class="fas fa-file-invoice"></i>
+                            </div>
+                            Request Your Quote
+                        </h2>
+                        <p class="rq-modal-subtitle">Share your project details with us and receive a customized quote within 24 hours. Our team is ready to bring your vision to life.</p>
+                    </div>
+                    <button class="rq-close-button" id="rqCloseModal" aria-label="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="rq-modal-body" id="rqFormContainer">
+                    <form id="rqQuoteForm">
+                        <div class="rq-form-row">
+                            <div class="rq-form-group">
+                                <label class="rq-form-label">
+                                    <div class="rq-label-icon">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                    Company Name
+                                </label>
+                                <input type="text" class="rq-form-input" name="company" placeholder="Your Company Ltd.">
+                            </div>
+                        </div>
+
+                        <div class="rq-form-group">
+                            <label class="rq-form-label">
+                                <div class="rq-label-icon">
+                                    <i class="fas fa-box-open"></i>
+                                </div>
+                                Product/Service<span class="rq-required">*</span>
+                            </label>
+                            <select class="rq-form-select" name="product" required>
+                                <option value="">Select a product or service</option>
+                                <option value="custom-software">🚀 Custom Software Development</option>
+                                <option value="web-design">🎨 Web Design & Development</option>
+                                <option value="mobile-app">📱 Mobile App Development</option>
+                                <option value="ecommerce">🛒 E-commerce Solutions</option>
+                                <option value="branding">✨ Branding & Identity</option>
+                                <option value="digital-marketing">📊 Digital Marketing</option>
+                                <option value="cloud-solutions">☁️ Cloud Solutions</option>
+                                <option value="ai-ml">🤖 AI & Machine Learning</option>
+                                <option value="consulting">💼 IT Consulting</option>
+                                <option value="maintenance">🔧 Maintenance & Support</option>
+                                <option value="other">💡 Other Services</option>
+                            </select>
+                        </div>
+
+                        <div class="rq-form-row">
+                            <div class="rq-form-group">
+                                <label class="rq-form-label">
+                                    <div class="rq-label-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    Project Size
+                                </label>
+                                <select class="rq-form-select" name="projectSize">
+                                    <option value="">Select project size</option>
+                                    <option value="small">⚡ Small (1-3 months)</option>
+                                    <option value="medium">🎯 Medium (3-6 months)</option>
+                                    <option value="large">🏗️ Large (6-12 months)</option>
+                                    <option value="enterprise">🌐 Enterprise (12+ months)</option>
+                                    <option value="ongoing">🔄 Ongoing Support</option>
+                                </select>
+                            </div>
+
+                            <div class="rq-form-group">
+                                <label class="rq-form-label">
+                                    <div class="rq-label-icon">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </div>
+                                    Budget Range
+                                </label>
+                                <select class="rq-form-select" name="budget">
+                                    <option value="">Select your budget</option>
+                                    <option value="5k-10k">💵 $5,000 - $10,000</option>
+                                    <option value="10k-25k">💰 $10,000 - $25,000</option>
+                                    <option value="25k-50k">💎 $25,000 - $50,000</option>
+                                    <option value="50k-100k">👑 $50,000 - $100,000</option>
+                                    <option value="100k+">🌟 $100,000+</option>
+                                    <option value="flexible">🤝 Flexible / Negotiable</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="rq-form-group">
+                            <label class="rq-form-label">
+                                <div class="rq-label-icon">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
+                                Quantity
+                            </label>
+                            <div class="rq-quantity-wrapper">
+                                <div class="rq-quantity-control">
+                                    <button type="button" class="rq-quantity-btn" id="rqDecreaseBtn">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <span class="rq-quantity-display" id="rqQuantityDisplay">1</span>
+                                    <button type="button" class="rq-quantity-btn" id="rqIncreaseBtn">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="hidden" name="quantity" id="rqQuantityInput" value="1">
+                        </div>
+
+                        <div class="rq-form-row">
+                            <div class="rq-form-group">
+                                <label class="rq-form-label">
+                                    <div class="rq-label-icon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    Preferred Start Date
+                                </label>
+                                <input type="date" class="rq-form-input" name="startDate">
+                            </div>
+
+                            <div class="rq-form-group">
+                                <label class="rq-form-label">
+                                    <div class="rq-label-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    Timeline/Deadline
+                                </label>
+                                <select class="rq-form-select" name="timeline">
+                                    <option value="">Select deadline urgency</option>
+                                    <option value="urgent">🔥 Urgent (ASAP)</option>
+                                    <option value="1-month">⚡ Within 1 Month</option>
+                                    <option value="3-months">📅 Within 3 Months</option>
+                                    <option value="6-months">🗓️ Within 6 Months</option>
+                                    <option value="flexible">🌊 Flexible Timeline</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="rq-form-group">
+                            <label class="rq-form-label">
+                                <div class="rq-label-icon">
+                                    <i class="fas fa-comment-dots"></i>
+                                </div>
+                                Project Details & Requirements<span class="rq-required">*</span>
+                            </label>
+                            <textarea class="rq-form-textarea" name="details" placeholder="Please provide detailed information about your project:
+• What are your main objectives and goals?
+• What features or functionalities do you need?
+• Who is your target audience?
+• Do you have any design preferences or examples?
+• Any technical requirements or integrations needed?
+• Additional information that would help us understand your needs..." required></textarea>
+                        </div>
+
+                        <div class="rq-submit-container">
+                            <button type="submit" class="rq-submit-button" id="rqSubmitBtn">
+                                <i class="fas fa-rocket"></i> Submit Quote Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success Message -->
+                <div class="rq-success-message" id="rqSuccessMessage">
+                    <div class="rq-success-icon-wrapper">
+                        <div class="rq-success-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <h3 class="rq-success-title">Quote Request Submitted Successfully!</h3>
+                    <p class="rq-success-text">Thank you for reaching out! We've received your quote request and our expert team will carefully review your requirements. You can expect a detailed response within 24 hours.</p>
+                    <button class="rq-submit-button" id="rqNewQuoteBtn">
+                        <i class="fas fa-plus-circle"></i> Submit Another Request
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // ELEMENT SELECTORS
+        // ============================================
+        const openBtn = document.getElementById('rqOpenModal');
+        const closeBtn = document.getElementById('rqCloseModal');
+        const overlay = document.getElementById('rqModalOverlay');
+        const form = document.getElementById('rqQuoteForm');
+        const formContainer = document.getElementById('rqFormContainer');
+        const successMessage = document.getElementById('rqSuccessMessage');
+        const newQuoteBtn = document.getElementById('rqNewQuoteBtn');
+        const decreaseBtn = document.getElementById('rqDecreaseBtn');
+        const increaseBtn = document.getElementById('rqIncreaseBtn');
+        const quantityDisplay = document.getElementById('rqQuantityDisplay');
+        const quantityInput = document.getElementById('rqQuantityInput');
+        const submitBtn = document.getElementById('rqSubmitBtn');
+
+        // ============================================
+        // STATE MANAGEMENT
+        // ============================================
+        let quantity = 1;
+        let isSubmitting = false;
+
+        // ============================================
+        // MODAL FUNCTIONS
+        // ============================================
+        
+        // Open Modal with Animation
+        function openModal() {
+            overlay.classList.add('rq-active');
+            document.body.style.overflow = 'hidden';
+            
+            // Add entrance animation
+            const modalContainer = overlay.querySelector('.rq-modal-container');
+            modalContainer.style.animation = 'none';
+            setTimeout(() => {
+                modalContainer.style.animation = 'rq-modalAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            }, 10);
+        }
+
+        // Close Modal with Animation
+        function closeModal() {
+            const modalContainer = overlay.querySelector('.rq-modal-container');
+            modalContainer.style.animation = 'rq-modalAppear 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045) reverse';
+            
+            setTimeout(() => {
+                overlay.classList.remove('rq-active');
+                document.body.style.overflow = '';
+                
+                // Reset modal state after closing
+                setTimeout(() => {
+                    if (!overlay.classList.contains('rq-active')) {
+                        resetModal();
+                    }
+                }, 100);
+            }, 300);
+        }
+
+        // Reset Modal to Initial State
+        function resetModal() {
+            formContainer.style.display = 'block';
+            successMessage.classList.remove('rq-active');
+            form.reset();
+            quantity = 1;
+            updateQuantity();
+            isSubmitting = false;
+            updateSubmitButton(false);
+        }
+
+        // ============================================
+        // EVENT LISTENERS - MODAL
+        // ============================================
+        
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        // Close on overlay click
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeModal();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('rq-active')) {
+                closeModal();
+            }
+        });
+
+        // ============================================
+        // QUANTITY CONTROLS
+        // ============================================
+        
+        function updateQuantity() {
+            quantityDisplay.textContent = quantity;
+            quantityInput.value = quantity;
+            
+            // Add pulse animation
+            quantityDisplay.style.animation = 'none';
+            setTimeout(() => {
+                quantityDisplay.style.animation = 'rq-successPop 0.3s ease';
+            }, 10);
+        }
+
+        decreaseBtn.addEventListener('click', () => {
+            if (quantity > 1) {
+                quantity--;
+                updateQuantity();
+                
+                // Visual feedback
+                decreaseBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    decreaseBtn.style.transform = '';
+                }, 150);
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            if (quantity < 999) { // Set maximum limit
+                quantity++;
+                updateQuantity();
+                
+                // Visual feedback
+                increaseBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    increaseBtn.style.transform = '';
+                }, 150);
+            }
+        });
+
+        // ============================================
+        // FORM VALIDATION & SUBMISSION
+        // ============================================
+        
+        function updateSubmitButton(loading) {
+            if (loading) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="rq-loading"></span> Processing...';
+                submitBtn.style.opacity = '0.7';
+                submitBtn.style.cursor = 'not-allowed';
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-rocket"></i> Submit Quote Request';
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+            }
+        }
+
+        // Form submission handler
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (isSubmitting) return;
+            isSubmitting = true;
+            
+            // Update button to loading state
+            updateSubmitButton(true);
+            
+            // Collect form data
+            const formData = new FormData(form);
+            const data = {
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                company: formData.get('company') || 'Not provided',
+                product: formData.get('product'),
+                projectSize: formData.get('projectSize') || 'Not specified',
+                budget: formData.get('budget') || 'Not specified',
+                quantity: formData.get('quantity'),
+                startDate: formData.get('startDate') || 'Not specified',
+                timeline: formData.get('timeline') || 'Not specified',
+                details: formData.get('details'),
+                submittedAt: new Date().toISOString()
+            };
+            
+            // Log the data (In production, send to your backend)
+            console.log('📋 Quote Request Data:', data);
+            console.log('=====================================');
+            console.log('👤 Customer:', data.fullName);
+            console.log('📧 Email:', data.email);
+            console.log('📱 Phone:', data.phone);
+            console.log('🏢 Company:', data.company);
+            console.log('📦 Product:', data.product);
+            console.log('📏 Size:', data.projectSize);
+            console.log('💰 Budget:', data.budget);
+            console.log('🔢 Quantity:', data.quantity);
+            console.log('📅 Start Date:', data.startDate);
+            console.log('⏰ Timeline:', data.timeline);
+            console.log('📝 Details:', data.details);
+            console.log('=====================================');
+            
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Show success message
+            showSuccessMessage();
+        });
+
+        // Show success message with animation
+        function showSuccessMessage() {
+            formContainer.style.opacity = '0';
+            formContainer.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                formContainer.style.display = 'none';
+                formContainer.style.opacity = '1';
+                formContainer.style.transform = 'translateY(0)';
+                successMessage.classList.add('rq-active');
+                
+                // Scroll to top of modal
+                const modalScroll = overlay.querySelector('.rq-modal-scroll');
+                if (modalScroll) {
+                    modalScroll.scrollTop = 0;
+                }
+            }, 300);
+        }
+
+        // New Quote Button
+        newQuoteBtn.addEventListener('click', () => {
+            successMessage.classList.remove('rq-active');
+            
+            setTimeout(() => {
+                formContainer.style.display = 'block';
+                form.reset();
+                quantity = 1;
+                updateQuantity();
+                isSubmitting = false;
+                updateSubmitButton(false);
+                
+                // Scroll to top
+                const modalScroll = overlay.querySelector('.rq-modal-scroll');
+                if (modalScroll) {
+                    modalScroll.scrollTop = 0;
+                }
+            }, 300);
+        });
+
+        // ============================================
+        // INPUT ENHANCEMENTS
+        // ============================================
+        
+        // Add floating label effect
+        const inputs = document.querySelectorAll('.rq-form-input, .rq-form-select, .rq-form-textarea');
+        
+        inputs.forEach(input => {
+            // Add focus effect
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+            
+            // Add input validation feedback
+            input.addEventListener('input', function() {
+                if (this.checkValidity()) {
+                    this.style.borderColor = '#10b981';
+                } else if (this.value.length > 0) {
+                    this.style.borderColor = '#ef4444';
+                }
+            });
+        });
+
+        // ============================================
+        // DATE INPUT SETUP
+        // ============================================
+        
+        // Set minimum date to today
+        const dateInput = document.querySelector('input[type="date"]');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+
+        // ============================================
+        // PHONE NUMBER FORMATTING
+        // ============================================
+        
+        const phoneInput = document.querySelector('input[type="tel"]');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    if (value.length <= 3) {
+                        e.target.value = value;
+                    } else if (value.length <= 6) {
+                        e.target.value = `(${value.slice(0, 3)}) ${value.slice(3)}`;
+                    } else {
+                        e.target.value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`;
+                    }
+                }
+            });
+        }
+
+        // ============================================
+        // FORM FIELD ANIMATIONS
+        // ============================================
+        
+        // Stagger animation for form groups
+        const formGroups = document.querySelectorAll('.rq-form-group');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 50);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        formGroups.forEach(group => {
+            observer.observe(group);
+        });
+
+        // ============================================
+        // ACCESSIBILITY ENHANCEMENTS
+        // ============================================
+        
+        // Add aria labels
+        submitBtn.setAttribute('aria-label', 'Submit quote request form');
+        closeBtn.setAttribute('aria-label', 'Close quote request modal');
+        
+        // Trap focus within modal when open
+        const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+        
+        overlay.addEventListener('keydown', function(e) {
+            if (!overlay.classList.contains('rq-active')) return;
+            
+            const focusable = overlay.querySelectorAll(focusableElements);
+            const firstFocusable = focusable[0];
+            const lastFocusable = focusable[focusable.length - 1];
+            
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === firstFocusable) {
+                        lastFocusable.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastFocusable) {
+                        firstFocusable.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+
+        // ============================================
+        // CONSOLE STYLING
+        // ============================================
+        
+        console.log('%c🎨 Request Quote Form Initialized! ', 
+            'background: linear-gradient(135deg, #aa1e25, #8a1820); color: white; padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: bold;'
+        );
+        console.log('%c✨ All systems ready for premium user experience!', 
+            'color: #aa1e25; font-size: 12px; font-weight: bold;'
+        );
+    </script>
+</body>
+</html> 

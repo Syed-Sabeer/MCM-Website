@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotton Tote Bag - Premium Product</title>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #aa1e25;
+            --dark-color: #272b36;
+            --secondary-color: #666666;
+            --grey-color: #f5f5f5;
+            --white-color: #ffffff;
+            --title-fonts: 'Red Hat Display', sans-serif;
+            --body-fonts: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--body-fonts);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .na-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .na-product-wrapper {
+            background: var(--white-color);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            animation: naFadeIn 0.8s ease-out;
+        }
+
+        @keyframes naFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .na-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #8b1820 100%);
+            padding: 30px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .na-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: naPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes naPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .na-header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .na-header-icon {
+            font-size: 32px;
+            color: var(--white-color);
+            animation: naRotate 3s ease-in-out infinite;
+        }
+
+        @keyframes naRotate {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+        }
+
+        .na-header-title {
+            font-family: var(--title-fonts);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--white-color);
+            letter-spacing: 1px;
+        }
+
+        .na-main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 50px;
+        }
+
+        .na-product-showcase {
+            position: relative;
+        }
+
+        .na-main-image-container {
+            background: var(--grey-color);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .na-main-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(170, 30, 37, 0.05) 0%, rgba(170, 30, 37, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .na-main-image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .na-main-image-container:hover::before {
+            opacity: 1;
+        }
+
+        .na-main-image {
+            max-width: 100%;
+            height: auto;
+            animation: naZoomIn 0.8s ease-out;
+        }
+
+        @keyframes naZoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .na-color-swatches {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .na-swatch-item {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .na-swatch-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: transform 0.4s ease;
+        }
+
+        .na-swatch-item:hover {
+            transform: scale(1.1);
+        }
+
+        .na-swatch-item:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .na-swatch-item.na-active {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(170, 30, 37, 0.3);
+        }
+
+        .na-product-details {
+            animation: naSlideIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes naSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .na-detail-section {
+            margin-bottom: 30px;
+        }
+
+        .na-section-label {
+            font-family: var(--title-fonts);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .na-section-value {
+            font-family: var(--title-fonts);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .na-tabs-container {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            border-bottom: 2px solid var(--grey-color);
+        }
+
+        .na-tab-btn {
+            font-family: var(--title-fonts);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 15px 25px;
+            background: transparent;
+            border: none;
+            color: var(--secondary-color);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .na-tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .na-tab-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .na-tab-btn.na-active {
+            color: var(--primary-color);
+        }
+
+        .na-tab-btn.na-active::after {
+            width: 100%;
+        }
+
+        .na-pricing-table {
+            background: var(--grey-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .na-table-header {
+            display: grid;
+            grid-template-columns: 2fr repeat(5, 1fr) 0.8fr;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--white-color);
+            margin-bottom: 15px;
+        }
+
+        .na-table-header-cell {
+            font-family: var(--title-fonts);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-align: center;
+        }
+
+        .na-table-header-cell:first-child {
+            text-align: left;
+        }
+
+        .na-table-row {
+            display: grid;
+            grid-template-columns: 2fr repeat(5, 1fr) 0.8fr;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .na-table-row:hover {
+            background: rgba(170, 30, 37, 0.03);
+            border-radius: 8px;
+        }
+
+        .na-table-cell {
+            font-size: 14px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .na-table-cell:first-child {
+            font-weight: 600;
+            justify-content: flex-start;
+        }
+
+        .na-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .na-info-card {
+            background: var(--white-color);
+            border: 2px solid var(--grey-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .na-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--primary-color);
+            transition: height 0.3s ease;
+        }
+
+        .na-info-card:hover {
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+            box-shadow: 0 8px 24px rgba(170, 30, 37, 0.1);
+        }
+
+        .na-info-card:hover::before {
+            height: 100%;
+        }
+
+        .na-info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .na-info-icon {
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        .na-info-label {
+            font-family: var(--title-fonts);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .na-info-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-left: 32px;
+        }
+
+        .na-charges-section {
+            background: linear-gradient(135deg, var(--grey-color) 0%, #ffffff 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .na-charges-title {
+            font-family: var(--title-fonts);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .na-charge-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--white-color);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .na-charge-item:hover {
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(170, 30, 37, 0.08);
+        }
+
+        .na-charge-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--dark-color);
+        }
+
+        .na-charge-icon {
+            color: var(--primary-color);
+            font-size: 16px;
+        }
+
+        .na-charge-amount {
+            font-family: var(--title-fonts);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .na-action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .na-btn {
+            font-family: var(--title-fonts);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 16px 30px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .na-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: transform 0.5s ease;
+        }
+
+        .na-btn:hover::before {
+            transform: translate(-50%, -50%) scale(2);
+        }
+
+        .na-btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #8b1820 100%);
+            color: var(--white-color);
+            box-shadow: 0 8px 20px rgba(170, 30, 37, 0.3);
+        }
+
+        .na-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(170, 30, 37, 0.4);
+        }
+
+        .na-btn-secondary {
+            background: var(--white-color);
+            color: var(--dark-color);
+            border: 2px solid var(--grey-color);
+        }
+
+        .na-btn-secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .na-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: var(--white-color);
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 20px;
+            margin-top: 15px;
+            animation: naFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes naFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .na-main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .na-table-header,
+            .na-table-row {
+                grid-template-columns: 1.5fr repeat(3, 1fr);
+            }
+
+            .na-table-header-cell:nth-child(n+5),
+            .na-table-cell:nth-child(n+5) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .na-header {
+                padding: 20px 30px;
+            }
+
+            .na-header-title {
+                font-size: 24px;
+            }
+
+            .na-main-content {
+                padding: 30px;
+                gap: 30px;
+            }
+
+            .na-color-swatches {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .na-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .na-action-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="na-container">
+        <div class="na-product-wrapper">
+            <!-- Header -->
+            <div class="na-header">
+                <div class="na-header-content">
+                    <i class="fas fa-shopping-bag na-header-icon"></i>
+                    <h1 class="na-header-title">Cotton Tote Bag</h1>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="na-main-content">
+                <!-- Product Showcase -->
+                <div class="na-product-showcase">
+                    <div class="na-main-image-container">
+                        <img src="https://via.placeholder.com/500x500/e8e8d0/272b36?text=STARTUP" alt="Cotton Tote Bag" class="na-main-image">
+                    </div>
+                    
+                    <div class="na-color-swatches">
+                        <div class="na-swatch-item na-active" style="background: linear-gradient(135deg, #e8e8d0 0%, #d5d5bd 100%);"></div>
+                        <div class="na-swatch-item" style="background: linear-gradient(135deg, #f4d03f 0%, #dbb82e 100%);"></div>
+                        <div class="na-swatch-item" style="background: linear-gradient(135deg, #d3d3d3 0%, #b8b8b8 100%);"></div>
+                        <div class="na-swatch-item" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);"></div>
+                        <div class="na-swatch-item" style="background: linear-gradient(135deg, #1e3a5f 0%, #152840 100%);"></div>
+                        <div class="na-swatch-item" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);"></div>
+                        <div class="na-swatch-item" style="background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);"></div>
+                        <div class="na-swatch-item" style="background: linear-gradient(135deg, #8b0000 0%, #660000 100%);"></div>
+                    </div>
+
+                    <div class="na-badge">
+                        <i class="fas fa-check-circle"></i>
+                        Rush Available - Contact Customer Service
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="na-product-details">
+                    <!-- Product Info -->
+                    <div class="na-detail-section">
+                        <div class="na-section-label">Style</div>
+                        <div class="na-section-value">MQTB</div>
+                    </div>
+
+                    <div class="na-detail-section">
+                        <div class="na-section-label">Size</div>
+                        <div class="na-section-value">15"W x 16"H</div>
+                    </div>
+
+                    <!-- Tabs -->
+                    <div class="na-tabs-container">
+                        <button class="na-tab-btn na-active">
+                            <i class="fas fa-print"></i> Spot Printing
+                        </button>
+                        <button class="na-tab-btn">
+                            <i class="fas fa-fire"></i> Heat Transfer
+                        </button>
+                        <button class="na-tab-btn">
+                            <i class="fas fa-circle"></i> Blank
+                        </button>
+                    </div>
+
+                    <!-- Pricing Table -->
+                    <div class="na-pricing-table">
+                        <div class="na-section-label" style="margin-bottom: 20px;">
+                            <i class="fas fa-dollar-sign"></i> Spot Printing - Pricing
+                        </div>
+                        
+                        <div class="na-table-header">
+                            <div class="na-table-header-cell">Quantity</div>
+                            <div class="na-table-header-cell">72</div>
+                            <div class="na-table-header-cell">288</div>
+                            <div class="na-table-header-cell">500</div>
+                            <div class="na-table-header-cell">1000</div>
+                            <div class="na-table-header-cell">2000</div>
+                            <div class="na-table-header-cell">3000</div>
+                            <div class="na-table-header-cell">R</div>
+                        </div>
+
+                        <div class="na-table-row">
+                            <div class="na-table-cell">Natural</div>
+                            <div class="na-table-cell">$4.02</div>
+                            <div class="na-table-cell">$3.27</div>
+                            <div class="na-table-cell">$2.94</div>
+                            <div class="na-table-cell">$2.77</div>
+                            <div class="na-table-cell">$2.58</div>
+                            <div class="na-table-cell">$2.48</div>
+                            <div class="na-table-cell">R</div>
+                        </div>
+
+                        <div class="na-table-row">
+                            <div class="na-table-cell">Colors</div>
+                            <div class="na-table-cell">$5.00</div>
+                            <div class="na-table-cell">$4.23</div>
+                            <div class="na-table-cell">$3.90</div>
+                            <div class="na-table-cell">$3.73</div>
+                            <div class="na-table-cell">$3.54</div>
+                            <div class="na-table-cell">$3.44</div>
+                            <div class="na-table-cell">R</div>
+                        </div>
+
+                        <div class="na-table-row">
+                            <div class="na-table-cell">Add Location</div>
+                            <div class="na-table-cell">$1.81</div>
+                            <div class="na-table-cell">$1.31</div>
+                            <div class="na-table-cell">$1.06</div>
+                            <div class="na-table-cell">$0.94</div>
+                            <div class="na-table-cell">$0.81</div>
+                            <div class="na-table-cell">$0.71</div>
+                            <div class="na-table-cell">V</div>
+                        </div>
+
+                        <div class="na-table-row">
+                            <div class="na-table-cell">Add Color</div>
+                            <div class="na-table-cell">$0.50</div>
+                            <div class="na-table-cell">$0.38</div>
+                            <div class="na-table-cell">$0.35</div>
+                            <div class="na-table-cell">$0.30</div>
+                            <div class="na-table-cell">$0.25</div>
+                            <div class="na-table-cell">$0.20</div>
+                            <div class="na-table-cell">V</div>
+                        </div>
+                    </div>
+
+                    <!-- Info Grid -->
+                    <div class="na-info-grid">
+                        <div class="na-info-card">
+                            <div class="na-info-card-header">
+                                <i class="fas fa-gift na-info-icon"></i>
+                                <div class="na-info-label">Price Includes</div>
+                            </div>
+                            <div class="na-info-value">1 Color, 1 Location</div>
+                        </div>
+
+                        <div class="na-info-card">
+                            <div class="na-info-card-header">
+                                <i class="fas fa-clock na-info-icon"></i>
+                                <div class="na-info-label">Lead Time</div>
+                            </div>
+                            <div class="na-info-value">5-7 Business Days</div>
+                        </div>
+
+                        <div class="na-info-card">
+                            <div class="na-info-card-header">
+                                <i class="fas fa-map-marker-alt na-info-icon"></i>
+                                <div class="na-info-label">Imprint Area</div>
+                            </div>
+                            <div class="na-info-value">10"W x 12"H</div>
+                        </div>
+
+                        <div class="na-info-card">
+                            <div class="na-info-card-header">
+                                <i class="fas fa-globe na-info-icon"></i>
+                                <div class="na-info-label">Shipping</div>
+                            </div>
+                            <div class="na-info-value">Overseas Available</div>
+                        </div>
+                    </div>
+
+                    <!-- Charges Section -->
+                    <div class="na-charges-section">
+                        <div class="na-charges-title">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            Additional Charges
+                        </div>
+
+                        <div class="na-charge-item">
+                            <div class="na-charge-label">
+                                <i class="fas fa-cog na-charge-icon"></i>
+                                Setup Charge
+                            </div>
+                            <div class="na-charge-amount">$ 56.25 (V)</div>
+                        </div>
+
+                        <div class="na-charge-item">
+                            <div class="na-charge-label">
+                                <i class="fas fa-redo na-charge-icon"></i>
+                                Repeat Setup
+                            </div>
+                            <div class="na-charge-amount">$ 25.00 (V)</div>
+                        </div>
+
+                        <div class="na-charge-item">
+                            <div class="na-charge-label">
+                                <i class="fas fa-bolt na-charge-icon"></i>
+                                Flash Charge - If White
+                            </div>
+                            <div class="na-charge-amount">$ 0.31 (V)</div>
+                        </div>
+
+                        <div class="na-charge-item">
+                            <div class="na-charge-label">
+                                <i class="fas fa-palette na-charge-icon"></i>
+                                PMS Match
+                            </div>
+                            <div class="na-charge-amount">$ 25.00 (V)</div>
+                        </div>
+
+                        <div class="na-charge-item">
+                            <div class="na-charge-label">
+                                <i class="fas fa-boxes na-charge-icon"></i>
+                                Less Than Minimum
+                            </div>
+                            <div class="na-charge-amount">$ 50.00 (V)</div>
+                        </div>
+
+                        <div class="na-charge-item">
+                            <div class="na-charge-label">
+                                <i class="fas fa-exchange-alt na-charge-icon"></i>
+                                Color Change Fee
+                            </div>
+                            <div class="na-charge-amount">$ 18.75 (V)</div>
+                        </div>
+
+                        <div class="na-charge-item">
+                            <div class="na-charge-label">
+                                <i class="fas fa-vial na-charge-icon"></i>
+                                Spec Sample / Pre Pro
+                            </div>
+                            <div class="na-charge-amount">Contact for pricing</div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="na-action-buttons">
+                        <button class="na-btn na-btn-primary">
+                            <i class="fas fa-file-alt"></i>
+                            Request Quote
+                        </button>
+                        <button class="na-btn na-btn-primary">
+                            <i class="fas fa-box"></i>
+                            Request Sample
+                        </button>
+                        <button class="na-btn na-btn-secondary">
+                            <i class="fas fa-truck"></i>
+                            Freight Quote
+                        </button>
+                        <button class="na-btn na-btn-secondary">
+                            <i class="fas fa-images"></i>
+                            View Images
+                        </button>
+                        <button class="na-btn na-btn-secondary">
+                            <i class="fas fa-file-download"></i>
+                            Download Template
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Color Swatch Functionality
+        const swatches = document.querySelectorAll('.na-swatch-item');
+        const mainImage = document.querySelector('.na-main-image');
+        
+        const colorImages = {
+            0: 'https://via.placeholder.com/500x500/e8e8d0/272b36?text=STARTUP',
+            1: 'https://via.placeholder.com/500x500/f4d03f/272b36?text=STARTUP',
+            2: 'https://via.placeholder.com/500x500/d3d3d3/272b36?text=STARTUP',
+            3: 'https://via.placeholder.com/500x500/3498db/ffffff?text=STARTUP',
+            4: 'https://via.placeholder.com/500x500/1e3a5f/ffffff?text=STARTUP',
+            5: 'https://via.placeholder.com/500x500/e74c3c/ffffff?text=STARTUP',
+            6: 'https://via.placeholder.com/500x500/2c3e50/ffffff?text=STARTUP',
+            7: 'https://via.placeholder.com/500x500/8b0000/ffffff?text=STARTUP'
+        };
+
+        swatches.forEach((swatch, index) => {
+            swatch.addEventListener('click', function() {
+                // Remove active class from all swatches
+                swatches.forEach(s => s.classList.remove('na-active'));
+                
+                // Add active class to clicked swatch
+                this.classList.add('na-active');
+                
+                // Change main image with animation
+                mainImage.style.opacity = '0';
+                mainImage.style.transform = 'scale(0.9)';
+                
+                setTimeout(() => {
+                    mainImage.src = colorImages[index];
+                    mainImage.style.opacity = '1';
+                    mainImage.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+
+        // Tab Functionality
+        const tabBtns = document.querySelectorAll('.na-tab-btn');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all tabs
+                tabBtns.forEach(t => t.classList.remove('na-active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('na-active');
+                
+                // Add a subtle animation to the pricing table
+                const pricingTable = document.querySelector('.na-pricing-table');
+                pricingTable.style.transform = 'scale(0.98)';
+                pricingTable.style.opacity = '0.7';
+                
+                setTimeout(() => {
+                    pricingTable.style.transform = 'scale(1)';
+                    pricingTable.style.opacity = '1';
+                }, 150);
+            });
+        });
+
+        // Button Click Effects
+        const buttons = document.querySelectorAll('.na-btn');
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation to stylesheet
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Info Cards Hover Effect with Icon Animation
+        const infoCards = document.querySelectorAll('.na-info-card');
+        
+        infoCards.forEach(card => {
+            const icon = card.querySelector('.na-info-icon');
+            
+            card.addEventListener('mouseenter', function() {
+                icon.style.transform = 'rotate(360deg) scale(1.2)';
+                icon.style.transition = 'transform 0.5s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                icon.style.transform = 'rotate(0deg) scale(1)';
+            });
+        });
+
+        // Charge Items Animation on Scroll
+        const chargeItems = document.querySelectorAll('.na-charge-item');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }, index * 50);
+                }
+            });
+        }, observerOptions);
+        
+        chargeItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            item.style.transition = 'all 0.5s ease';
+            observer.observe(item);
+        });
+
+        // Table Row Highlight Effect
+        const tableRows = document.querySelectorAll('.na-table-row');
+        
+        tableRows.forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(5px)';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Parallax Effect on Main Image Container
+        const mainImageContainer = document.querySelector('.na-main-image-container');
+        
+        document.addEventListener('mousemove', function(e) {
+            const x = (e.clientX / window.innerWidth - 0.5) * 10;
+            const y = (e.clientY / window.innerHeight - 0.5) * 10;
+            
+            if (mainImageContainer) {
+                mainImageContainer.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
+            }
+        });
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Loading Animation
+        window.addEventListener('load', function() {
+            const productWrapper = document.querySelector('.na-product-wrapper');
+            productWrapper.style.opacity = '0';
+            productWrapper.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                productWrapper.style.transition = 'all 0.8s ease-out';
+                productWrapper.style.opacity = '1';
+                productWrapper.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Dynamic Price Highlighting
+        const tableCells = document.querySelectorAll('.na-table-row .na-table-cell');
+        
+        tableCells.forEach(cell => {
+            if (cell.textContent.includes(')) {
+                cell.addEventListener('mouseenter', function() {
+                    this.style.color = 'var(--primary-color)';
+                    this.style.fontWeight = '700';
+                    this.style.transform = 'scale(1.1)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                cell.addEventListener('mouseleave', function() {
+                    this.style.color = 'var(--dark-color)';
+                    this.style.fontWeight = '400';
+                    this.style.transform = 'scale(1)';
+                });
+            }
+        });
+
+        // Easter Egg: Konami Code
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.key);
+            konamiCode = konamiCode.slice(-10);
+            
+            if (konamiCode.join('') === konamiSequence.join('')) {
+                document.body.style.animation = 'rainbow 2s linear infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 5000);
+            }
+        });
+
+        // Add rainbow animation
+        const rainbowStyle = document.createElement('style');
+        rainbowStyle.textContent = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(rainbowStyle);
+
+        // Console Easter Egg
+        console.log('%c🎨 Welcome to the Cotton Tote Bag Product Page! 🎨', 'color: #aa1e25; font-size: 20px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);');
+        console.log('%cDesigned with ❤️ using elegant animations and modern CSS', 'color: #666; font-size: 14px;');
+    </script>
+</body>
+</html>

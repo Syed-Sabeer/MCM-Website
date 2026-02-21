@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Therapist Website - Loading</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          'Helvetica Neue', Arial, sans-serif;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      #koLoaderWrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+        opacity: 1;
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      #koLoaderWrapper.koHidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .koLoaderContainer {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+      }
+
+      .koBrandSection {
+        text-align: center;
+        margin-bottom: 60px;
+        animation: koFadeSlideUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .koIconWrapper {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 32px;
+      }
+
+      .koIconCircle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #ff8652, #ff7a3d);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 20px 60px rgba(255, 134, 82, 0.25);
+      }
+
+      .koIconCircle i {
+        font-size: 44px;
+        color: #ffffff;
+      }
+
+      .koIconRing {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 134, 82, 0.2);
+        animation: koRingPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+
+      .koIconRing:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+
+      .koBrandTitle {
+        font-size: clamp(28px, 5vw, 42px);
+        font-weight: 300;
+        letter-spacing: -0.5px;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+        line-height: 1.2;
+      }
+
+      .koBrandSubtitle {
+        font-size: clamp(13px, 2vw, 15px);
+        font-weight: 400;
+        letter-spacing: 3px;
+        color: #888888;
+        text-transform: uppercase;
+      }
+
+      .koProgressSection {
+        width: 100%;
+        max-width: 280px;
+        animation: koFadeSlideUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+      }
+
+      .koProgressBar {
+        position: relative;
+        width: 100%;
+        height: 3px;
+        background: #f0f0f0;
+        border-radius: 3px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .koProgressFill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, #ff8652, #ff7a3d);
+        border-radius: 3px;
+        animation: koProgressAnimate 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+
+      .koLoadingText {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+        color: #666666;
+        letter-spacing: 0.5px;
+      }
+
+      .koDotAnimation {
+        display: inline-block;
+        margin-left: 2px;
+      }
+
+      .koDotAnimation span {
+        display: inline-block;
+        opacity: 0;
+        animation: koDotBlink 1.5s infinite;
+      }
+
+      .koDotAnimation span:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      .koDotAnimation span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .koDotAnimation span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      .koDecorative {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .koParticle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: linear-gradient(45deg, #ff8652, #ff7a3d);
+        border-radius: 50%;
+        opacity: 0;
+      }
+
+      .koParticle:nth-child(1) {
+        top: 20%;
+        left: 15%;
+        animation: koParticleFloat 8s ease-in-out infinite;
+      }
+
+      .koParticle:nth-child(2) {
+        top: 60%;
+        left: 80%;
+        animation: koParticleFloat 10s ease-in-out infinite 1s;
+      }
+
+      .koParticle:nth-child(3) {
+        top: 40%;
+        right: 10%;
+        animation: koParticleFloat 12s ease-in-out infinite 2s;
+      }
+
+      .koParticle:nth-child(4) {
+        bottom: 25%;
+        left: 25%;
+        animation: koParticleFloat 9s ease-in-out infinite 1.5s;
+      }
+
+      @keyframes koFadeSlideUp {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes koRingPulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.4;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.15);
+          opacity: 0;
+        }
+      }
+
+      @keyframes koProgressAnimate {
+        0% {
+          width: 0;
+          left: 0;
+        }
+        50% {
+          width: 70%;
+          left: 0;
+        }
+        100% {
+          width: 0;
+          left: 100%;
+        }
+      }
+
+      @keyframes koDotBlink {
+        0%,
+        20% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes koParticleFloat {
+        0%,
+        100% {
+          transform: translate(0, 0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.6;
+        }
+        90% {
+          opacity: 0.6;
+        }
+        50% {
+          transform: translate(20px, -30px);
+        }
+      }
+
+      #koMainContent {
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+
+      #koMainContent.koVisible {
+        opacity: 1;
+      }
+
+      .koContentWrapper {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: clamp(40px, 10vh, 100px) clamp(20px, 5vw, 60px);
+      }
+
+      .koHeroSection {
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .koWelcomeTitle {
+        font-size: clamp(36px, 7vw, 72px);
+        font-weight: 300;
+        color: #1a1a1a;
+        margin-bottom: clamp(20px, 4vh, 32px);
+        letter-spacing: -1px;
+        line-height: 1.1;
+      }
+
+      .koWelcomeSubtitle {
+        font-size: clamp(18px, 3vw, 24px);
+        color: #666666;
+        line-height: 1.6;
+        font-weight: 400;
+        margin-bottom: clamp(30px, 6vh, 50px);
+      }
+
+      .koFeatureGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: clamp(20px, 4vw, 40px);
+        margin-top: clamp(40px, 8vh, 80px);
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .koFeatureCard {
+        padding: clamp(30px, 5vw, 50px);
+        background: #ffffff;
+        border: 1px solid #f0f0f0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .koFeatureCard:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: rgba(255, 134, 82, 0.3);
+      }
+
+      .koFeatureIcon {
+        font-size: 36px;
+        background: linear-gradient(45deg, #ff8652, #ff7a3d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 20px;
+      }
+
+      .koFeatureTitle {
+        font-size: 20px;
+        font-weight: 500;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+      }
+
+      .koFeatureDescription {
+        font-size: 15px;
+        color: #888888;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .koIconWrapper {
+          width: 80px;
+          height: 80px;
+        }
+
+        .koIconCircle {
+          width: 80px;
+          height: 80px;
+        }
+
+        .koIconCircle i {
+          font-size: 36px;
+        }
+
+        .koIconRing {
+          width: 100px;
+          height: 100px;
+        }
+
+        .koBrandSection {
+          margin-bottom: 40px;
+        }
+
+        .koProgressSection {
+          max-width: 240px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .koFeatureGrid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loader -->
+    <div id="koLoaderWrapper">
+      <div class="koDecorative">
+        <div class="koParticle"></div>
+        <div class="koParticle"></div>
+        <div class="koParticle"></div>
+        <div class="koParticle"></div>
+      </div>
+
+      <div class="koLoaderContainer">
+        <div class="koBrandSection">
+          <div class="koIconWrapper">
+            <div class="koIconRing"></div>
+            <div class="koIconRing"></div>
+            <div class="koIconCircle">
+              <i class="fas fa-spa"></i>
+            </div>
+          </div>
+          <h1 class="koBrandTitle">Serenity Wellness</h1>
+          <p class="koBrandSubtitle">Mental Health Care</p>
+        </div>
+
+        <div class="koProgressSection">
+          <div class="koProgressBar">
+            <div class="koProgressFill"></div>
+          </div>
+          <p class="koLoadingText">
+            Preparing your space<span class="koDotAnimation"
+              ><span>.</span><span>.</span><span>.</span></span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="koMainContent">
+      <div class="koContentWrapper">
+        <div class="koHeroSection">
+          <h1 class="koWelcomeTitle">Your Journey to Wellness Begins Here</h1>
+          <p class="koWelcomeSubtitle">
+            Professional, compassionate therapy tailored to your unique needs.
+            We're here to support you every step of the way.
+          </p>
+        </div>
+
+        <div class="koFeatureGrid">
+          <div class="koFeatureCard">
+            <div class="koFeatureIcon">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <h3 class="koFeatureTitle">Confidential Care</h3>
+            <p class="koFeatureDescription">
+              Your privacy and trust are our top priorities. All sessions are
+              completely confidential.
+            </p>
+          </div>
+
+          <div class="koFeatureCard">
+            <div class="koFeatureIcon">
+              <i class="fas fa-heart-pulse"></i>
+            </div>
+            <h3 class="koFeatureTitle">Evidence-Based</h3>
+            <p class="koFeatureDescription">
+              Utilizing proven therapeutic approaches tailored to your
+              individual needs and goals.
+            </p>
+          </div>
+
+          <div class="koFeatureCard">
+            <div class="koFeatureIcon">
+              <i class="fas fa-hands-holding-circle"></i>
+            </div>
+            <h3 class="koFeatureTitle">Holistic Support</h3>
+            <p class="koFeatureDescription">
+              Comprehensive care addressing mind, body, and spirit for lasting
+              transformation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          const koLoader = document.getElementById('koLoaderWrapper');
+          const koContent = document.getElementById('koMainContent');
+
+          koLoader.classList.add('koHidden');
+
+          setTimeout(function () {
+            koContent.classList.add('koVisible');
+            document.body.style.overflow = 'auto';
+          }, 100);
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maintenance Banner</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        padding-top: 0;
+      }
+
+      .do-maintenance-banner {
+        position: fixed;
+        top: -60px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(45deg, #ff8652, #ff7a3d);
+        color: white;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        z-index: 1000;
+        transition: top 0.4s ease;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .do-maintenance-banner.do-show {
+        top: 0;
+      }
+
+      .do-banner-icon {
+        font-size: 16px;
+      }
+
+      .do-banner-text {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .do-close-btn {
+        position: absolute;
+        right: 20px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 5px;
+        transition: transform 0.2s;
+      }
+
+      .do-close-btn:hover {
+        transform: scale(1.1);
+      }
+
+      /* Demo content */
+      .do-demo-content {
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .do-demo-section {
+        margin-bottom: 40px;
+        padding: 20px;
+        background: #f5f5f5;
+        border-radius: 8px;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .do-scroll-indicator {
+        text-align: center;
+        padding: 30px;
+        background: linear-gradient(45deg, #ff8652, #ff7a3d);
+        color: white;
+        font-size: 18px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="do-maintenance-banner" id="doMaintenanceBanner">
+      <i class="fa-solid fa-bell"></i>
+      <span class="do-banner-text"
+        >Please note: Only qualified and verified therapists, healers, and
+        practitioners are approved and permitted to offer services or sell
+        digital products on FAGT.</span
+      >
+    </div>
+
+    <div class="do-demo-content">
+      <div class="do-scroll-indicator">
+        <i class="fas fa-arrow-down"></i>
+        <p style="margin: 10px 0 0 0; color: white">
+          Scroll down to see the maintenance banner appear!
+        </p>
+      </div>
+
+      <div class="do-demo-section">
+        <h1>Welcome to Our Website</h1>
+        <p>
+          This is a demonstration of a scroll-activated maintenance banner. When
+          you scroll down past 100 pixels, the banner will smoothly slide down
+          from the top of the page.
+        </p>
+      </div>
+
+      <div class="do-demo-section">
+        <h1>About This Feature</h1>
+        <p>
+          The maintenance banner uses a gradient background with colors #FF8652
+          and #ff7a3d, creating a vibrant and eye-catching design. The banner
+          includes a Font Awesome tools icon that pulses to draw attention.
+        </p>
+        <p>
+          All CSS classes and IDs are prefixed with "do-" to ensure uniqueness
+          and avoid conflicts with your existing styles.
+        </p>
+      </div>
+
+      <div class="do-demo-section">
+        <h1>Key Features</h1>
+        <p>• Smooth slide-in animation when scrolling down</p>
+        <p>• Fixed position that stays at the top of the viewport</p>
+        <p>• Close button to dismiss the banner</p>
+        <p>• Pulsing icon animation for attention</p>
+        <p>• Responsive design that works on all devices</p>
+      </div>
+
+      <div class="do-demo-section">
+        <h1>More Content</h1>
+        <p>
+          Keep scrolling to see how the banner remains fixed at the top of the
+          page as you navigate through the content. The banner will reappear if
+          you refresh the page and scroll again.
+        </p>
+      </div>
+
+      <div class="do-demo-section">
+        <h1>Additional Section</h1>
+        <p>
+          This section provides more space for scrolling. The maintenance banner
+          should now be visible at the top of your screen if you've scrolled
+          down far enough.
+        </p>
+      </div>
+
+      <div class="do-demo-section">
+        <h1>Final Section</h1>
+        <p>
+          You can click the X button on the banner to close it. The banner uses
+          localStorage to remember if it was closed, so it won't show again
+          during your session.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const doBanner = document.getElementById('doMaintenanceBanner');
+      let doBannerClosed = false;
+
+      window.addEventListener('scroll', function () {
+        if (!doBannerClosed && window.scrollY > 100) {
+          doBanner.classList.add('do-show');
+        } else if (window.scrollY <= 100) {
+          doBanner.classList.remove('do-show');
+        }
+      });
+    </script>
+  </body>
+</html>

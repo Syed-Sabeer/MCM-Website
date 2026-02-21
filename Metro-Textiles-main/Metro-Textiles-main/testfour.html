@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers at Metro Cotton Mill</title>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #aa1e25;
+            --dark-color: #272b36;
+            --secondary-color: #666666;
+            --grey-color: #f5f5f5;
+            --white-color: #ffffff;
+            --title-fonts: 'Red Hat Display', sans-serif;
+            --body-fonts: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .cebody {
+            font-family: var(--body-fonts);
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .ce-container {
+            max-width: 991px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ce-card {
+            background: var(--white-color);
+            border-radius: 24px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.12),
+                0 0 1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ce-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color), #c92530, var(--primary-color));
+            background-size: 200% 100%;
+            animation: ce-shine 3s linear infinite;
+        }
+
+        @keyframes ce-shine {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .ce-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #8b1820 100%);
+            padding: 55px 45px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ce-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 60%);
+            border-radius: 50%;
+        }
+
+        .ce-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 60%);
+            border-radius: 50%;
+        }
+
+        .ce-header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .ce-icon-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .ce-icon-wrapper i {
+            font-size: 32px;
+            color: var(--white-color);
+        }
+
+        .ce-title {
+            font-family: var(--title-fonts);
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--white-color);
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .ce-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.93);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .ce-body {
+            padding: 50px 45px;
+            background: linear-gradient(to bottom, #ffffff, #fafbfc);
+        }
+
+        .ce-description {
+            font-size: 15px;
+            color: var(--secondary-color);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .ce-form {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+        }
+
+        .ce-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .ce-form-group {
+            position: relative;
+        }
+
+        .ce-form-group.ce-full-width {
+            grid-column: 1 / -1;
+        }
+
+        .ce-label {
+            display: block;
+            font-family: var(--title-fonts);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ce-label i {
+            color: var(--primary-color);
+            font-size: 13px;
+        }
+
+        .ce-input-wrapper {
+            position: relative;
+        }
+
+        .ce-input,
+        .ce-textarea {
+            width: 100%;
+            padding: 15px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: var(--body-fonts);
+            font-size: 15px;
+            color: var(--dark-color);
+            background: var(--white-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+        }
+
+        .ce-input::placeholder,
+        .ce-textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        .ce-input:focus,
+        .ce-textarea:focus {
+            border-color: var(--primary-color);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(170, 30, 37, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .ce-textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .ce-file-upload {
+            position: relative;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 38px 28px;
+            text-align: center;
+            background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ce-file-upload::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(170, 30, 37, 0.04), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .ce-file-upload:hover::before {
+            left: 100%;
+        }
+
+        .ce-file-upload:hover {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, #fff9fa 0%, #ffffff 100%);
+            box-shadow: 0 4px 16px rgba(170, 30, 37, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .ce-file-input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .ce-upload-icon {
+            font-size: 44px;
+            color: var(--primary-color);
+            margin-bottom: 14px;
+            display: inline-block;
+        }
+
+        .ce-upload-text {
+            font-family: var(--title-fonts);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 6px;
+        }
+
+        .ce-upload-subtext {
+            font-size: 13px;
+            color: var(--secondary-color);
+        }
+
+        .ce-file-name {
+            display: none;
+            margin-top: 18px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
+            border: 1px solid #86efac;
+            border-radius: 10px;
+            color: #15803d;
+            font-weight: 600;
+            font-size: 14px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .ce-file-name.ce-active {
+            display: flex;
+        }
+
+        .ce-submit-wrapper {
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .ce-submit-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #8b1820 100%);
+            color: var(--white-color);
+            border: none;
+            padding: 18px 55px;
+            border-radius: 12px;
+            font-family: var(--title-fonts);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(170, 30, 37, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ce-submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .ce-submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .ce-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(170, 30, 37, 0.4);
+        }
+
+        .ce-submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .ce-btn-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .ce-footer-text {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--secondary-color);
+        }
+
+        .ce-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+            margin: 35px 0;
+        }
+
+        @media (max-width: 768px) {
+            .ce-header {
+                padding: 45px 35px;
+            }
+
+            .ce-title {
+                font-size: 30px;
+            }
+
+            .ce-body {
+                padding: 40px 30px;
+            }
+
+            .ce-form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .ce-submit-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cebody {
+                padding: 30px 15px;
+            }
+
+            .ce-header {
+                padding: 40px 25px;
+            }
+
+            .ce-title {
+                font-size: 26px;
+            }
+
+            .ce-body {
+                padding: 35px 25px;
+            }
+
+            .ce-card {
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="cebody" >
+    <div class="ce-container">
+        <div class="ce-card">
+            <div class="ce-header">
+                <div class="ce-header-content">
+                    <div class="ce-icon-wrapper">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h1 class="ce-title">Careers at Metro Cotton Mill</h1>
+                    <p class="ce-subtitle">
+                        Join our team and contribute to our journey of excellence. We believe that our people are the foundation of our success.
+                    </p>
+                </div>
+            </div>
+
+            <div class="ce-body">
+                <p class="ce-description">
+                    If you're looking for a dynamic and rewarding workplace where innovation, collaboration, and growth are valued, we invite you to apply. Fill out the form below, attach your resume, and take the first step toward building your career with us.
+                </p>
+
+                <div class="ce-divider"></div>
+
+                <form class="ce-form" id="ceCareerForm">
+                    <div class="ce-form-row">
+                        <div class="ce-form-group">
+                            <label class="ce-label">
+                                <i class="fas fa-user"></i>
+                                First Name
+                            </label>
+                            <div class="ce-input-wrapper">
+                                <input type="text" class="ce-input" placeholder="Enter your first name" required>
+                            </div>
+                        </div>
+
+                        <div class="ce-form-group">
+                            <label class="ce-label">
+                                <i class="fas fa-user"></i>
+                                Last Name
+                            </label>
+                            <div class="ce-input-wrapper">
+                                <input type="text" class="ce-input" placeholder="Enter your last name" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ce-form-group ce-full-width">
+                        <label class="ce-label">
+                            <i class="fas fa-phone"></i>
+                            Phone Number
+                        </label>
+                        <div class="ce-input-wrapper">
+                            <input type="tel" class="ce-input" placeholder="Enter your phone number" required>
+                        </div>
+                    </div>
+
+                    <div class="ce-form-group ce-full-width">
+                        <label class="ce-label">
+                            <i class="fas fa-edit"></i>
+                            Note
+                        </label>
+                        <textarea class="ce-textarea" placeholder="Tell us about yourself and why you'd like to join our team..." required></textarea>
+                    </div>
+
+                    <div class="ce-form-group ce-full-width">
+                        <label class="ce-label">
+                            <i class="fas fa-file-upload"></i>
+                            Resume / CV
+                        </label>
+                        <label class="ce-file-upload" for="ceFileInput">
+                            <input type="file" id="ceFileInput" class="ce-file-input" accept=".pdf,.doc,.docx">
+                            <i class="fas fa-cloud-upload-alt ce-upload-icon"></i>
+                            <div class="ce-upload-text">Drop your resume here or click to browse</div>
+                            <div class="ce-upload-subtext">Supported formats: PDF, DOC, DOCX (Max 5MB)</div>
+                            <div class="ce-file-name" id="ceFileName">
+                                <i class="fas fa-check-circle"></i>
+                                <span></span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="ce-submit-wrapper">
+                        <button type="submit" class="ce-submit-btn">
+                            <span class="ce-btn-content">Submit Application</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <p class="ce-footer-text">We look forward to hearing from you!</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <script>
+        const fileInput = document.getElementById('ceFileInput');
+        const fileName = document.getElementById('ceFileName');
+        const fileUpload = document.querySelector('.ce-file-upload');
+
+        fileInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const file = this.files[0];
+                fileName.querySelector('span').textContent = file.name;
+                fileName.classList.add('ce-active');
+            }
+        });
+
+        fileUpload.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = 'var(--primary-color)';
+        });
+
+        fileUpload.addEventListener('dragleave', function() {
+            this.style.borderColor = '#cbd5e1';
+        });
+
+        fileUpload.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#cbd5e1';
+            
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                fileInput.files = e.dataTransfer.files;
+                const file = e.dataTransfer.files[0];
+                fileName.querySelector('span').textContent = file.name;
+                fileName.classList.add('ce-active');
+            }
+        });
+
+        document.getElementById('ceCareerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your application! We will review it and get back to you soon.');
+            this.reset();
+            fileName.classList.remove('ce-active');
+        });
+    </script>
+</body>
+</html>

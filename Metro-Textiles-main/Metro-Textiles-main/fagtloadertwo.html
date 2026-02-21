@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Therapist Portal</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #fafbfc;
+        overflow-x: hidden;
+      }
+
+      /* Professional Loader Container */
+      #koLoaderWrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      #koLoaderWrapper.koFadeOut {
+        opacity: 0;
+        transform: scale(0.95);
+        pointer-events: none;
+      }
+
+      .koLoaderInner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+        padding: 40px;
+      }
+
+      /* Elegant Logo Container */
+      .koLogoSection {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Outer Rotating Circle */
+      .koOuterCircle {
+        position: absolute;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        border-top: 2px solid #ff8652;
+        border-right: 2px solid #ff7a3d;
+        animation: koSmoothRotate 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      .koInnerCircle {
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        border-bottom: 2px solid #ff8652;
+        border-left: 2px solid #ff7a3d;
+        animation: koSmoothRotate 2s cubic-bezier(0.4, 0, 0.6, 1) infinite
+          reverse;
+      }
+
+      /* Center Icon with Gradient Background */
+      .koCenterIcon {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff8652 0%, #ff7a3d 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 32px rgba(255, 134, 82, 0.25);
+        animation: koGentlePulse 3s ease-in-out infinite;
+      }
+
+      .koCenterIcon i {
+        font-size: 36px;
+        color: #ffffff;
+        opacity: 0.95;
+      }
+
+      /* Typography Section */
+      .koTextSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        max-width: 500px;
+      }
+
+      .koBrandName {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(32px, 5vw, 48px);
+        font-weight: 300;
+        color: #1a1a1a;
+        letter-spacing: 2px;
+        text-align: center;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .koTagline {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(14px, 2vw, 16px);
+        font-weight: 400;
+        color: #6b7280;
+        letter-spacing: 0.5px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      /* Minimal Progress Indicator */
+      .koProgressSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .koProgressTrack {
+        width: 100%;
+        height: 2px;
+        background: #e5e7eb;
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .koProgressFill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #ff8652 0%, #ff7a3d 100%);
+        border-radius: 2px;
+        animation: koProgressAnimation 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+
+      .koLoadingText {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: #9ca3af;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      /* Ambient Background Decoration */
+      .koAmbientDecor {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: -1;
+        opacity: 0.03;
+      }
+
+      .koDecorCircle {
+        position: absolute;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff8652, #ff7a3d);
+      }
+
+      .koDecor1 {
+        width: 400px;
+        height: 400px;
+        top: -200px;
+        right: -100px;
+        animation: koFloatSlow 20s ease-in-out infinite;
+      }
+
+      .koDecor2 {
+        width: 300px;
+        height: 300px;
+        bottom: -150px;
+        left: -75px;
+        animation: koFloatSlow 25s ease-in-out infinite reverse;
+      }
+
+      /* Animations */
+      @keyframes koSmoothRotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes koGentlePulse {
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 8px 32px rgba(255, 134, 82, 0.25);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 12px 48px rgba(255, 134, 82, 0.35);
+        }
+      }
+
+      @keyframes koProgressAnimation {
+        0% {
+          width: 0%;
+          opacity: 1;
+        }
+        50% {
+          width: 100%;
+          opacity: 1;
+        }
+        100% {
+          width: 100%;
+          opacity: 0;
+        }
+      }
+
+      @keyframes koFloatSlow {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(30px, 30px) scale(1.1);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .koLoaderInner {
+          gap: 36px;
+          padding: 24px;
+        }
+
+        .koLogoSection {
+          width: 120px;
+          height: 120px;
+        }
+
+        .koOuterCircle {
+          width: 120px;
+          height: 120px;
+        }
+
+        .koInnerCircle {
+          width: 95px;
+          height: 95px;
+        }
+
+        .koCenterIcon {
+          width: 70px;
+          height: 70px;
+        }
+
+        .koCenterIcon i {
+          font-size: 32px;
+        }
+
+        .koProgressSection {
+          max-width: 280px;
+        }
+
+        .koHeroSection {
+          padding: 40px 20px;
+        }
+
+        .koCtaButton {
+          padding: 16px 36px;
+          font-size: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .koLogoSection {
+          width: 100px;
+          height: 100px;
+        }
+
+        .koOuterCircle {
+          width: 100px;
+          height: 100px;
+        }
+
+        .koInnerCircle {
+          width: 80px;
+          height: 80px;
+        }
+
+        .koCenterIcon {
+          width: 60px;
+          height: 60px;
+        }
+
+        .koCenterIcon i {
+          font-size: 28px;
+        }
+
+        .koProgressSection {
+          max-width: 240px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Professional Loader -->
+    <div id="koLoaderWrapper">
+      <div class="koAmbientDecor">
+        <div class="koDecorCircle koDecor1"></div>
+        <div class="koDecorCircle koDecor2"></div>
+      </div>
+
+      <div class="koLoaderInner">
+        <div class="koLogoSection">
+          <div class="koOuterCircle"></div>
+          <div class="koInnerCircle"></div>
+          <div class="koCenterIcon">
+            <i class="fas fa-spa"></i>
+          </div>
+        </div>
+
+        <div class="koTextSection">
+          <h1 class="koBrandName">Find A Great Therapist</h1>
+          <p class="koTagline">Your Trusted Healthcare Partner</p>
+        </div>
+
+        <div class="koProgressSection">
+          <div class="koProgressTrack">
+            <div class="koProgressFill"></div>
+          </div>
+          <span class="koLoadingText">Loading Experience Please Wait..</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Website Content -->
+    <div id="koMainContent">
+      <section class="koHeroSection">
+        <div class="koHeroContent">
+          <h1 class="koHeroTitle">Your Journey to Inner Peace Begins Here</h1>
+          <p class="koHeroSubtitle">
+            Experience professional, compassionate therapy in a safe and
+            supportive environment. We're here to guide you through life's
+            challenges toward lasting wellness.
+          </p>
+          <div>
+            <button class="koCtaButton">
+              <span>Schedule a Session</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.addEventListener('load', function () {
+        const koLoader = document.getElementById('koLoaderWrapper');
+
+        // Professional timing - minimum 2.5 seconds for smooth experience
+        setTimeout(function () {
+          koLoader.classList.add('koFadeOut');
+
+          // Remove loader from DOM after animation
+          setTimeout(function () {
+            koLoader.style.display = 'none';
+          }, 900);
+        }, 3500);
+      });
+    </script>
+  </body>
+</html>

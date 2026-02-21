@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hub - Metro Cotton Mill</title>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #aa1e25;
+            --dark-color: #272b36;
+            --secondary-color: #666666;
+            --grey-color: #f5f5f5;
+            --white-color: #ffffff;
+            --title-fonts: 'Red Hat Display', sans-serif;
+            --body-fonts: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--body-fonts);
+            overflow-x: hidden;
+        }
+
+        .hu-section {
+            
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 80px 20px;
+        }
+
+        .hu-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(170, 30, 37, 0.02) 10px, rgba(170, 30, 37, 0.02) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(39, 43, 54, 0.02) 10px, rgba(39, 43, 54, 0.02) 20px);
+            pointer-events: none;
+        }
+
+        .hu-floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hu-shape {
+            position: absolute;
+            opacity: 0.08;
+            animation: hu-float 20s infinite ease-in-out;
+        }
+
+        .hu-shape-1 {
+            top: 10%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            background: var(--primary-color);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-delay: 0s;
+        }
+
+        .hu-shape-2 {
+            top: 60%;
+            right: 15%;
+            width: 150px;
+            height: 150px;
+            background: var(--dark-color);
+            border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+            animation-delay: -5s;
+        }
+
+        .hu-shape-3 {
+            bottom: 10%;
+            left: 20%;
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes hu-float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(30px, -30px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, -60px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-30px, -30px) rotate(270deg);
+            }
+        }
+
+        .hu-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hu-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hu-text-content {
+            animation: hu-slideInLeft 1s ease-out;
+        }
+
+        .hu-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), #d32f2f);
+            color: var(--white-color);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-family: var(--title-fonts);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(170, 30, 37, 0.3);
+            animation: hu-pulse 2s infinite;
+        }
+
+        @keyframes hu-pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .hu-title {
+            font-family: var(--title-fonts);
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--dark-color);
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        .hu-title-highlight {
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hu-title-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: hu-underline 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes hu-underline {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .hu-description {
+            font-family: var(--body-fonts);
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+        }
+
+        .hu-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hu-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: var(--white-color);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            animation: hu-fadeInUp 0.8s ease-out backwards;
+        }
+
+        .hu-feature-item:nth-child(1) { animation-delay: 0.2s; }
+        .hu-feature-item:nth-child(2) { animation-delay: 0.3s; }
+        .hu-feature-item:nth-child(3) { animation-delay: 0.4s; }
+        .hu-feature-item:nth-child(4) { animation-delay: 0.5s; }
+
+        .hu-feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(170, 30, 37, 0.2);
+        }
+
+        .hu-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), #d32f2f);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .hu-feature-text {
+            font-family: var(--body-fonts);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .hu-cta-wrapper {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .hu-btn {
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-family: var(--title-fonts);
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .hu-btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #d32f2f);
+            color: var(--white-color);
+        }
+
+        .hu-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(170, 30, 37, 0.4);
+        }
+
+        .hu-btn-secondary {
+            background: var(--white-color);
+            color: var(--dark-color);
+            border: 2px solid var(--dark-color);
+        }
+
+        .hu-btn-secondary:hover {
+            background: var(--dark-color);
+            color: var(--white-color);
+            transform: translateY(-3px);
+        }
+
+        .hu-visual-content {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: hu-slideInRight 1s ease-out;
+        }
+
+        .hu-visual-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .hu-main-card {
+            background: var(--white-color);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 2;
+            animation: hu-cardFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes hu-cardFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hu-card-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hu-card-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), #d32f2f);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(170, 30, 37, 0.3);
+        }
+
+        .hu-card-logo i {
+            font-size: 40px;
+            color: var(--white-color);
+        }
+
+        .hu-card-title {
+            font-family: var(--title-fonts);
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .hu-card-subtitle {
+            font-family: var(--body-fonts);
+            font-size: 16px;
+            color: var(--secondary-color);
+        }
+
+        .hu-card-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .hu-card-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            background: var(--grey-color);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .hu-card-feature:hover {
+            background: linear-gradient(135deg, rgba(170, 30, 37, 0.05), rgba(211, 47, 47, 0.05));
+            transform: translateX(5px);
+        }
+
+        .hu-card-feature-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-color), #d32f2f);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .hu-card-feature-content {
+            flex: 1;
+        }
+
+        .hu-card-feature-title {
+            font-family: var(--title-fonts);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 3px;
+        }
+
+        .hu-card-feature-desc {
+            font-family: var(--body-fonts);
+            font-size: 13px;
+            color: var(--secondary-color);
+        }
+
+        .hu-card-cta {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary-color), #d32f2f);
+            color: var(--white-color);
+            border: none;
+            border-radius: 15px;
+            font-family: var(--title-fonts);
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(170, 30, 37, 0.3);
+        }
+
+        .hu-card-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(170, 30, 37, 0.4);
+        }
+
+        .hu-floating-card {
+            position: absolute;
+            background: var(--white-color);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            z-index: 3;
+        }
+
+        .hu-floating-card-1 {
+            top: 50px;
+            right: -50px;
+            width: 200px;
+            animation: hu-float-1 5s ease-in-out infinite;
+        }
+
+        .hu-floating-card-2 {
+            bottom: 80px;
+            left: -60px;
+            width: 180px;
+            animation: hu-float-2 5s ease-in-out infinite;
+        }
+
+        @keyframes hu-float-1 {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(10px, -15px);
+            }
+        }
+
+        @keyframes hu-float-2 {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(-10px, -15px);
+            }
+        }
+
+        .hu-mini-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--dark-color), #3a3f4e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .hu-mini-title {
+            font-family: var(--title-fonts);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+
+        .hu-mini-desc {
+            font-family: var(--body-fonts);
+            font-size: 12px;
+            color: var(--secondary-color);
+        }
+
+        .hu-decorative-dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .hu-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .hu-dot-1 { top: 20%; left: -40px; animation: hu-dotPulse 2s infinite; }
+        .hu-dot-2 { top: 50%; right: -30px; animation: hu-dotPulse 2s infinite 0.5s; }
+        .hu-dot-3 { bottom: 30%; left: -20px; animation: hu-dotPulse 2s infinite 1s; }
+
+        @keyframes hu-dotPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.6;
+            }
+        }
+
+        .hu-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .hu-stat-item {
+            text-align: center;
+        }
+
+        .hu-stat-number {
+            font-family: var(--title-fonts);
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .hu-stat-label {
+            font-family: var(--body-fonts);
+            font-size: 14px;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes hu-slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes hu-slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes hu-fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .hu-content-wrapper {
+                gap: 60px;
+            }
+
+            .hu-floating-card-1 {
+                right: -20px;
+                width: 170px;
+            }
+
+            .hu-floating-card-2 {
+                left: -30px;
+                width: 160px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hu-content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .hu-title {
+                font-size: 48px;
+            }
+
+            .hu-visual-wrapper {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .hu-floating-card-1,
+            .hu-floating-card-2 {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hu-section {
+                padding: 60px 20px;
+            }
+
+            .hu-title {
+                font-size: 36px;
+            }
+
+            .hu-description {
+                font-size: 16px;
+            }
+
+            .hu-features {
+                grid-template-columns: 1fr;
+            }
+
+            .hu-cta-wrapper {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hu-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hu-stats {
+                flex-wrap: wrap;
+                gap: 30px;
+                justify-content: center;
+            }
+
+            .hu-main-card {
+                padding: 40px 30px;
+            }
+
+            .hu-card-title {
+                font-size: 28px;
+            }
+
+            .hu-visual-wrapper {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hu-title {
+                font-size: 32px;
+            }
+
+            .hu-main-card {
+                padding: 35px 25px;
+            }
+
+            .hu-card-features {
+                gap: 15px;
+            }
+
+            .hu-card-feature {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hu-section">
+        <div class="hu-floating-shapes">
+            <div class="hu-shape hu-shape-1"></div>
+            <div class="hu-shape hu-shape-2"></div>
+            <div class="hu-shape hu-shape-3"></div>
+        </div>
+
+        <div class="hu-container">
+            <div class="hu-content-wrapper">
+                <div class="hu-text-content">
+                    <span class="hu-badge">
+                        <i class="fas fa-star"></i> Innovation Meets Excellence
+                    </span>
+                    
+                    <h1 class="hu-title">
+                        Welcome to <span class="hu-title-highlight">The Hub</span>
+                    </h1>
+
+                    <p class="hu-description">
+                        At Metro Cotton Mill, we believe in transparency and seamless collaboration. The Hub is our innovative platform designed to keep you connected every step of the way. With your personalized account, you can effortlessly track your orders, manage queries, and communicate directly with our team.
+                    </p>
+
+                    <div class="hu-features">
+                        <div class="hu-feature-item">
+                            <div class="hu-feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <span class="hu-feature-text">Track Orders in Real-Time</span>
+                        </div>
+                        
+                        <div class="hu-feature-item">
+                            <div class="hu-feature-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <span class="hu-feature-text">Direct Team Communication</span>
+                        </div>
+                        
+                        <div class="hu-feature-item">
+                            <div class="hu-feature-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <span class="hu-feature-text">Manage Queries Efficiently</span>
+                        </div>
+                        
+                        <div class="hu-feature-item">
+                            <div class="hu-feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span class="hu-feature-text">Secure & Transparent</span>
+                        </div>
+                    </div>
+
+                    <p class="hu-description">
+                        This cutting-edge system sets us apart from traditional manufacturers by ensuring you're always informed and in control. Your trust and satisfaction are our priorities. Experience the difference with The Hub—where connection meets convenience.
+                    </p>
+
+                    <div class="hu-cta-wrapper">
+                        <a href="#" class="hu-btn hu-btn-primary">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login / Signup
+                        </a>
+                        <a href="#" class="hu-btn hu-btn-secondary">
+                            <i class="fas fa-play-circle"></i>
+                            Watch Demo
+                        </a>
+                    </div>
+
+                    <div class="hu-stats">
+                        <div class="hu-stat-item">
+                            <div class="hu-stat-number">24/7</div>
+                            <div class="hu-stat-label">Support</div>
+                        </div>
+                        <div class="hu-stat-item">
+                            <div class="hu-stat-number">100%</div>
+                            <div class="hu-stat-label">Transparent</div>
+                        </div>
+                        <div class="hu-stat-item">
+                            <div class="hu-stat-number">Real-Time</div>
+                            <div class="hu-stat-label">Updates</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hu-visual-content">
+                    <div class="hu-visual-wrapper">
+                        <div class="hu-decorative-dots">
+                            <div class="hu-dot hu-dot-1"></div>
+                            <div class="hu-dot hu-dot-2"></div>
+                            <div class="hu-dot hu-dot-3"></div>
+                        </div>
+
+                        <div class="hu-main-card">
+                            <div class="hu-card-header">
+                                <div class="hu-card-logo">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h3 class="hu-card-title">The Hub Platform</h3>
+                                <p class="hu-card-subtitle">Your Command Center for Excellence</p>
+                            </div>
+
+                            <div class="hu-card-features">
+                                <div class="hu-card-feature">
+                                    <div class="hu-card-feature-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="hu-card-feature-content">
+                                        <div class="hu-card-feature-title">Real-Time Tracking</div>
+                                        <div class="hu-card-feature-desc">Monitor your orders instantly</div>
+                                    </div>
+                                </div>
+
+                                <div class="hu-card-feature">
+                                    <div class="hu-card-feature-icon">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <div class="hu-card-feature-content">
+                                        <div class="hu-card-feature-title">Direct Support</div>
+                                        <div class="hu-card-feature-desc">Connect with our expert team</div>
+                                    </div>
+                                </div>
+
+                                <div class="hu-card-feature">
+                                    <div class="hu-card-feature-icon">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </div>
+                                    <div class="hu-card-feature-content">
+                                        <div class="hu-card-feature-title">Query Management</div>
+                                        <div class="hu-card-feature-desc">Handle all inquiries seamlessly</div>
+                                    </div>
+                                </div>
+
+                                <div class="hu-card-feature">
+                                    <div class="hu-card-feature-icon">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <div class="hu-card-feature-content">
+                                        <div class="hu-card-feature-title">Secure Access</div>
+                                        <div class="hu-card-feature-desc">Enterprise-grade protection</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="hu-card-cta">
+                                <i class="fas fa-rocket"></i> Get Started Now
+                            </button>
+                        </div>
+
+                        <div class="hu-floating-card hu-floating-card-1">
+                            <div class="hu-mini-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="hu-mini-title">Order Completed</div>
+                            <div class="hu-mini-desc">Your order #4521 has been delivered successfully</div>
+                        </div>
+
+                        <div class="hu-floating-card hu-floating-card-2">
+                            <div class="hu-mini-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="hu-mini-title">New Message</div>
+                            <div class="hu-mini-desc">Team replied to your query about fabric quality</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

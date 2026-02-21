@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium Textile Products</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- WOW.js CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-color: #aa1e25;
+        --dark-color: #272b36;
+        --secondary-color: #666666;
+        --grey-color: #f5f5f5;
+        --white-color: #ffffff;
+        --title-fonts: 'Red Hat Display', sans-serif;
+        --body-fonts: 'Open Sans', sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--body-fonts);
+        background-color: var(--white-color);
+        color: var(--dark-color);
+        line-height: 1.6;
+      }
+
+      /* Textile Background Pattern */
+      .po-products-section {
+        background-color: #fafafa;
+        background-image: repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(170, 30, 37, 0.02) 2px,
+            rgba(170, 30, 37, 0.02) 4px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(170, 30, 37, 0.02) 2px,
+            rgba(170, 30, 37, 0.02) 4px
+          );
+        background-size: 40px 40px;
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .po-products-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 20% 50%,
+            rgba(170, 30, 37, 0.03) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(170, 30, 37, 0.03) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .po-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Section Header */
+      .po-section-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .po-section-subtitle {
+        font-family: var(--title-fonts);
+        color: var(--primary-color);
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+      }
+
+      .po-section-title {
+        font-family: var(--title-fonts);
+        color: var(--dark-color);
+        font-size: 42px;
+        font-weight: 800;
+        margin-bottom: 15px;
+        line-height: 1.2;
+      }
+
+      .po-section-description {
+        color: var(--secondary-color);
+        font-size: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Filter Section */
+      .po-filter-wrapper {
+        background: var(--white-color);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 22px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .po-filter-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: end;
+      }
+
+      .po-filter-group {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .po-filter-label {
+        font-family: var(--title-fonts);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--dark-color);
+        margin-bottom: 8px;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .po-filter-select {
+        width: 100%;
+        padding: 12px 40px 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: var(--body-fonts);
+        font-size: 14px;
+        color: var(--dark-color);
+        background-color: var(--white-color);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23272b36' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        appearance: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .po-filter-select:hover {
+        border-color: var(--primary-color);
+      }
+
+      .po-filter-select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(170, 30, 37, 0.1);
+      }
+
+      .po-filter-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .po-filter-btn {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        font-family: var(--title-fonts);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .po-apply-btn {
+        background: var(--primary-color);
+        color: var(--white-color);
+      }
+
+      .po-apply-btn:hover {
+        background: #8a1820;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(170, 30, 37, 0.3);
+      }
+
+      .po-reset-btn {
+        background: var(--grey-color);
+        color: var(--dark-color);
+      }
+
+      .po-reset-btn:hover {
+        background: #e0e0e0;
+      }
+
+      /* Category Tabs */
+      .po-category-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        margin-bottom: 28px;
+      }
+
+      .po-category-tab {
+        padding: 14px 30px;
+        background: var(--white-color);
+        border: 2px solid #e0e0e0;
+        border-radius: 50px;
+        font-family: var(--title-fonts);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--dark-color);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .po-category-tab:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+        transform: translateY(-2px);
+      }
+
+      .po-category-tab.po-active {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        color: var(--white-color);
+        box-shadow: 0 5px 20px rgba(170, 30, 37, 0.3);
+      }
+
+      .po-category-tab i {
+        margin-right: 8px;
+      }
+
+      /* Products Grid */
+      .po-products-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 18px;
+        margin-bottom: 50px;
+      }
+
+      /* Product Card */
+      .po-product-card {
+        background: var(--white-color);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+      }
+
+      .po-product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .po-product-image-wrapper {
+        position: relative;
+        overflow: hidden;
+        padding-top: 120%;
+        background: var(--grey-color);
+      }
+
+      .po-product-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .po-product-card:hover .po-product-image {
+        transform: scale(1.1);
+      }
+
+      .po-product-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--primary-color);
+        color: var(--white-color);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        z-index: 2;
+      }
+
+      .po-product-badge.po-new {
+        background: #2ecc71;
+      }
+
+      .po-product-badge.po-sale {
+        background: #e74c3c;
+      }
+
+      .po-product-actions {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.3s ease;
+        z-index: 2;
+      }
+
+      .po-product-card:hover .po-product-actions {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .po-action-btn {
+        width: 40px;
+        height: 40px;
+        background: var(--white-color);
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .po-action-btn:hover {
+        background: var(--primary-color);
+        color: var(--white-color);
+        transform: scale(1.1);
+      }
+
+      .po-product-info {
+        padding: 20px;
+      }
+
+      .po-product-category {
+        font-size: 11px;
+        color: var(--primary-color);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+
+      .po-product-title {
+        font-family: var(--title-fonts);
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--dark-color);
+        margin-bottom: 10px;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .po-product-rating {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .po-stars {
+        color: #ffa500;
+        font-size: 13px;
+      }
+
+      .po-rating-count {
+        font-size: 12px;
+        color: var(--secondary-color);
+      }
+
+      .po-product-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 15px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .po-product-price {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .po-price-current {
+        font-family: var(--title-fonts);
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--primary-color);
+      }
+
+      .po-price-original {
+        font-size: 13px;
+        color: var(--secondary-color);
+        text-decoration: line-through;
+      }
+
+      .po-add-to-cart {
+        width: 40px;
+        height: 40px;
+        background: var(--primary-color);
+        color: var(--white-color);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-size: 16px;
+      }
+
+      .po-add-to-cart:hover {
+        background: var(--dark-color);
+        transform: rotate(360deg);
+      }
+
+      /* Load More Button */
+      .po-load-more-wrapper {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .po-load-more-btn {
+        padding: 16px 50px;
+        background: var(--white-color);
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        border-radius: 50px;
+        font-family: var(--title-fonts);
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .po-load-more-btn:hover {
+        background: var(--primary-color);
+        color: var(--white-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(170, 30, 37, 0.3);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1400px) {
+        .po-products-grid {
+          grid-template-columns: repeat(5, 1fr);
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .po-products-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 992px) {
+        .po-products-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 25px;
+        }
+
+        .po-section-title {
+          font-size: 36px;
+        }
+
+        .po-filter-container {
+          flex-direction: column;
+        }
+
+        .po-filter-group {
+          width: 100%;
+        }
+
+        .po-filter-actions {
+          width: 100%;
+        }
+
+        .po-filter-btn {
+          flex: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .po-products-section {
+          padding: 50px 0;
+        }
+
+        .po-section-header {
+          margin-bottom: 26px;
+        }
+
+        .po-section-title {
+          font-size: 28px;
+        }
+
+        .po-products-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+
+        .po-filter-wrapper {
+          padding: 20px;
+        }
+
+        .po-category-tabs {
+          gap: 10px;
+        }
+
+        .po-category-tab {
+          padding: 10px 20px;
+          font-size: 12px;
+        }
+
+        .po-product-title {
+          font-size: 14px;
+        }
+
+        .po-price-current {
+          font-size: 18px;
+        }
+
+        .po-product-actions {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .po-section-title {
+          font-size: 24px;
+        }
+
+        .po-products-grid {
+          gap: 15px;
+        }
+
+        .po-product-info {
+          padding: 15px;
+        }
+
+        .po-category-tabs {
+          flex-direction: column;
+        }
+
+        .po-category-tab {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="po-products-section">
+      <div class="po-container">
+        <!-- Section Header -->
+        <div class="po-section-header wow animate__animated animate__fadeInUp">
+          <div class="po-section-subtitle">Premium Quality</div>
+          <h2 class="po-section-title">Explore Our Textile Collection</h2>
+          <p class="po-section-description">
+            Discover premium quality textile products crafted with excellence.
+            From professional workwear to home textiles.
+          </p>
+        </div>
+
+        <!-- Filter Section -->
+        <div
+          class="po-filter-wrapper wow animate__animated animate__fadeInUp"
+          data-wow-delay="0.1s"
+        >
+          <div class="po-filter-container">
+            <div class="po-filter-group">
+              <label class="po-filter-label">Sort By</label>
+              <select class="po-filter-select" id="poSortFilter">
+                <option value="featured">Featured</option>
+                <option value="newest">Newest First</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Top Rated</option>
+              </select>
+            </div>
+
+            <div class="po-filter-group">
+              <label class="po-filter-label">Price Range</label>
+              <select class="po-filter-select" id="poPriceFilter">
+                <option value="all">All Prices</option>
+                <option value="0-50">Under $50</option>
+                <option value="50-100">$50 - $100</option>
+                <option value="100-200">$100 - $200</option>
+                <option value="200+">$200+</option>
+              </select>
+            </div>
+
+            <div class="po-filter-group">
+              <label class="po-filter-label">Material</label>
+              <select class="po-filter-select" id="poMaterialFilter">
+                <option value="all">All Materials</option>
+                <option value="cotton">Cotton</option>
+                <option value="polyester">Polyester</option>
+                <option value="canvas">Canvas</option>
+                <option value="denim">Denim</option>
+                <option value="blend">Blend</option>
+              </select>
+            </div>
+
+            <div class="po-filter-actions">
+              <button class="po-filter-btn po-apply-btn">
+                <i class="fas fa-filter"></i> Apply
+              </button>
+              <button class="po-filter-btn po-reset-btn">
+                <i class="fas fa-redo"></i> Reset
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Tabs -->
+        <div
+          class="po-category-tabs wow animate__animated animate__fadeInUp"
+          data-wow-delay="0.2s"
+        >
+          <button class="po-category-tab po-active" data-category="all">
+            <i class="fas fa-th"></i> All Products
+          </button>
+          <button class="po-category-tab" data-category="bags">
+            <i class="fas fa-bag-shopping"></i> Bags
+          </button>
+          <button class="po-category-tab" data-category="aprons">
+            <i class="fas fa-utensils"></i> Aprons
+          </button>
+          <button class="po-category-tab" data-category="scrubs">
+            <i class="fas fa-user-nurse"></i> Scrubs
+          </button>
+          <button class="po-category-tab" data-category="home">
+            <i class="fas fa-home"></i> Home Textile
+          </button>
+          <button class="po-category-tab" data-category="uniform">
+            <i class="fas fa-vest"></i> Uniform
+          </button>
+          <button class="po-category-tab" data-category="bandanas">
+            <i class="fas fa-bandage"></i> Bandanas
+          </button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="po-products-grid">
+          <!-- Bags -->
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.1s"
+            data-category="bags"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=500&fit=crop"
+                alt="Canvas Tote Bag"
+                class="po-product-image"
+              />
+              <span class="po-product-badge po-new">New</span>
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Bags</div>
+              <h3 class="po-product-title">Premium Canvas Tote Bag</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="po-rating-count">(248)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$45.99</span>
+                  <span class="po-price-original">$59.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.15s"
+            data-category="bags"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=500&fit=crop"
+                alt="Leather Backpack"
+                class="po-product-image"
+              />
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Bags</div>
+              <h3 class="po-product-title">Professional Leather Backpack</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="po-rating-count">(512)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$129.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aprons -->
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.2s"
+            data-category="aprons"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1556910110-b6c8f0bae3b8?w=400&h=500&fit=crop"
+                alt="Chef Apron"
+                class="po-product-image"
+              />
+              <span class="po-product-badge po-sale">Sale</span>
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Aprons</div>
+              <h3 class="po-product-title">Professional Chef Apron</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="po-rating-count">(189)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$34.99</span>
+                  <span class="po-price-original">$49.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.25s"
+            data-category="aprons"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1600877992325-c0d06a6194ec?w=400&h=500&fit=crop"
+                alt="Denim Apron"
+                class="po-product-image"
+              />
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Aprons</div>
+              <h3 class="po-product-title">Vintage Denim Work Apron</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="po-rating-count">(321)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$42.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scrubs -->
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.3s"
+            data-category="scrubs"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&h=500&fit=crop"
+                alt="Medical Scrubs"
+                class="po-product-image"
+              />
+              <span class="po-product-badge po-new">New</span>
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Scrubs</div>
+              <h3 class="po-product-title">Premium Medical Scrubs Set</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="po-rating-count">(456)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$68.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.35s"
+            data-category="scrubs"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=500&fit=crop"
+                alt="Surgical Scrubs"
+                class="po-product-image"
+              />
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Scrubs</div>
+              <h3 class="po-product-title">Surgical Team Scrubs</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="po-rating-count">(387)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$74.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Home Textile -->
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.4s"
+            data-category="home"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&h=500&fit=crop"
+                alt="Cotton Bedding"
+                class="po-product-image"
+              />
+              <span class="po-product-badge po-sale">Sale</span>
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Home Textile</div>
+              <h3 class="po-product-title">Luxury Cotton Bedding Set</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="po-rating-count">(623)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$89.99</span>
+                  <span class="po-price-original">$129.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.45s"
+            data-category="home"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=400&h=500&fit=crop"
+                alt="Kitchen Towels"
+                class="po-product-image"
+              />
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Home Textile</div>
+              <h3 class="po-product-title">Premium Kitchen Towel Set</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="po-rating-count">(234)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$24.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Uniform & Workwear -->
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.5s"
+            data-category="uniform"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=400&h=500&fit=crop"
+                alt="Work Uniform"
+                class="po-product-image"
+              />
+              <span class="po-product-badge po-new">New</span>
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Uniform</div>
+              <h3 class="po-product-title">Professional Work Uniform</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="po-rating-count">(412)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$95.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.55s"
+            data-category="uniform"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1621342050805-85f1f6c7a2b4?w=400&h=500&fit=crop"
+                alt="Safety Vest"
+                class="po-product-image"
+              />
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Workwear</div>
+              <h3 class="po-product-title">High-Visibility Safety Vest</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="po-rating-count">(567)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$38.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bandanas -->
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.6s"
+            data-category="bandanas"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&h=500&fit=crop"
+                alt="Cotton Bandana"
+                class="po-product-image"
+              />
+              <span class="po-product-badge po-sale">Sale</span>
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Bandanas</div>
+              <h3 class="po-product-title">Classic Cotton Bandana Pack</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="po-rating-count">(178)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$15.99</span>
+                  <span class="po-price-original">$22.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.65s"
+            data-category="bandanas"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=500&fit=crop"
+                alt="Designer Bandana"
+                class="po-product-image"
+              />
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Bandanas</div>
+              <h3 class="po-product-title">Designer Pattern Bandana</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="po-rating-count">(293)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$19.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Products Row 2 -->
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.1s"
+            data-category="bags"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=500&fit=crop"
+                alt="Gym Bag"
+                class="po-product-image"
+              />
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Bags</div>
+              <h3 class="po-product-title">Sports Gym Duffel Bag</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="po-rating-count">(356)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$54.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.15s"
+            data-category="aprons"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=400&h=500&fit=crop"
+                alt="Barista Apron"
+                class="po-product-image"
+              />
+              <span class="po-product-badge po-new">New</span>
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Aprons</div>
+              <h3 class="po-product-title">Barista Canvas Apron</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="po-rating-count">(445)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$39.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.2s"
+            data-category="scrubs"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=500&fit=crop"
+                alt="Dental Scrubs"
+                class="po-product-image"
+              />
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Scrubs</div>
+              <h3 class="po-product-title">Dental Professional Scrubs</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="po-rating-count">(512)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$64.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.25s"
+            data-category="home"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&h=500&fit=crop"
+                alt="Table Linens"
+                class="po-product-image"
+              />
+              <span class="po-product-badge po-sale">Sale</span>
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Home Textile</div>
+              <h3 class="po-product-title">Elegant Table Linen Set</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="po-rating-count">(289)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$48.99</span>
+                  <span class="po-price-original">$69.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.3s"
+            data-category="uniform"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400&h=500&fit=crop"
+                alt="Corporate Shirt"
+                class="po-product-image"
+              />
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Uniform</div>
+              <h3 class="po-product-title">Corporate Uniform Shirt</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="po-rating-count">(378)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$44.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="po-product-card wow animate__animated animate__fadeInUp"
+            data-wow-delay="0.35s"
+            data-category="bandanas"
+          >
+            <div class="po-product-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=500&fit=crop"
+                alt="Silk Bandana"
+                class="po-product-image"
+              />
+              <span class="po-product-badge po-new">New</span>
+              <div class="po-product-actions">
+                <button class="po-action-btn" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="po-action-btn" title="Add to Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="po-product-info">
+              <div class="po-product-category">Bandanas</div>
+              <h3 class="po-product-title">Luxury Silk Bandana</h3>
+              <div class="po-product-rating">
+                <div class="po-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="po-rating-count">(421)</span>
+              </div>
+              <div class="po-product-footer">
+                <div class="po-product-price">
+                  <span class="po-price-current">$34.99</span>
+                </div>
+                <button class="po-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div
+          class="po-load-more-wrapper wow animate__animated animate__fadeInUp"
+          data-wow-delay="0.2s"
+        >
+          <button class="po-load-more-btn">
+            <i class="fas fa-sync-alt"></i> Load More Products
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- WOW.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+    <script>
+      // Initialize WOW.js for animations with unique po prefix
+      const poWowInstance = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animate__animated',
+        offset: 0,
+        mobile: true,
+        live: true,
+      });
+      poWowInstance.init();
+
+      // Category Filter Functionality with unique po prefix
+      const poCategoryTabs = document.querySelectorAll('.po-category-tab');
+      const poProductCards = document.querySelectorAll('.po-product-card');
+
+      poCategoryTabs.forEach((poTab) => {
+        poTab.addEventListener('click', function () {
+          // Remove active class from all tabs
+          poCategoryTabs.forEach((poT) => poT.classList.remove('po-active'));
+
+          // Add active class to clicked tab
+          this.classList.add('po-active');
+
+          // Get selected category
+          const poSelectedCategory = this.getAttribute('data-category');
+
+          // Filter products with smooth animation
+          let poVisibleCount = 0;
+          poProductCards.forEach((poCard) => {
+            const poCardCategory = poCard.getAttribute('data-category');
+
+            if (
+              poSelectedCategory === 'all' ||
+              poCardCategory === poSelectedCategory
+            ) {
+              poCard.style.display = 'block';
+              poCard.style.opacity = '0';
+              poCard.style.transform = 'translateY(20px)';
+
+              // Stagger animation
+              setTimeout(() => {
+                poCard.style.transition =
+                  'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                poCard.style.opacity = '1';
+                poCard.style.transform = 'translateY(0)';
+              }, poVisibleCount * 50);
+
+              poVisibleCount++;
+            } else {
+              poCard.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Filter Controls with unique po prefix
+      const poApplyBtn = document.querySelector('.po-apply-btn');
+      const poResetBtn = document.querySelector('.po-reset-btn');
+      const poSortFilter = document.getElementById('poSortFilter');
+      const poPriceFilter = document.getElementById('poPriceFilter');
+      const poMaterialFilter = document.getElementById('poMaterialFilter');
+
+      // Enhanced Filter Functionality
+      function poApplyFilters() {
+        const poSortValue = poSortFilter.value;
+        const poPriceValue = poPriceFilter.value;
+        const poMaterialValue = poMaterialFilter.value;
+        const poVisibleCards = Array.from(poProductCards).filter((poCard) => {
+          const poCardStyle = window.getComputedStyle(poCard);
+          return poCardStyle.display !== 'none';
+        });
+
+        // Sort products
+        const poSortedCards = [...poVisibleCards].sort((poA, poB) => {
+          const poPriceA = parseFloat(
+            poA.querySelector('.po-price-current').textContent.replace('$', '')
+          );
+          const poPriceB = parseFloat(
+            poB.querySelector('.po-price-current').textContent.replace('$', '')
+          );
+
+          switch (poSortValue) {
+            case 'price-low':
+              return poPriceA - poPriceB;
+            case 'price-high':
+              return poPriceB - poPriceA;
+            case 'newest':
+              return Math.random() - 0.5; // Random for demo
+            case 'rating':
+              const poRatingA = parseInt(
+                poA
+                  .querySelector('.po-rating-count')
+                  .textContent.replace(/[^0-9]/g, '')
+              );
+              const poRatingB = parseInt(
+                poB
+                  .querySelector('.po-rating-count')
+                  .textContent.replace(/[^0-9]/g, '')
+              );
+              return poRatingB - poRatingA;
+            default:
+              return 0;
+          }
+        });
+
+        // Apply price filter
+        const poFilteredCards = poSortedCards.filter((poCard) => {
+          const poPrice = parseFloat(
+            poCard
+              .querySelector('.po-price-current')
+              .textContent.replace('$', '')
+          );
+          switch (poPriceValue) {
+            case '0-50':
+              return poPrice < 50;
+            case '50-100':
+              return poPrice >= 50 && poPrice <= 100;
+            case '100-200':
+              return poPrice > 100 && poPrice <= 200;
+            case '200+':
+              return poPrice > 200;
+            default:
+              return true;
+          }
+        });
+
+        // Reorder DOM with animation
+        const poProductsGrid = document.querySelector('.po-products-grid');
+        poFilteredCards.forEach((poCard, poIndex) => {
+          poProductsGrid.appendChild(poCard);
+          poCard.style.opacity = '0';
+          poCard.style.transform = 'translateY(20px) scale(0.95)';
+          setTimeout(() => {
+            poCard.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            poCard.style.opacity = '1';
+            poCard.style.transform = 'translateY(0) scale(1)';
+          }, poIndex * 50);
+        });
+      }
+
+      // Apply Filters with enhanced feedback
+      poApplyBtn.addEventListener('click', function () {
+        poApplyFilters();
+
+        // Show visual feedback
+        const poOriginalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-check"></i> Applied';
+        this.style.background = '#2ecc71';
+        this.style.transform = 'scale(0.95)';
+
+        poShowNotification('Filters applied successfully!', 'success');
+
+        setTimeout(() => {
+          this.innerHTML = poOriginalText;
+          this.style.background = '';
+          this.style.transform = '';
+        }, 2000);
+      });
+
+      // Enhanced Reset Filters
+      poResetBtn.addEventListener('click', function () {
+        poSortFilter.selectedIndex = 0;
+        poPriceFilter.selectedIndex = 0;
+        poMaterialFilter.selectedIndex = 0;
+
+        // Reset category to all
+        const poAllTab = document.querySelector(
+          '.po-category-tab[data-category="all"]'
+        );
+        if (poAllTab) {
+          poCategoryTabs.forEach((poTab) =>
+            poTab.classList.remove('po-active')
+          );
+          poAllTab.classList.add('po-active');
+
+          // Show all products with animation
+          poProductCards.forEach((poCard, poIndex) => {
+            poCard.style.display = 'block';
+            poCard.style.opacity = '0';
+            setTimeout(() => {
+              poCard.style.transition = 'opacity 0.4s ease';
+              poCard.style.opacity = '1';
+            }, poIndex * 30);
+          });
+        }
+
+        poShowNotification('Filters reset successfully', 'info');
+
+        // Visual feedback
+        const poOriginalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-check"></i> Reset';
+        this.style.background = '#3498db';
+        setTimeout(() => {
+          this.innerHTML = poOriginalText;
+          this.style.background = '';
+        }, 2000);
+      });
+
+      // Add to Cart Functionality with unique po prefix
+      const poAddToCartButtons = document.querySelectorAll('.po-add-to-cart');
+
+      poAddToCartButtons.forEach((poButton) => {
+        poButton.addEventListener('click', function (poEvent) {
+          poEvent.preventDefault();
+          poEvent.stopPropagation();
+
+          const poProductCard = this.closest('.po-product-card');
+          const poProductTitle =
+            poProductCard.querySelector('.po-product-title').textContent;
+          const poProductPrice =
+            poProductCard.querySelector('.po-price-current').textContent;
+
+          // Add animation effect
+          const poOriginalHTML = this.innerHTML;
+          this.innerHTML = '<i class="fas fa-check"></i>';
+          this.style.background = '#2ecc71';
+          this.style.transform = 'scale(1.2)';
+
+          // Create ripple effect
+          const poRipple = document.createElement('span');
+          poRipple.className = 'po-ripple-effect';
+          this.appendChild(poRipple);
+
+          setTimeout(() => {
+            poRipple.remove();
+          }, 600);
+
+          // Show notification
+          poShowNotification(
+            `Added "${poProductTitle}" to cart for ${poProductPrice}!`,
+            'success'
+          );
+
+          // Update cart count (if you have a cart counter)
+          poUpdateCartCount();
+
+          // Reset button after delay
+          setTimeout(() => {
+            this.innerHTML = poOriginalHTML;
+            this.style.background = '';
+            this.style.transform = '';
+          }, 1500);
+        });
+      });
+
+      // Cart count management
+      let poCartItemCount = 0;
+      function poUpdateCartCount() {
+        poCartItemCount++;
+        // If you have a cart icon with count badge, update it here
+        const poCartBadge = document.querySelector('.po-cart-badge');
+        if (poCartBadge) {
+          poCartBadge.textContent = poCartItemCount;
+          poCartBadge.style.animation = 'poBounce 0.5s ease';
+        }
+      }
+
+      // Quick View Functionality
+      const poQuickViewButtons = document.querySelectorAll(
+        '.po-action-btn[title="Quick View"]'
+      );
+
+      poQuickViewButtons.forEach((poButton) => {
+        poButton.addEventListener('click', function (poEvent) {
+          poEvent.preventDefault();
+          poEvent.stopPropagation();
+
+          const poProductCard = this.closest('.po-product-card');
+          const poProductTitle =
+            poProductCard.querySelector('.po-product-title').textContent;
+          const poProductImage =
+            poProductCard.querySelector('.po-product-image').src;
+          const poProductPrice =
+            poProductCard.querySelector('.po-price-current').textContent;
+
+          poShowQuickViewModal({
+            title: poProductTitle,
+            image: poProductImage,
+            price: poProductPrice,
+          });
+        });
+      });
+
+      // Wishlist Functionality
+      const poWishlistButtons = document.querySelectorAll(
+        '.po-action-btn[title="Add to Wishlist"]'
+      );
+
+      poWishlistButtons.forEach((poButton) => {
+        poButton.addEventListener('click', function (poEvent) {
+          poEvent.preventDefault();
+          poEvent.stopPropagation();
+
+          const poIcon = this.querySelector('i');
+          const poProductCard = this.closest('.po-product-card');
+          const poProductTitle =
+            poProductCard.querySelector('.po-product-title').textContent;
+
+          if (poIcon.classList.contains('fas')) {
+            // Remove from wishlist
+            poIcon.classList.remove('fas');
+            poIcon.classList.add('far');
+            this.style.color = '';
+            poShowNotification(
+              `Removed "${poProductTitle}" from wishlist`,
+              'info'
+            );
+          } else {
+            // Add to wishlist
+            poIcon.classList.remove('far');
+            poIcon.classList.add('fas');
+            this.style.color = '#e74c3c';
+            this.style.animation = 'poHeartBeat 0.6s ease';
+            poShowNotification(
+              `Added "${poProductTitle}" to wishlist!`,
+              'success'
+            );
+
+            setTimeout(() => {
+              this.style.animation = '';
+            }, 600);
+          }
+        });
+      });
+
+      // Load More Functionality
+      const poLoadMoreBtn = document.querySelector('.po-load-more-btn');
+      let poCurrentPage = 1;
+      const poProductsPerPage = 18;
+      let poIsLoading = false;
+
+      poLoadMoreBtn.addEventListener('click', function () {
+        if (poIsLoading) return;
+
+        poIsLoading = true;
+        const poOriginalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        this.disabled = true;
+
+        // Simulate loading delay
+        setTimeout(() => {
+          this.innerHTML = poOriginalText;
+          this.disabled = false;
+          poIsLoading = false;
+          poShowNotification('All products loaded!', 'info');
+
+          // You would typically fetch more products here
+        }, 1500);
+      });
+
+      // Quick View Modal
+      function poShowQuickViewModal(poProduct) {
+        // Remove existing modal
+        const poExistingModal = document.querySelector('.po-quick-view-modal');
+        if (poExistingModal) {
+          poExistingModal.remove();
+        }
+
+        // Create modal
+        const poModal = document.createElement('div');
+        poModal.className = 'po-quick-view-modal';
+        poModal.innerHTML = `
+                <div class="po-modal-overlay"></div>
+                <div class="po-modal-content">
+                    <button class="po-modal-close"><i class="fas fa-times"></i></button>
+                    <div class="po-modal-body">
+                        <div class="po-modal-image">
+                            <img src="${poProduct.image}" alt="${poProduct.title}">
+                        </div>
+                        <div class="po-modal-info">
+                            <h2>${poProduct.title}</h2>
+                            <div class="po-modal-price">${poProduct.price}</div>
+                            <p class="po-modal-description">Premium quality product with excellent craftsmanship and attention to detail.</p>
+                            <div class="po-modal-actions">
+                                <button class="po-modal-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                                <button class="po-modal-wishlist"><i class="far fa-heart"></i> Add to Wishlist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+        document.body.appendChild(poModal);
+
+        // Animate in
+        setTimeout(() => {
+          poModal.classList.add('po-show');
+        }, 10);
+
+        // Close modal handlers
+        const poCloseBtn = poModal.querySelector('.po-modal-close');
+        const poOverlay = poModal.querySelector('.po-modal-overlay');
+
+        const poCloseModal = () => {
+          poModal.classList.remove('po-show');
+          setTimeout(() => {
+            poModal.remove();
+          }, 300);
+        };
+
+        poCloseBtn.addEventListener('click', poCloseModal);
+        poOverlay.addEventListener('click', poCloseModal);
+
+        // Close on Escape key
+        const poEscapeHandler = (poEvent) => {
+          if (poEvent.key === 'Escape') {
+            poCloseModal();
+            document.removeEventListener('keydown', poEscapeHandler);
+          }
+        };
+        document.addEventListener('keydown', poEscapeHandler);
+      }
+
+      // Notification System
+      function poShowNotification(poMessage, poType = 'info') {
+        // Remove existing notification
+        const poExistingNotification =
+          document.querySelector('.po-notification');
+        if (poExistingNotification) {
+          poExistingNotification.remove();
+        }
+
+        // Create notification element
+        const poNotification = document.createElement('div');
+        poNotification.className = `po-notification po-notification-${poType}`;
+        poNotification.innerHTML = `
+                <i class="fas ${
+                  poType === 'success'
+                    ? 'fa-check-circle'
+                    : poType === 'error'
+                    ? 'fa-exclamation-circle'
+                    : 'fa-info-circle'
+                }"></i>
+                <span>${poMessage}</span>
+            `;
+
+        document.body.appendChild(poNotification);
+
+        // Show notification
+        setTimeout(() => {
+          poNotification.classList.add('po-show');
+        }, 100);
+
+        // Hide and remove notification
+        setTimeout(() => {
+          poNotification.classList.remove('po-show');
+          setTimeout(() => {
+            poNotification.remove();
+          }, 300);
+        }, 3000);
+      }
+
+      // Smooth scroll for better UX
+      function poSmoothScrollToElement(poElement) {
+        poElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+
+      // Enhanced category tab click with smooth scroll
+      poCategoryTabs.forEach((poTab) => {
+        poTab.addEventListener('click', function () {
+          const poProductsGrid = document.querySelector('.po-products-grid');
+          setTimeout(() => {
+            poSmoothScrollToElement(poProductsGrid);
+          }, 100);
+        });
+      });
+
+      // Lazy loading for images (performance enhancement)
+      if ('IntersectionObserver' in window) {
+        const poImageObserver = new IntersectionObserver(
+          (poEntries, poObserver) => {
+            poEntries.forEach((poEntry) => {
+              if (poEntry.isIntersecting) {
+                const poImg = poEntry.target;
+                if (poImg.dataset.src) {
+                  poImg.src = poImg.dataset.src;
+                  poImg.removeAttribute('data-src');
+                  poObserver.unobserve(poImg);
+                }
+              }
+            });
+          },
+          {
+            rootMargin: '50px',
+          }
+        );
+
+        document
+          .querySelectorAll('.po-product-image[data-src]')
+          .forEach((poImg) => {
+            poImageObserver.observe(poImg);
+          });
+      }
+
+      // Keyboard navigation support
+      document.addEventListener('keydown', function (poEvent) {
+        if (poEvent.key === 'Escape') {
+          const poModal = document.querySelector('.po-quick-view-modal');
+          if (poModal) {
+            poModal.querySelector('.po-modal-close').click();
+          } else {
+            // Reset filters if modal not open
+            const poActiveTab = document.querySelector(
+              '.po-category-tab.po-active'
+            );
+            if (poActiveTab && poActiveTab.dataset.category !== 'all') {
+              const poAllTab = document.querySelector(
+                '.po-category-tab[data-category="all"]'
+              );
+              if (poAllTab) poAllTab.click();
+            }
+          }
+        }
+      });
+
+      // Product card click tracking (for analytics)
+      poProductCards.forEach((poCard) => {
+        poCard.addEventListener('click', function (poEvent) {
+          // Only track if not clicking on buttons
+          if (
+            !poEvent.target.closest('.po-action-btn') &&
+            !poEvent.target.closest('.po-add-to-cart')
+          ) {
+            const poProductTitle =
+              this.querySelector('.po-product-title').textContent;
+            console.log('Product viewed:', poProductTitle);
+            // You can add analytics tracking here
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
