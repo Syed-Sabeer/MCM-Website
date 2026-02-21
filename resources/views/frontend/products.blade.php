@@ -149,7 +149,7 @@
                   <span class="po-price-current">$1.75</span>
                   <span class="po-price-original">$2.55</span>
                 </div> -->
-                <a href="{{ route('product.detail') }}">
+                <a href="{{ route('product.detail', ['slug' => 'cotton-tote-bag']) }}">
                     <button class="po-add-to-cart">
                     <i class="fa-solid fa-angles-right"></i>
                     </button>

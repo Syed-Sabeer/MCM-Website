@@ -7,6 +7,35 @@
 
 @section('content')
 
+    <!-- Breadcrumb -->
+    <div class="pq-breadcrumb">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <nav aria-label="breadcrumb">
+              <div class="pq-breadcrumb-title">
+                <h1>Product Details</h1>
+              </div>
+              <div class="pq-breadcrumb-container">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="{{ route('home') }}"
+                      ><i class="fas fa-home mr-2"></i>Home</a
+                    >
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="{{ route('products') }}">Products</a>
+                  </li>
+                  <li class="breadcrumb-item active">Cotton Tote Bag</li>
+                </ol>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Breadcrumb -->
+
     <section class="pf-body" >
         <div class="pf-container">
             <div class="pf-header">
@@ -1455,54 +1484,36 @@
           Explore Our Product Categories
         </h3>
         <div class="pd-categories-grid">
-          <div
-            class="pd-category-card animate__animated animate__fadeInUp"
-            style="animation-delay: 0.1s"
-          >
+          <a href="{{ route('products') }}" class="pd-category-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s; text-decoration: none;">
             <i class="fas fa-shopping-bag pd-category-icon"></i>
             <h4 class="pd-category-name">Bags</h4>
             <p class="pd-category-count">52 Products</p>
-          </div>
-          <div
-            class="pd-category-card animate__animated animate__fadeInUp"
-            style="animation-delay: 0.2s"
-          >
+          </a>
+          <a href="{{ route('products') }}" class="pd-category-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s; text-decoration: none;">
             <i class="fas fa-utensils pd-category-icon"></i>
             <h4 class="pd-category-name">Aprons</h4>
             <p class="pd-category-count">38 Products</p>
-          </div>
-          <div
-            class="pd-category-card animate__animated animate__fadeInUp"
-            style="animation-delay: 0.3s"
-          >
+          </a>
+          <a href="{{ route('products') }}" class="pd-category-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s; text-decoration: none;">
             <i class="fas fa-user-md pd-category-icon"></i>
             <h4 class="pd-category-name">Scrubs</h4>
             <p class="pd-category-count">64 Products</p>
-          </div>
-          <div
-            class="pd-category-card animate__animated animate__fadeInUp"
-            style="animation-delay: 0.4s"
-          >
+          </a>
+          <a href="{{ route('products') }}" class="pd-category-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s; text-decoration: none;">
             <i class="fas fa-home pd-category-icon"></i>
             <h4 class="pd-category-name">Home Textile</h4>
             <p class="pd-category-count">89 Products</p>
-          </div>
-          <div
-            class="pd-category-card animate__animated animate__fadeInUp"
-            style="animation-delay: 0.5s"
-          >
+          </a>
+          <a href="{{ route('products') }}" class="pd-category-card animate__animated animate__fadeInUp" style="animation-delay: 0.5s; text-decoration: none;">
             <i class="fas fa-hard-hat pd-category-icon"></i>
             <h4 class="pd-category-name">Uniform & Workwear</h4>
             <p class="pd-category-count">76 Products</p>
-          </div>
-          <div
-            class="pd-category-card animate__animated animate__fadeInUp"
-            style="animation-delay: 0.6s"
-          >
+          </a>
+          <a href="{{ route('products') }}" class="pd-category-card animate__animated animate__fadeInUp" style="animation-delay: 0.6s; text-decoration: none;">
             <i class="fas fa-bandage pd-category-icon"></i>
             <h4 class="pd-category-name">Bandanas</h4>
             <p class="pd-category-count">31 Products</p>
-          </div>
+          </a>
         </div>
       </div>
     </section>

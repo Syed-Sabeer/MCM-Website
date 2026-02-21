@@ -106,6 +106,8 @@
 
     <!--jquery js-->
     <script src="{{ asset('FrontendAssets/js/jquery.min.js') }}"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--bootstrap js-->
     <script src="{{ asset('FrontendAssets/js/bootstrap.min.js') }}"></script>
     <!--owl-carousal-->
@@ -135,4 +137,3 @@
     <script src="{{ asset('FrontendAssets/js/custom.js') }}"></script>
 
 
-    

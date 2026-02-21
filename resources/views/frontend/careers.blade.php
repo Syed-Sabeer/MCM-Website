@@ -54,72 +54,7 @@
 
                 <div class="ce-divider"></div>
 
-                <form class="ce-form" id="ceCareerForm">
-                    <div class="ce-form-row">
-                        <div class="ce-form-group">
-                            <label class="ce-label">
-                                <i class="fas fa-user"></i>
-                                First Name
-                            </label>
-                            <div class="ce-input-wrapper">
-                                <input type="text" class="ce-input" placeholder="Enter your first name" required>
-                            </div>
-                        </div>
-
-                        <div class="ce-form-group">
-                            <label class="ce-label">
-                                <i class="fas fa-user"></i>
-                                Last Name
-                            </label>
-                            <div class="ce-input-wrapper">
-                                <input type="text" class="ce-input" placeholder="Enter your last name" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="ce-form-group ce-full-width">
-                        <label class="ce-label">
-                            <i class="fas fa-phone"></i>
-                            Phone Number
-                        </label>
-                        <div class="ce-input-wrapper">
-                            <input type="tel" class="ce-input" placeholder="Enter your phone number" required>
-                        </div>
-                    </div>
-
-                    <div class="ce-form-group ce-full-width">
-                        <label class="ce-label">
-                            <i class="fas fa-edit"></i>
-                            Note
-                        </label>
-                        <textarea class="ce-textarea" placeholder="Tell us about yourself and why you'd like to join our team..." required></textarea>
-                    </div>
-
-                    <div class="ce-form-group ce-full-width">
-                        <label class="ce-label">
-                            <i class="fas fa-file-upload"></i>
-                            Resume / CV
-                        </label>
-                        <label class="ce-file-upload" for="ceFileInput">
-                            <input type="file" id="ceFileInput" class="ce-file-input" accept=".pdf,.doc,.docx">
-                            <i class="fas fa-cloud-upload-alt ce-upload-icon"></i>
-                            <div class="ce-upload-text">Drop your resume here or click to browse</div>
-                            <div class="ce-upload-subtext">Supported formats: PDF, DOC, DOCX (Max 5MB)</div>
-                            <div class="ce-file-name" id="ceFileName">
-                                <i class="fas fa-check-circle"></i>
-                                <span></span>
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="ce-submit-wrapper">
-                        <button type="submit" class="ce-submit-btn">
-                            <span class="ce-btn-content">Submit Application</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                        <p class="ce-footer-text">We look forward to hearing from you!</p>
-                    </div>
-                </form>
+                @include('frontend.partials._career-form')
             </div>
         </div>
     </div>

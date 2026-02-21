@@ -1196,74 +1196,7 @@
 
 
     <!-- Contact Form -->
-    <section class="contact-form">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 pe-xl-5 wow animated fadeInLeft">
-            <div class="pq-section-title pq-style-1 pq-mb-30 ">
-              <span class="pq-section-sub-title">
-                <img
-                  decoding="async"
-                  src="{{ asset('FrontendAssets/images/section-title/title-icon-primary.png') }}"
-                  alt="image"
-                />LET'S TALK
-              </span>
-              <h5 class="pq-section-main-title">
-                Contact Us &amp; Get In here Touch !
-              </h5>
-              <p class="pq-section-description">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration some form, by injected
-                humour.
-              </p>
-            </div>
-            <div class="map">
-              <iframe
-                src="https://maps.google.com/maps?q=London%20Eye%2C%20London%2C%20United%20Kingdom&amp;t=m&amp;z=10&amp;output=embed&amp;iwloc=near"
-                title="London Eye, London, United Kingdom"
-                aria-label="London Eye, London, United Kingdom"
-              ></iframe>
-            </div>
-          </div>
-          <div class="col-lg-6 mt-4 mt-lg-0 p-xl-0 wow animated fadeInRight">
-            <div class="pq-form-div border-0 mt-0">
-              <h4 class="pq-form-title mb-2">Send Your Message</h4>
-              <form class="pq-applyform">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <input type="text" placeholder="Enter Name" />
-                  </div>
-                  <div class="col-lg-6 col-md-6">
-                    <input type="email" placeholder="Email Address" />
-                  </div>
-                  <div class="col-lg-6 col-md-6">
-                    <input type="text" placeholder="Phone Number" />
-                  </div>
-                  <div class="col-lg-12">
-                    <select>
-                      <option value="Service 1" selected>Service 1</option>
-                      <option value="Service 2">Service 2</option>
-                      <option value="Service 3">Service 3</option>
-                      <option value="Service 4">Service 4</option>
-                    </select>
-                  </div>
-                  <div class="col-lg-12">
-                    <textarea
-                      cols="40"
-                      rows="10"
-                      placeholder="Message"
-                    ></textarea>
-                  </div>
-                  <div class="col-lg-12">
-                    <a href="#" class="pq-button">SUBMIT</a>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    @include('frontend.partials._contact-form', ['animateLeft' => true, 'animateRight' => true])
     <!-- Contact Form -->
 
 

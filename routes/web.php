@@ -21,12 +21,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
+Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('manufacturing', [ManufactureController::class, 'index'])->name('manufacturing');
 Route::get('products', [ProductController::class, 'index'])->name('products');
 Route::get('product', [ProductController::class, 'show'])->name('product.detail');
 Route::get('careers', [CareerController::class, 'index'])->name('careers');
+Route::post('careers', [CareerController::class, 'store'])->name('careers.store');
 Route::get('hub', [HubController::class, 'index'])->name('hub');
 Route::get('team', [TeamController::class, 'index'])->name('team');
+
+// API Routes
+Route::prefix('api')->group(function () {
+    // Contact APIs
+    Route::get('contacts', [ContactController::class, 'listContacts'])->name('api.contacts.list');
+    Route::get('contacts/{id}', [ContactController::class, 'showContact'])->name('api.contacts.show');
+
+    // Career APIs
+    Route::get('careers', [CareerController::class, 'listCareers'])->name('api.careers.list');
+    Route::get('careers/{id}', [CareerController::class, 'showCareer'])->name('api.careers.show');
+});
 
 
 Route::group(['middleware' => ['guest']], function () {
